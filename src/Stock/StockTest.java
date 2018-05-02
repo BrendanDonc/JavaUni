@@ -1,4 +1,4 @@
-package Assignment;
+package Stock;
 
 import org.junit.Test;
 import org.junit.Before;

@@ -1,4 +1,4 @@
-package Assignment;
+package Delivery;
 
 public class Refrigerated_Truck {
 

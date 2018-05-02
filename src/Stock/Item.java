@@ -1,4 +1,4 @@
-package Assignment;
+package Stock;
 
 public class Item {
 
