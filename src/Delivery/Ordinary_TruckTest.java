@@ -7,7 +7,19 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.internal.JUnitSystem;
 
+import Stock.Item;
+
 public class Ordinary_TruckTest {
+	
+	//Declaring items to be used in tests
+		Item rice = new Item("Rice", 10, 15, 200, 300);
+		Item biscuits = new Item("Biscuits", 10, 15, 200, 300);
+		Item almonds = new Item("Almonds", 10, 15, 200, 300);
+		Item cannedSpag = new Item("Canned Spaghetti", 10, 15, 200, 300);
+		Item cereal = new Item("Cereal", 10, 15, 200, 300);
+		Item muffins = new Item("Muffins", 10, 15, 200, 300);
+		Item bread = new Item("Bread", 10, 15, 200, 300);
+		Item chips = new Item("Chips", 10, 15, 200, 300);
 
 	/* Test 0: Declaring O-Truck objects */
 	Ordinary_Truck oTruck;
@@ -27,19 +39,19 @@ public class Ordinary_TruckTest {
 	/* Test 2: Add one kind of item to truck cargo */
 	@Test
 	public void addAnItem() {
-		oTruck.addItem("Rice", 52);
-		assertEquals(52, oTruck.getCargoItem("Rice"));
+		oTruck.addItem(rice, 52);
+		assertEquals(52, oTruck.getCargoItem(rice));
 	}
 	
 	/* Test 3: Add multiple kinds of item to truck cargo */
 	@Test
 	public void addMultipleItems() {
-		oTruck.addItem("Biscuits", 128);
-		oTruck.addItem("Almonds", 67);
-		oTruck.addItem("Canned Spaghetti", 52);
-		assertEquals(128, oTruck.getCargoItem("Biscuits"));
-		assertEquals(67, oTruck.getCargoItem("Almonds"));
-		assertEquals(52, oTruck.getCargoItem("Canned Spaghetti"));
+		oTruck.addItem(biscuits, 128);
+		oTruck.addItem(almonds, 67);
+		oTruck.addItem(cannedSpag, 52);
+		assertEquals(128, oTruck.getCargoItem(biscuits));
+		assertEquals(67, oTruck.getCargoItem(almonds));
+		assertEquals(52, oTruck.getCargoItem(cannedSpag));
 	}
 
 	/* Test 4: Calculating the ordinary truck cost */
@@ -54,26 +66,26 @@ public class Ordinary_TruckTest {
 	/* Test 5: Removing an item from the truck cargo */
 	@Test
 	public void removeAnItem() {
-		oTruck.removeItem("Rice", 52);
-		assertEquals(0, oTruck.getCargoItem("Rice"));
+		oTruck.removeItem(rice, 52);
+		assertEquals(0, oTruck.getCargoItem(rice));
 	}
 	
 	
 	/* Test 6: Adding items and removing items from multiple trucks */
 	@Test
 	public void manageMultipleTrucks() {
-		oTruck_02.addItem("Cereal", 128);
-		oTruck_02.addItem("Muffins", 132);
-		oTruck_03.addItem("Bread", 465);
-		oTruck_03.addItem("Chips", 243);
+		oTruck_02.addItem(cereal, 128);
+		oTruck_02.addItem(muffins, 132);
+		oTruck_03.addItem(bread, 465);
+		oTruck_03.addItem(chips, 243);
 		
-		oTruck_02.removeItem("Muffins", 32);
-		oTruck_03.removeItem("Bread", 65);
+		oTruck_02.removeItem(muffins, 32);
+		oTruck_03.removeItem(bread, 65);
 		
-		assertEquals(128, oTruck_02.getCargoItem("Cereal"));
-		assertEquals(100, oTruck_02.getCargoItem("Muffins"));
-		assertEquals(400, oTruck_03.getCargoItem("Bread"));
-		assertEquals(243, oTruck_03.getCargoItem("Chips"));
+		assertEquals(128, oTruck_02.getCargoItem(cereal));
+		assertEquals(100, oTruck_02.getCargoItem(muffins));
+		assertEquals(400, oTruck_03.getCargoItem(bread));
+		assertEquals(243, oTruck_03.getCargoItem(chips));
 	}
 	
 	/* Test 7: Checking the truck cargo has the correct number of items */
