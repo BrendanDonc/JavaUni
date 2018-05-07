@@ -20,7 +20,7 @@ public class StockTest {
 //	inventory.addItem(bread, 0);
 //	inventory.addItem(mushroom, 0);
 //	inventory.addItem(icecream, 0);
-//	Store.getInstance().setItems(inventory);
+//	Store.getInstance().setInventory(inventory);
 	
 	/*
 	 * Test 0 Declaring Stock object
