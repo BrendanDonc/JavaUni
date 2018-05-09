@@ -35,9 +35,6 @@ public class Refrigerated_TruckTest {
 		rTruck_03 = new Refrigerated_Truck();
 	}
 	
-	
-	/* Test X: Check that there are enough items in stock to add to truck*/
-	
 	/* Test 2: Add one kind of item to truck cargo */
 	@Test
 	public void addAnItem() {
@@ -141,5 +138,11 @@ public class Refrigerated_TruckTest {
 		
 	}
 	
-	/* Test : Return the cargo capacity left */
+	/* Test : Gets the truck type */
+	public void getTruckType() {
+		String actualTruckType = "Refrigerated Truck";
+		
+		assertEquals(actualTruckType, rTruck.truckType());
+	}
+	
 }

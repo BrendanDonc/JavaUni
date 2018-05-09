@@ -20,6 +20,8 @@ public class Ordinary_TruckTest {
 		Item muffins = new Item("Muffins", 10, 15, 200, 300);
 		Item bread = new Item("Bread", 10, 15, 200, 300);
 		Item chips = new Item("Chips", 10, 15, 200, 300);
+		
+		Item iceCream = new Item("Ice Cream", 10, 15, 200, 300, -5);
 
 	/* Test 0: Declaring O-Truck objects */
 	Truck oTruck;
@@ -96,18 +98,30 @@ public class Ordinary_TruckTest {
 	}
 
 	/* Test 8: Checking the truck is not empty */
-	@Test
-	public void emptyTruck() throws CapacityException {
+	@Test(expected = DeliveryException.class)
+	public void emptyTruck(){
 		oTruck.getTruckSize();
 	}
 	
 	/* Test 9: Checking the truck cargo has not exceeded capacity */
-	@Test
-	public void maxCapacity() throws CapacityException {
-		oTruck.addItem("Rice", 1000);
+	@Test(expected = DeliveryException.class)
+	public void maxCapacity() {
+		oTruck.addItem(rice, 1000);
 		
 		oTruck.getTruckSize();
 	}
 	
 	/* Test 10: Checking there are no temperature-controlled items in the truck */
+	@Test (expected = DeliveryException.class)
+	public void checkForColdItems() {
+		oTruck.addTruckItem(iceCream, 50);
+	}
+	
+	
+	/* Test : Gets the truck type */
+	public void checkTruckType() {
+		String actualTruckType = "Refrigerated Truck";
+		
+		assertEquals(actualTruckType, oTruck.getTruckType());
+	}
 }
