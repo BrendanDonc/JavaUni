@@ -4,7 +4,19 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.internal.JUnitSystem;
 
+import Stock.Item;
+
 public class ManifestTest {
+	
+	//Setting up ordinary truck for testing
+	Ordinary_Truck truckOrdinary = new Ordinary_Truck();
+		
+	Item rice = new Item("Rice", 10, 15, 200, 300);
+	truckOrdinary.addItem(rice, 50);
+		
+		
+		
+	Refrigerated_Truck truckRefrigerated = new Refrigerated_Truck();
 
 	//Declaring a manifest object
 	Manifest manifestTest;
@@ -22,8 +34,20 @@ public class ManifestTest {
 		manifestTest.
 	}
 	
-	// Check manifest matches truck cargo
+	/* Test: Add truck to manifests */
 	
 	
-
+	/* Test: Check manifest matches truck cargo */
+	@Test
+	
+	
+	/* Test: Convert Manifest into 'printable' format */
+	@Test
+	public void printManifestTest() {
+		assertEquals(manifestTest.printManifest());
+	}
+	
+	/*Test: Export manifest into a .csv file */
+	@Test
+	
 }

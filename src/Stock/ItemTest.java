@@ -45,29 +45,31 @@ class ItemTest {
 	public void testName() {
 		String name = "john";
 		item = new Item(name, 2, 3, 225, 300);
-		assertequals(name, item.getName());
+		assertEquals(name, item.getName());
 	}
 	
 	/*
 	 * Test 4 Get item's manufacturing cost
 	 * 
 	 */
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testCost() {
 		double cost = 12;
 		item = new Item("rice", cost, 3, 225, 300);
-		assertequals(cost, item.getCost());
+		assertEquals(cost, item.getCost());
 	}
 	
 	/*
 	 * Test 5 Get item's sell price
 	 * 
 	 */
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testPrice() {
 		double price = 23;
 		item = new Item("rice", 2, price, 225, 300);
-		assertequals(price, item.getPrice());
+		assertEquals(price, item.getPrice());
 	}
 	
 	/*
@@ -78,7 +80,7 @@ class ItemTest {
 	public void testRePoint() {
 		int rePoint = 184;
 		item = new Item("rice", 2, 3, rePoint, 300);
-		assertequals(rePoint, item.getRePoint());
+		assertEquals(rePoint, item.getRePoint());
 	}
 	
 	/*
@@ -89,7 +91,7 @@ class ItemTest {
 	public void testRePoint() {
 		int reAmount = 326;
 		item = new Item("rice", 2, 3, 225, reAmount);
-		assertequals(reAmount, item.getReAmount());
+		assertEquals(reAmount, item.getReAmount());
 	}
 	
 	/*
@@ -100,7 +102,7 @@ class ItemTest {
 	public void testTemp() {
 		double temp = 18;
 		item = new Item("mushroom", 2, 4, 200, 325, temp);
-		assertequals(temp, item.getTemp());
+		assertEquals(temp, item.getTemp());
 	}
 	
 	/*
@@ -110,7 +112,7 @@ class ItemTest {
 	@Test
 	public void testOrdinaryTempRequired() {
 		item = new Item("rice", 2, 3, 225, 300);
-		assertequals(false, item.tempRequired());
+		assertEquals(false, item.tempRequired());
 	}
 	
 	/*
@@ -120,6 +122,6 @@ class ItemTest {
 	@Test
 	public void testRefrigeratedTempRequired() {
 		item = new Item("mushroom", 2, 4, 200, 325, 10);
-		assertequals(true, item.tempRequired());
+		assertEquals(true, item.tempRequired());
 	}
 }
