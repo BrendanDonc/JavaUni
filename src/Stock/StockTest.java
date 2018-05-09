@@ -52,7 +52,7 @@ public class StockTest {
 	@Test
 	public void testGetItems() {
 		stock = new Stock();
-		assertequals(null, stock.getItems());
+		assertEquals(null, stock.getItems(), 0.1);
 	}
 	
 	/*
@@ -105,7 +105,7 @@ public class StockTest {
 		stock.addItem(rice, 100);
 		stock.addItem(mushroom, 300);
 		double result = 500;
-		assertequals(result, stock.sumCosts());
+		assertEquals(result, stock.sumCosts(), 0.1);
 	}
 	
 	/*
@@ -118,7 +118,7 @@ public class StockTest {
 		stock.addItem(rice, 100);
 		stock.addItem(mushroom, 300);
 		double result = 900;
-		assertequals(result, stock.sumPrices());
+		assertEquals(result, stock.sumPrices(), 0.1);
 	}
 	
 	/*
@@ -177,7 +177,7 @@ public class StockTest {
 		stock.addItem(mushroom, 300);
 		stock.addItem(bread, 400);
 		stock.addItem(icecream, 500);
-		assertequals(-5, stock.getColdestTemp);
+		assertEquals(-5, stock.getColdestTemp);
 	}
 	
 	/*
@@ -192,7 +192,7 @@ public class StockTest {
 		stock.addItem(bread, 400);
 		stock.addItem(icecream, 500);
 		String result = "rice,100\nmushroom,300\nbread,400\nice cream,500\n";
-		assetequals(result, stock.getManifestPrintStyle());
+		assetEquals(result, stock.getManifestPrintStyle());
 	}
 	
 	/*
