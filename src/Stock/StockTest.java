@@ -20,18 +20,20 @@ public class StockTest {
 //	inventory.addItem(bread, 0);
 //	inventory.addItem(mushroom, 0);
 //	inventory.addItem(icecream, 0);
-//	Store.getInstance().setItems(inventory);
+//	Store.getInstance().setInventory(inventory);
 	
 	/*
 	 * Test 0 Declaring Stock object
 	 * 
 	 */
 	Stock stock;
+	Stock tempStock;
 	
 	//Clear stock before each test
 	@Before
-	public void setupItem() {
+	public void setupStock() {
 		stock = null;
+		tempStock = null;
 	}
 	
 	/*
@@ -61,7 +63,7 @@ public class StockTest {
 	public void testAddItem() {
 		Item[] resultArray = {rice};
 		stock = new Stock();
-		stock.addStock(rice, 40);
+		stock.addItem(rice, 40);
 		assertArrayEquals(resultArray, stock.getItems());
 	}
 	
@@ -74,7 +76,7 @@ public class StockTest {
 //	public void testAddItemName() {		
 //		Item[] resultArray = {rice};
 //		stock = new Stock();
-//		stock.addStock("rice", 40);
+//		stock.addItemName("rice", 40);
 //		assertArrayEquals(resultArray, stock.getItems());
 //	}
 
@@ -191,5 +193,173 @@ public class StockTest {
 		stock.addItem(icecream, 500);
 		String result = "rice,100\nmushroom,300\nbread,400\nice cream,500\n";
 		assetequals(result, stock.getManifestPrintStyle());
+	}
+	
+	/*
+	 * Test 13 Get stock amount of an item
+	 * 
+	 */
+	@Test
+	public void testGetAmount() {
+		stock = new Stock();
+		int amount = 200;
+		stock.addItem(rice, amount);
+		assertEquals(amount, stock.getAmount(rice));
+	}
+	
+	/*
+	 * Test 14 Subtract an item amount from a stock
+	 * 
+	 */
+	@Test
+	public void testSubtractItem() {
+		stock = new Stock();
+		int startAmount = 200;
+		int subtractAmount = 50;
+		stock.addItem(rice, startAmount);
+		stock.subtractItem(rice, subtractAmount);
+		assertEquals(startAmount - subtractAmount, stock.getAmount(rice));
+		
+	}
+
+	
+	/*
+	 * Test 15 Add item from string that isn't in store's inventory
+	 * 
+	 */
+	@Test(expected = StockException.class)
+	public void testNoItemName() {
+		stock = new Stock();
+		stock.addItemName("apple", 50);
+	}
+	
+	/*
+	 * Test 16 Subtract more from a stock than it has
+	 * 
+	 */
+	@Test(expected = StockException.class)
+	public void testNotEnoughItem() {
+		stock = new Stock();
+		stock.addItem(rice, 20);
+		stock.subtractItem(rice, 400);
+	}
+	
+	/*
+	 * Test 17 Subtract an item that doesn't exist in stock
+	 * 
+	 */
+	@Test(expected = StockException.class)
+	public void testNoItem() {
+		stock = new Stock();
+		stock.subtractItem(rice, 10);
+	}
+	
+	/*
+	 * Test 18 Check if item is a valid subtraction (success)
+	 * 
+	 */
+	@Test
+	public void testValidSubtractItemSuccess() {
+		stock = new Stock();
+		stock.addItem(rice, 50);
+		assertEquals(true, stock.validSubtractItem(rice, 30));
+	}
+	
+	/*
+	 * Test 19 Check if item is a valid subtraction (failure, not enough of item)
+	 * 
+	 */
+	@Test
+	public void testValidSubtractItemFailureAmount() {
+		stock = new Stock();
+		stock.addItem(rice, 50);
+		assertEquals(true, stock.validSubtractItem(rice, 70));
+	}
+	
+	/*
+	 * Test 20 Check if item is a valid subtraction (failure, item does not exist)
+	 * 
+	 */
+	@Test
+	public void testValidSubtractItemFailureExist() {
+		stock = new Stock();
+		assertEquals(true, stock.validSubtractItem(rice, 70));
+	}
+	
+	/*
+	 * Test 21 Subtract a stock from a stock
+	 * 
+	 */
+	@Test
+	public void testSubtractStock() {
+		stock = new Stock();
+		tempStock = new Stock();
+		stock.addItem(rice, 500);
+		tempStock.addItem(rice, 200);
+		stock.subtractStock(tempStock);
+		assertEquals(300, stock.getAmount(rice));
+	}
+	
+	/*
+	 * Test 22 Subtract a stock with invalid amount
+	 * 
+	 */
+	@Test(expected = StockException.class)
+	public void testSubtractStockAmount() {
+		stock = new Stock();
+		tempStock = new Stock();
+		stock.addItem(rice, 200);
+		tempStock.addItem(rice, 300);
+		stock.subtractStock(tempStock);
+	}
+	
+	/*
+	 * Test 23 Subtract a stock without the item
+	 * 
+	 */
+	@Test(expected = StockException.class)
+	public void testSubtractStockExist() {
+		stock = new Stock();
+		tempStock = new Stock();
+		tempStock.addItem(rice, 200);
+		stock.subtractStock(tempStock);
+	}
+	
+	/*
+	 * Test 24 Check if stock is a valid subtraction (success)
+	 * 
+	 */
+	@Test
+	public void testValidSubtractStockSuccess() {
+		stock = new Stock();
+		tempStock = new Stock();
+		stock.addItem(rice, 500);
+		tempStock.addItem(rice, 200);
+		assertEquals(true, stock.validSubtractStock(tempStock));
+	}
+	
+	/*
+	 * Test 25 Check if stock is a valid subtraction (failure, not enough of an item)
+	 * 
+	 */
+	@Test
+	public void testValidSubtractStockFailureAmount() {
+		stock = new Stock();
+		tempStock = new Stock();
+		stock.addItem(rice, 200);
+		tempStock.addItem(rice, 300);
+		assertEquals(false, stock.validSubtractStock(tempStock));
+	}
+	
+	/*
+	 * Test 26 Check if stock is a valid subtraction (failure, an item does not exist)
+	 * 
+	 */
+	@Test
+	public void testValidSubtractStockFailureExist() {
+		stock = new Stock();
+		tempStock = new Stock();
+		tempStock.addItem(rice, 200);
+		assertEquals(false, stock.validSubtractStock(tempStock));
 	}
 }
