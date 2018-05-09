@@ -4,7 +4,7 @@ import org.junit.Test;
 import org.junit.Before;
 import static org.junit.Assert.*;
 
-class StoreTest {
+public class StoreTest {
 	
 	//Setup items to be used in store tests
 	Item rice = new Item("rice", 2, 3, 225, 300);
