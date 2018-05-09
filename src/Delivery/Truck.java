@@ -1,6 +1,6 @@
 package Delivery;
 
-import Stock.Item;
+import Stock.*;
 
 public abstract class Truck {
 
