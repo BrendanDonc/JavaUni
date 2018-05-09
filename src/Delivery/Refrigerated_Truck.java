@@ -1,5 +1,7 @@
 package Delivery;
 
+import Stock.Item;
+
 public class Refrigerated_Truck extends Truck {
 
 	public Refrigerated_Truck() {
