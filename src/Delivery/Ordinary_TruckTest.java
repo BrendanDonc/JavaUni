@@ -22,9 +22,9 @@ public class Ordinary_TruckTest {
 		Item chips = new Item("Chips", 10, 15, 200, 300);
 
 	/* Test 0: Declaring O-Truck objects */
-	Ordinary_Truck oTruck;
-	Ordinary_Truck oTruck_02;
-	Ordinary_Truck oTruck_03;
+	Truck oTruck;
+	Truck oTruck_02;
+	Truck oTruck_03;
 	
 	/* Test 1: Constructing an oTruck object*/
 	@Before

@@ -21,9 +21,9 @@ public class Refrigerated_TruckTest {
 	Item peas = new Item("Peas", 10, 15, 200, 300, -20);
 
 	/* Test 0: Declaring R-Truck objects */
-	Refrigerated_Truck rTruck;
-	Refrigerated_Truck rTruck_02;
-	Refrigerated_Truck rTruck_03;
+	Truck rTruck;
+	Truck rTruck_02;
+	Truck rTruck_03;
 
 	
 	/* Test 1: Constructing an rTruck object*/
@@ -107,16 +107,16 @@ public class Refrigerated_TruckTest {
 	}
 	
 	/* Test 9: Checking the truck cargo has not exceeded capacity */
-	@Test
-	public void maxCapacity() throws CapacityException {
+	@Test (expected = DeliveryException.class)
+	public void maxCapacity() {
 		rTruck.addItem(iceCream, 776);
 		
 		rTruck.truckCapacity();
 	}
 	
 	/* Test 10: Checking the truck is not empty */
-	@Test
-	public void emptyTruck() throws CapacityException {
+	@Test (expected = DeliveryException.class)
+	public void emptyTruck() {
 		rTruck.removeItem(iceCream, 904);
 		rTruck.removeItem(milk, 67);
 		rTruck.removeItem(banana, 52);
@@ -125,8 +125,8 @@ public class Refrigerated_TruckTest {
 	}
 	
 	/* Test 11: Checking the temperature of the truck is safe (ie. has not exceeded either limit) */
-	@Test
-	public void checkTemp() throws TemperatureException {
+	@Test(expected = DeliveryException.class)
+	public void checkTemp() {
 		rTruck.addItem(peas, 5);
 		double newTemp = -20.0;
 		assertEquals("Truck temperature is unsafe", newTemp, rTruck.getTemp());
@@ -140,4 +140,6 @@ public class Refrigerated_TruckTest {
 		assertEquals(actualMinTemp, rTruck.getColdestTemp());
 		
 	}
+	
+	/* Test : Return the cargo capacity left */
 }

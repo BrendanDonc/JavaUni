@@ -11,7 +11,7 @@ public class Item {
 	double price;
 	int rePoint;
 	int reAmount;
-	double temp;
+	Double temp;
 	
 	public Item(String itemName, double itemCost, double itemPrice, int itemReorderPoint, int itemReorderAmount) {
 		this.name = itemName;
@@ -21,7 +21,7 @@ public class Item {
 		this.reAmount = itemReorderAmount;
 	}
 	
-	public Item(String itemName, double itemCost, double itemPrice, int itemReorderPoint, int itemReorderAmount, double itemTemp) {
+	public Item(String itemName, double itemCost, double itemPrice, int itemReorderPoint, int itemReorderAmount, Double itemTemp) {
 		this.name = itemName;
 		this.cost = itemCost;
 		this.price = itemPrice;
@@ -50,12 +50,17 @@ public class Item {
 		return reAmount;
 	}
 	
-	public double getTemp() {
+	public Double getTemp() {
 		return temp;
 	}
 	
 	public boolean tempRequired() {
-		// TODO check if way to differentiate between constructors
+		if (temp != null) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 
 }

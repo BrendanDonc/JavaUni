@@ -14,9 +14,9 @@ public class ManifestTest {
 	Item rice = new Item("Rice", 10, 15, 200, 300);
 	truckOrdinary.addItem(rice, 50);
 		
-		
-		
-	Refrigerated_Truck truckRefrigerated = new Refrigerated_Truck();
+	Truck truckRefrigerated = new Refrigerated_Truck();
+	
+	//truck collection
 
 	//Declaring a manifest object
 	Manifest manifestTest;
@@ -35,6 +35,7 @@ public class ManifestTest {
 	}
 	
 	/* Test: Add truck to manifests */
+	@Test
 	
 	
 	/* Test: Check manifest matches truck cargo */
