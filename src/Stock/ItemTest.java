@@ -45,7 +45,7 @@ public class ItemTest {
 	public void testName() {
 		String name = "john";
 		item = new Item(name, 2, 3, 225, 300);
-		assertEquals(name, item.getName(), 0.1);
+		assertEquals(name, item.getName());
 	}
 	
 	/*
