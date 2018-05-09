@@ -114,7 +114,7 @@ class ItemTest {
 	}
 	
 	/*
-	 * Test 10 Chec regrigerated item if refrigeration is required
+	 * Test 10 Check refrigerated item if refrigeration is required
 	 * 
 	 */
 	@Test
@@ -122,4 +122,72 @@ class ItemTest {
 		item = new Item("mushroom", 2, 4, 200, 325, 10);
 		assertequals(true, item.tempRequired());
 	}
+	
+	/*
+	 * Test 11 Check manufacturing cost is positive
+	 * 
+	 */
+	@Test(expected = StockException.class)
+	public void testPosistiveManufacturing() {
+		item = new Item("rice", -2, 3, 225, 300);
+	}
+	
+	/*
+	 * Test 12 Check manufacturing cost is above 0
+	 * 
+	 */
+	
+	@Test(expected = StockException.class)
+	public void testManufacturingNotZero() {
+		item = new Item("rice", 0, 3, 225, 300);
+	}
+	
+	/*
+	 * Test 13 Check sale price is positive
+	 * 
+	 */
+	@Test(expected = StockException.class)
+	public void testPosistiveSale() {
+		item = new Item("rice", 2, -3, 225, 300);
+	}
+	
+	/*
+	 * Test 14 Check sale price is above 0
+	 * 
+	 */
+	
+	@Test(expected = StockException.class)
+	public void testSaleNotZero() {
+		item = new Item("rice", 2, 0, 225, 300);
+	}
+	
+	/*
+	 * Test 15 Check reorder point is positive
+	 * 
+	 */
+	@Test(expected = StockException.class)
+	public void testPosistiveRePoint() {
+		item = new Item("rice", 2, 3, -225, 300);
+	}
+	
+	/*
+	 * Test 16 Check reorder amount is positive
+	 * 
+	 */
+	@Test(expected = StockException.class)
+	public void testPosistiveReAmount() {
+		item = new Item("rice", 2, 3, 225, -300);
+	}
+	
+	/*
+	 * Test 17 Check reorder amount is above 0
+	 * 
+	 */
+	
+	@Test(expected = StockException.class)
+	public void testReAmountNotZero() {
+		item = new Item("rice", 2, 3, 225, 0);
+	}
+	
+	
 }
