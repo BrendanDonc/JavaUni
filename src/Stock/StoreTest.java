@@ -6,18 +6,20 @@ import static org.junit.Assert.*;
 
 public class StoreTest {
 	
-	//Setup items to be used in store tests
-	Item rice = new Item("rice", 2, 3, 225, 300);
-	Item bread = new Item("bread", 1, 2, 185, 224);
-	Item mushroom = new Item("mushroom", 2, 4, 200, 325, 10);
-	Item icecream = new Item("ice cream", 3, 4, 74, 221, -5);
-	
-	//Setup inventory stock for setInventory
-	Stock inventory = new Stock();
-	inventory.addItem(rice, 0);
-	inventory.addItem(bread, 0);
-	inventory.addItem(mushroom, 0);
-	inventory.addItem(icecream, 0);
+	public void setup() {
+		//Setup items to be used in store tests
+		Item rice = new Item("rice", 2, 3, 225, 300);
+		Item bread = new Item("bread", 1, 2, 185, 224);
+		Item mushroom = new Item("mushroom", 2, 4, 200, 325, Double.valueOf(10));
+		Item icecream = new Item("ice cream", 3, 4, 74, 221, Double.valueOf(-5));
+		
+		//Setup inventory stock for setInventory
+		Stock inventory = new Stock();
+		inventory.addItem(rice, 0);
+		inventory.addItem(bread, 0);
+		inventory.addItem(mushroom, 0);
+		inventory.addItem(icecream, 0);
+	}
 	
 	/*
 	 * Test 1 Create the single instance

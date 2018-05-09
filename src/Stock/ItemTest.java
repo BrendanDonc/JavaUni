@@ -119,7 +119,7 @@ public class ItemTest {
 	 */
 	@Test
 	public void testRefrigeratedTempRequired() {
-		item = new Item("mushroom", 2, 4, 200, 325, 10);
+		item = new Item("mushroom", 2, 4, 200, 325, Double.valueOf(10));
 		assertEquals(true, item.tempRequired());
 	}
 	
