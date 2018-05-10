@@ -370,4 +370,17 @@ public class StockTest {
 		tempStock.addItem(rice, 200);
 		assertEquals(false, stock.validSubtractStock(tempStock));
 	}
+	
+	/*
+	 * Test 27 Sum the total amount of items in the stock
+	 * 
+	 */
+	@Test
+	public void testSumAmount() {
+		stock = new Stock();
+		stock.addItem(rice, 200);
+		stock.addItem(bread, 100);
+		stock.addItem(mushroom, 300);
+		assertEquals(600, stock.sumAmount());
+	}
 }
