@@ -4,14 +4,14 @@ import Stock.*;
 
 public abstract class Truck {
 
-	private String truckType;
-	private Stock cargo;
-	private int capacity;
+	protected String truckType;
+	protected Stock cargo;
+	protected int capacity;
 	
 	public Truck() {
 		truckType = null;
 		cargo = null;
-		capacity = null;
+		capacity = 0;
 	}
 	
 	public String getTruckType() {
@@ -26,10 +26,22 @@ public abstract class Truck {
 		return capacity;
 	}
 	
-	public abstract int getRemainingCapacity();
+	public int getTruckSize() {
+		return cargo.sumAmount();
+	}
 	
-	public abstract double getCost();
+	public abstract double truckCost();
 	
-	public abstract void addTruckItem(Item item, int amount);
+	public abstract void addItem(Item item, int amount) throws StockException;
+	
+	public void removeItem(Item item, int amount) {
+		cargo.subtractItem(item, amount);	
+	}
+	
+	public int getCargoItem(Item item) {
+		return this.getCargo().getAmount();
+	}
+	
+	public abstract Double getColdestTemp();
 
 }
