@@ -8,12 +8,18 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 public class StockTest {
 	
+	Item rice;
+	Item bread;
+	Item mushroom;
+	Item icecream;
+	Stock inventory;
+	
 	public void setup() {
 		//Setup items to be used in stock tests
 		Item rice = new Item("rice", 2, 3, 225, 300);
 		Item bread = new Item("bread", 1, 2, 185, 224);
-		Item mushroom = new Item("mushroom", 2, 4, 200, 325, Double.valueOf(10));
-		Item icecream = new Item("ice cream", 3, 4, 74, 221, Double.valueOf(-5));
+		Item mushroom = new Item("mushroom", 2, 4, 200, 325, (double)10);
+		Item icecream = new Item("ice cream", 3, 4, 74, 221, (double)-5);
 		
 		//Setup store inventory for addItemName
 		Stock inventory = new Stock();
@@ -54,7 +60,7 @@ public class StockTest {
 	@Test
 	public void testGetItems() {
 		stock = new Stock();
-		assertEquals(null, stock.getItems(), 0.1);
+		assertArrayEquals(null, stock.getItems());
 	}
 	
 	/*

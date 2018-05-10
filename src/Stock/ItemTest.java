@@ -34,7 +34,7 @@ public class ItemTest {
 	 */
 	@Test
 	public void testRefrigerated() {
-		item = new Item("mushroom", 2, 4, 200, 325, Double.valueOf(10));
+		item = new Item("mushroom", 2, 4, 200, 325, (double) 10);
 	}
 	
 	/*
@@ -86,7 +86,7 @@ public class ItemTest {
 	 * 
 	 */
 	@Test
-	public void testRePoint() {
+	public void testReAmount() {
 		int reAmount = 326;
 		item = new Item("rice", 2, 3, 225, reAmount);
 		assertEquals(reAmount, item.getReAmount());
@@ -119,7 +119,7 @@ public class ItemTest {
 	 */
 	@Test
 	public void testRefrigeratedTempRequired() {
-		item = new Item("mushroom", 2, 4, 200, 325, Double.valueOf(10));
+		item = new Item("mushroom", 2, 4, 200, 325, (double)10);
 		assertEquals(true, item.tempRequired());
 	}
 	
