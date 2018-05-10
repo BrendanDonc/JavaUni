@@ -5,25 +5,36 @@ import Stock.*;
 public class Refrigerated_Truck extends Truck {
 
 	public Refrigerated_Truck() {
-		// TODO Auto-generated constructor stub
+		this.cargo = new Stock();
+		this.truckType = "Refrigerated";
+		this.capacity = 800;
 	}
 
 	@Override
-	public int getRemainingCapacity() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public double getCost() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void addTruckItem(Item item, int amount) {
-		// TODO Auto-generated method stub
+	public void addItem(Item item, int amount) {
+		if(item.getTemp() > 10 || item.getTemp() < -20) {
+			throw new DeliveryException();
+		}
+		else {
+			if(this.getTruckSize() + amount > this.getCapacity()) {
+				throw new DeliveryException();
+			}
+			else {
+				cargo.addItem(item, amount);
+			}
+		}
 		
+	}
+
+	@Override
+	public double truckCost() {
+		double cost = 900.00 + 200.00 * java.lang.Math.pow(0.7,this.getColdestTemp());
+		return cost;
+	}
+
+	@Override
+	public Double getColdestTemp() {
+		return this.getCargo().getColdestTemp();
 	}
 
 }
