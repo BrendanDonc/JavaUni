@@ -4,26 +4,37 @@ import Stock.*;
 
 public class Ordinary_Truck extends Truck {
 
+
 	public Ordinary_Truck() {
-		// TODO Auto-generated constructor stub
+		this.cargo = new Stock();
+		this.truckType = "Ordinary";
+		this.capacity = 750;
 	}
 
 	@Override
-	public int getRemainingCapacity() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public double getCost() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void addTruckItem(Item item, int amount) {
-		// TODO Auto-generated method stub
+	public void addItem(Item item, int amount) throws StockException {
+		if(item.tempRequired()) {
+			throw new DeliveryException();
+		}
+		else {
+			if(this.getTruckSize() + amount > this.getCapacity()) {
+				throw new DeliveryException();
+			}
+			else {
+				cargo.addItem(item, amount);
+			}
+		}
 		
 	}
 
+	@Override
+	public double truckCost() {
+		double cost = 750 + (25*this.getTruckSize());
+		return cost;
+	}
+
+	@Override
+	public Double getColdestTemp() {
+		return null;
+	}
 }
