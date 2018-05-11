@@ -189,5 +189,94 @@ public class ItemTest {
 		item = new Item("rice", 2, 3, 225, 0);
 	}
 	
+	/*
+	 * Test 18 Check if two different Items are equal (true)
+	 * 
+	 */
+	@Test
+	public void testEqualTrue() throws StockException {
+		item = new Item("rice", 2, 3, 225, 300);
+		Item itemSame = new Item("rice", 2, 3, 225, 300);
+		assertTrue(item.equals(itemSame));
+	}
+	
+	/*
+	 * Test 19 Check if two different Items are equal (false, name)
+	 * 
+	 */
+	@Test
+	public void testEqualFalseName() throws StockException {
+		item = new Item("rice", 2, 3, 225, 300);
+		Item itemSame = new Item("mushroom", 2, 3, 225, 300);
+		assertFalse(item.equals(itemSame));
+	}
+	
+	/*
+	 * Test 20 Check if two different Items are equal (false, cost)
+	 * 
+	 */
+	@Test
+	public void testEqualFalseCost() throws StockException {
+		item = new Item("rice", 2, 3, 225, 300);
+		Item itemSame = new Item("mushroom", 4, 3, 225, 300);
+		assertFalse(item.equals(itemSame));
+	}
+	
+	/*
+	 * Test 21 Check if two different Items are equal (false, price)
+	 * 
+	 */
+	@Test
+	public void testEqualFalsePrice() throws StockException {
+		item = new Item("rice", 2, 3, 225, 300);
+		Item itemSame = new Item("mushroom", 2, 5, 225, 300);
+		assertFalse(item.equals(itemSame));
+	}
+	
+	/*
+	 * Test 22 Check if two different Items are equal (false, reorder point)
+	 * 
+	 */
+	@Test
+	public void testEqualFalseRePoint() throws StockException {
+		item = new Item("rice", 2, 3, 225, 300);
+		Item itemSame = new Item("mushroom", 2, 3, 200, 300);
+		assertFalse(item.equals(itemSame));
+	}
+	
+	/*
+	 * Test 23 Check if two different Items are equal (false, reorder amount)
+	 * 
+	 */
+	@Test
+	public void testEqualFalseReAmount() throws StockException {
+		item = new Item("rice", 2, 3, 225, 300);
+		Item itemSame = new Item("mushroom", 2, 3, 225, 500);
+		assertFalse(item.equals(itemSame));
+	}
+	
+	/*
+	 * Test 24 Check if two different Items are equal (false, temp (different)
+	 * 
+	 */
+	@Test
+	public void testEqualFalseTempRefrigerated() throws StockException {
+		item = new Item("rice", 2, 3, 225, 300, (double) 5);
+		Item itemSame = new Item("mushroom", 2, 3, 225, 300, (double) 2);
+		assertFalse(item.equals(itemSame));
+	}
+	
+	/*
+	 * Test 25 Check if two different Items are equal (false, temp (refrigerated to ordinary)
+	 * 
+	 */
+	@Test
+	public void testEqualFalseTempType() throws StockException {
+		item = new Item("rice", 2, 3, 225, 300, (double) 5);
+		Item itemSame = new Item("mushroom", 2, 3, 225, 300);
+		assertFalse(item.equals(itemSame));
+	}
+	
+	
 	
 }

@@ -412,7 +412,7 @@ public class StockTest {
 	}
 	
 	/*
-	 * Test 30
+	 * Test 30 addStock when items already exist
 	 * 
 	 */
 	@Test
