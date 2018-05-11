@@ -1,9 +1,8 @@
 package Stock;
 
+import java.util.Objects;
+
 public class Item {
-	
-	//Figure out how to differentiate between 2 different 'Item' methods - different .java files for different kinds of items? (unless eclipse knows how to do that already?)
-	
 	
 	//Initialise variables
 	String name;
@@ -61,6 +60,39 @@ public class Item {
 		else {
 			return false;
 		}
+	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(name);
+	}
+	
+	public boolean equals(Item item) {
+		boolean equal = true;
+		if (this.name != item.getName()) {
+			equal = false;
+		}
+		
+		if (this.cost != item.getCost()) {
+			equal = false;
+		}
+		
+		if (this.price != item.getPrice()) {
+			equal = false;
+		}
+		
+		if (this.rePoint != item.getRePoint()) {
+			equal = false;
+		}
+		
+		if (this.reAmount != item.getReAmount()) {
+			equal = false;
+		}
+		
+		if (this.temp != item.getTemp()) {
+			equal = false;
+		}
+		return equal;
 	}
 
 }

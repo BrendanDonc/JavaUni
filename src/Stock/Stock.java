@@ -27,8 +27,7 @@ public class Stock {
 		if (stockArray.size() > 0) {
 			stock = stockArray.keySet().toArray();
 
-			return stock;
-			
+			return stock;		
 		}
 		
 		else {
