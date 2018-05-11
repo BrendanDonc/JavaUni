@@ -40,14 +40,14 @@ public class Ordinary_TruckTest {
 	
 	/* Test 2: Add one kind of item to truck cargo */
 	@Test(expected = DeliveryException.class)
-	public void addAnItem() {
+	public void addAnItem() throws DeliveryException {
 		oTruck.addItem(rice, 52);
 		assertEquals(52, oTruck.getCargoItem(rice));
 	}
 	
 	/* Test 3: Add multiple kinds of item to truck cargo */
-	@Test(expected = DeliveryException.class)
-	public void addMultipleItems() {
+	@Test
+	public void addMultipleItems() throws DeliveryException {
 		oTruck.addItem(biscuits, 128);
 		oTruck.addItem(almonds, 67);
 		oTruck.addItem(cannedSpag, 52);
@@ -62,7 +62,7 @@ public class Ordinary_TruckTest {
 		int truckSize = oTruck.getTruckSize(); 
 		double actualCost = 750 + (25 * truckSize);
 		
-		assertEquals(oTruck.truckCost(), actualCost);
+		assertEquals(oTruck.truckCost(), actualCost, 0.1);
 	} 
 	
 	/* Test 5: Removing an item from the truck cargo */
@@ -74,9 +74,8 @@ public class Ordinary_TruckTest {
 	
 	
 	/* Test 6: Adding items and removing items from multiple trucks */
-	@Test
-	(expected = DeliveryException.class)
-	public void manageMultipleTrucks() {
+	@Test(expected = DeliveryException.class)
+	public void manageMultipleTrucks() throws DeliveryException {
 		oTruck_02.addItem(cereal, 128);
 		oTruck_02.addItem(muffins, 132);
 		oTruck_03.addItem(bread, 465);
@@ -106,7 +105,7 @@ public class Ordinary_TruckTest {
 	
 	/* Test 9: Checking the truck cargo has not exceeded capacity */
 	@Test(expected = DeliveryException.class)
-	public void maxCapacity() {
+	public void maxCapacity() throws DeliveryException {
 		oTruck.addItem(rice, 1000);
 		
 		oTruck.getTruckSize();
@@ -114,7 +113,7 @@ public class Ordinary_TruckTest {
 	
 	/* Test 10: Checking there are no temperature-controlled items in the truck */
 	@Test (expected = DeliveryException.class)
-	public void checkForColdItems() {
+	public void checkForColdItems() throws DeliveryException {
 		oTruck.addItem(iceCream, 50);
 	}
 	

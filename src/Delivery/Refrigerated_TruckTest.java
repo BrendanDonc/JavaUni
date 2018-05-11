@@ -37,7 +37,7 @@ public class Refrigerated_TruckTest {
 	
 	/* Test 2: Add one kind of item to truck cargo */
 	@Test(expected = DeliveryException.class)
-	public void addAnItem() {
+	public void addAnItem() throws DeliveryException {
 		int testQuantity = 52;
 		
 		rTruck.addItem(pork, 52);
@@ -46,7 +46,7 @@ public class Refrigerated_TruckTest {
 	
 	/* Test 3: Add multiple kinds of item to truck cargo */
 	@Test(expected = DeliveryException.class)
-	public void addMultipleItems() {
+	public void addMultipleItems() throws DeliveryException {
 		int iceCreamQuantity = 128;
 		int milkQuantity = 67;
 		int bananaQuantity = 52;
@@ -70,7 +70,7 @@ public class Refrigerated_TruckTest {
 	public void calcRTruckCost() {
 		int actualTemp = -5;
 		double actualCost = Math.pow(900.0 + 200.0 * 0.7, actualTemp/5.0);
-		assertEquals(rTruck.truckCost(actualTemp), actualCost);
+		assertEquals(rTruck.truckCost(), actualCost, 0.1);
 	} 
 	
 	
@@ -83,7 +83,7 @@ public class Refrigerated_TruckTest {
 	
 	/* Test 7: Adding items and removing items from multiple trucks */
 	@Test(expected = DeliveryException.class)
-	public void manageMultipleTrucks() {
+	public void manageMultipleTrucks() throws DeliveryException {
 		rTruck_02.addItem(yoghurt, 128);
 		rTruck_02.addItem(peas, 132);
 		rTruck_03.addItem(chicken, 465);
@@ -134,7 +134,7 @@ public class Refrigerated_TruckTest {
 	/* Test 12: Checking that at there is least 1 temperature-controlled item in cargo */
 	@Test
 	public void getMinTemp() {
-		int actualMinTemp = -5;
+		Double actualMinTemp = (double) -5;
 		
 		assertEquals(actualMinTemp, rTruck.getColdestTemp());
 		

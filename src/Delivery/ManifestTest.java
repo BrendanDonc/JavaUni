@@ -24,7 +24,7 @@ public class ManifestTest {
 	Item biscuits = new Item("Biscuits", 10, 15, 200, 300);
 	
 	Truck truckRefrigerated = new Refrigerated_Truck();
-	Item iceCream = new Item("Ice Cream", 10, 15, 200, 300, (double) -5); //if you cast temp value to double it seems to work?
+	Item iceCream = new Item("Ice Cream", 10, 15, 200, 300, (double) -5); 
 	Item milk = new Item("Milk", 10, 15, 200, 300, (double) 2);
 	
 	
@@ -42,13 +42,13 @@ public class ManifestTest {
 		
 	}
 	
-	public void setup() {
+	public void setup() throws DeliveryException {
 		//Setting up ordinary truck for testing
-		truckOrdinary.addTruckItem(rice, 50); 
-		truckOrdinary.addTruckItem(biscuits, 30); 
+		truckOrdinary.addItem(rice, 50); 
+		truckOrdinary.addItem(biscuits, 30); 
 		
-		truckRefrigerated.addTruckItem(iceCream, 20);
-		truckRefrigerated.addTruckItem(milk, 70);
+		truckRefrigerated.addItem(iceCream, 20);
+		truckRefrigerated.addItem(milk, 70);
 		
 	}
 	
