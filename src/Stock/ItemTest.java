@@ -24,7 +24,7 @@ public class ItemTest {
 	 * 
 	 */
 	@Test
-	public void testOrdinary() {
+	public void testOrdinary() throws StockException {
 		item = new Item("rice", 2, 3, 225, 300);
 	}
 	
@@ -33,7 +33,7 @@ public class ItemTest {
 	 * 
 	 */
 	@Test
-	public void testRefrigerated() {
+	public void testRefrigerated() throws StockException {
 		item = new Item("mushroom", 2, 4, 200, 325, (double) 10);
 	}
 	
@@ -42,7 +42,7 @@ public class ItemTest {
 	 * 
 	 */
 	@Test
-	public void testName() {
+	public void testName() throws StockException {
 		String name = "john";
 		item = new Item(name, 2, 3, 225, 300);
 		assertEquals(name, item.getName());
@@ -53,7 +53,7 @@ public class ItemTest {
 	 * 
 	 */
 	@Test
-	public void testCost() {
+	public void testCost() throws StockException {
 		double cost = 12;
 		item = new Item("rice", cost, 3, 225, 300);
 		assertEquals(cost, item.getCost(), 0.1);
@@ -64,7 +64,7 @@ public class ItemTest {
 	 * 
 	 */
 	@Test
-	public void testPrice() {
+	public void testPrice() throws StockException {
 		double price = 23;
 		item = new Item("rice", 2, price, 225, 300);
 		assertEquals(price, item.getPrice(), 0.1);
@@ -75,7 +75,7 @@ public class ItemTest {
 	 * 
 	 */
 	@Test
-	public void testRePoint() {
+	public void testRePoint() throws StockException {
 		int rePoint = 184;
 		item = new Item("rice", 2, 3, rePoint, 300);
 		assertEquals(rePoint, item.getRePoint(), 0.1);
@@ -86,7 +86,7 @@ public class ItemTest {
 	 * 
 	 */
 	@Test
-	public void testReAmount() {
+	public void testReAmount() throws StockException {
 		int reAmount = 326;
 		item = new Item("rice", 2, 3, 225, reAmount);
 		assertEquals(reAmount, item.getReAmount());
@@ -97,7 +97,7 @@ public class ItemTest {
 	 * 
 	 */
 	@Test
-	public void testTemp() {
+	public void testTemp() throws StockException {
 		double temp = 18;
 		item = new Item("mushroom", 2, 4, 200, 325, temp);
 		assertEquals(temp, item.getTemp(), 0.1);
@@ -108,7 +108,7 @@ public class ItemTest {
 	 * 
 	 */
 	@Test
-	public void testOrdinaryTempRequired() {
+	public void testOrdinaryTempRequired() throws StockException {
 		item = new Item("rice", 2, 3, 225, 300);
 		assertEquals(false, item.tempRequired());
 	}
@@ -118,7 +118,7 @@ public class ItemTest {
 	 * 
 	 */
 	@Test
-	public void testRefrigeratedTempRequired() {
+	public void testRefrigeratedTempRequired() throws StockException {
 		item = new Item("mushroom", 2, 4, 200, 325, (double)10);
 		assertEquals(true, item.tempRequired());
 	}
@@ -128,7 +128,7 @@ public class ItemTest {
 	 * 
 	 */
 	@Test(expected = StockException.class)
-	public void testPosistiveManufacturing() {
+	public void testPosistiveManufacturing() throws StockException {
 		item = new Item("rice", -2, 3, 225, 300);
 	}
 	
@@ -138,7 +138,7 @@ public class ItemTest {
 	 */
 	
 	@Test(expected = StockException.class)
-	public void testManufacturingNotZero() {
+	public void testManufacturingNotZero() throws StockException {
 		item = new Item("rice", 0, 3, 225, 300);
 	}
 	
@@ -147,7 +147,7 @@ public class ItemTest {
 	 * 
 	 */
 	@Test(expected = StockException.class)
-	public void testPosistiveSale() {
+	public void testPosistiveSale() throws StockException {
 		item = new Item("rice", 2, -3, 225, 300);
 	}
 	
@@ -157,7 +157,7 @@ public class ItemTest {
 	 */
 	
 	@Test(expected = StockException.class)
-	public void testSaleNotZero() {
+	public void testSaleNotZero() throws StockException {
 		item = new Item("rice", 2, 0, 225, 300);
 	}
 	
@@ -166,7 +166,7 @@ public class ItemTest {
 	 * 
 	 */
 	@Test(expected = StockException.class)
-	public void testPosistiveRePoint() {
+	public void testPosistiveRePoint() throws StockException {
 		item = new Item("rice", 2, 3, -225, 300);
 	}
 	
@@ -175,7 +175,7 @@ public class ItemTest {
 	 * 
 	 */
 	@Test(expected = StockException.class)
-	public void testPosistiveReAmount() {
+	public void testPosistiveReAmount() throws StockException {
 		item = new Item("rice", 2, 3, 225, -300);
 	}
 	
@@ -185,7 +185,7 @@ public class ItemTest {
 	 */
 	
 	@Test(expected = StockException.class)
-	public void testReAmountNotZero() {
+	public void testReAmountNotZero() throws StockException {
 		item = new Item("rice", 2, 3, 225, 0);
 	}
 	
