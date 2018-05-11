@@ -380,4 +380,54 @@ public class StockTest {
 		stock.addItem(mushroom, 300);
 		assertEquals(600, stock.sumAmount());
 	}
+	
+	/*
+	 * Test 28 tests the values are correctly added with addStock
+	 * 
+	 */
+	@Test
+	public void testAddStockValue() {
+		int mushResult = 50;
+		int riceResult = 2;
+		Stock tempStock = new Stock();
+		tempStock.addItem(rice, 2);
+		tempStock.addItem(mushroom, 50);
+		stock = new Stock();
+		stock.addStock(tempStock);
+		assertEquals(mushResult, stock.getAmount(mushroom));
+		assertEquals(riceResult, stock.getAmount(rice));
+	}
+	
+	/*
+	 * Test 29 addItem when item already exists
+	 * 
+	 */
+	@Test
+	public void testAddExistingItem() {
+		int result = 100;
+		stock = new Stock();
+		stock.addItem(rice, 40);
+		stock.addItem(rice, 60);
+		assertArrayEquals(result, stock.getAmount(rice));
+	}
+	
+	/*
+	 * Test 30
+	 * 
+	 */
+	@Test
+	public void testAddStockValue() {
+		int mushResult = 100;
+		int riceResult = 22;
+		Stock tempStock = new Stock();
+		tempStock.addItem(rice, 2);
+		tempStock.addItem(mushroom, 50);
+		stock = new Stock();
+		stock.addItem(rice,  20);
+		stock.addItem(mushroom, 50);
+		stock.addStock(tempStock);
+		assertEquals(mushResult, stock.getAmount(mushroom));
+		assertEquals(riceResult, stock.getAmount(rice));
+	}
+	
 }
