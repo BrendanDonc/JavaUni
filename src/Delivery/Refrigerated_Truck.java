@@ -11,7 +11,7 @@ public class Refrigerated_Truck extends Truck {
 	}
 
 	@Override
-	public void addItem(Item item, int amount) {
+	public void addItem(Item item, int amount) throws DeliveryException {
 		if(item.getTemp() > 10 || item.getTemp() < -20) {
 			throw new DeliveryException();
 		}

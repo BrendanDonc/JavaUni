@@ -12,7 +12,7 @@ public class Ordinary_Truck extends Truck {
 	}
 
 	@Override
-	public void addItem(Item item, int amount) throws StockException {
+	public void addItem(Item item, int amount) throws DeliveryException {
 		if(item.tempRequired()) {
 			throw new DeliveryException();
 		}

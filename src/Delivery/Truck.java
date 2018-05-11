@@ -32,7 +32,7 @@ public abstract class Truck {
 	
 	public abstract double truckCost();
 	
-	public abstract void addItem(Item item, int amount) throws StockException;
+	public abstract void addItem(Item item, int amount) throws DeliveryException;
 	
 	public void removeItem(Item item, int amount) {
 		cargo.subtractItem(item, amount);	
