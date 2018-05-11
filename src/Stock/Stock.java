@@ -14,11 +14,7 @@ public class Stock {
 	}
 	
 	public void addItem(Item item, int quantity) {
-		//will need to override equals() and hashCode() functions for hashmap w/ custom object to work...
-		
-		System.out.println("Adding "+ quantity + " of " + item + "...");
 		stockArray.put(item, quantity);
-		System.out.println("The new stock size is " + stockArray.size());
 	}
 		
 	public Object[] getItems() {
@@ -36,11 +32,6 @@ public class Stock {
 	}
 	
 	public void addStock(Stock stock) {
-		
-		Object[] stockConverted = null;
-		stockConverted = stock.stockArray.keySet().toArray();
-		
-		System.out.println(stockConverted);
 		stockArray.putAll(stock.stockArray);
 	}
 	
