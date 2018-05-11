@@ -67,7 +67,8 @@ public class Item {
 		return Objects.hash(name);
 	}
 	
-	public boolean equals(Item item) {
+	@Override 
+	public boolean equals(Object o) {
 		boolean equal = true;
 		if (this.name != item.getName()) {
 			equal = false;

@@ -6,10 +6,10 @@ import java.util.HashMap;
 
 public class Stock {
 	
-	HashMap<Object, Integer> stockArray;
+	HashMap<Item, Integer> stockArray;
 
 	public Stock() {
-		stockArray = new HashMap<Object, Integer>();
+		stockArray = new HashMap<Item, Integer>();
 		
 	}
 	
