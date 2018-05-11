@@ -17,7 +17,7 @@ public class Ordinary_Truck extends Truck {
 			throw new DeliveryException();
 		}
 		else {
-			if(this.getTruckSize() + amount > this.getCapacity()) {
+			if(this.getTruckSize() + amount > this.truckCapacity()) {
 				throw new DeliveryException();
 			}
 			else {
@@ -34,7 +34,7 @@ public class Ordinary_Truck extends Truck {
 	}
 
 	@Override
-	public Double getColdestTemp() {
+	public Double getTemp() {
 		return null;
 	}
 }

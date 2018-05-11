@@ -16,7 +16,7 @@ public class Refrigerated_Truck extends Truck {
 			throw new DeliveryException();
 		}
 		else {
-			if(this.getTruckSize() + amount > this.getCapacity()) {
+			if(this.getTruckSize() + amount > this.truckCapacity()) {
 				throw new DeliveryException();
 			}
 			else {
@@ -28,13 +28,13 @@ public class Refrigerated_Truck extends Truck {
 
 	@Override
 	public double truckCost() {
-		double cost = 900.00 + 200.00 * java.lang.Math.pow(0.7,this.getColdestTemp());
+		double cost = 900.00 + 200.00 * java.lang.Math.pow(0.7,this.getTemp());
 		return cost;
 	}
 
 	@Override
 	public Double getColdestTemp() {
-		return this.getCargo().getColdestTemp();
+		return this.getCargo().getTemp();
 	}
 
 }

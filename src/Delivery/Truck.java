@@ -22,7 +22,7 @@ public abstract class Truck {
 		return cargo;
 	}
 	
-	public int getCapacity() {
+	public int truckCapacity() {
 		return capacity;
 	}
 	
@@ -42,6 +42,6 @@ public abstract class Truck {
 		return this.getCargo().getAmount();
 	}
 	
-	public abstract Double getColdestTemp();
+	public abstract Double getTemp();
 
 }
