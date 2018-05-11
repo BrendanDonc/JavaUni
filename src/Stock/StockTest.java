@@ -14,22 +14,6 @@ public class StockTest {
 	Item icecream;
 	Stock inventory;
 	
-	public void setup() throws StockException {
-		//Setup items to be used in stock tests
-		Item rice = new Item("rice", 2, 3, 225, 300);
-		Item bread = new Item("bread", 1, 2, 185, 224);
-		Item mushroom = new Item("mushroom", 2, 4, 200, 325, (double)10);
-		Item icecream = new Item("ice cream", 3, 4, 74, 221, (double)-5);
-		
-		//Setup store inventory for addItemName
-		Stock inventory = new Stock();
-		inventory.addItem(rice, 0);
-		inventory.addItem(bread, 0);
-		inventory.addItem(mushroom, 0);
-		inventory.addItem(icecream, 0);
-		Store.getInstance().setInventory(inventory);
-	}
-	
 	/*
 	 * Test 0 Declaring Stock object
 	 * 
@@ -40,6 +24,19 @@ public class StockTest {
 	//Clear stock before each test
 	@Before
 	public void setupStock() {
+		rice = new Item("rice", 2, 3, 225, 300);
+		bread = new Item("bread", 1, 2, 185, 224);
+		mushroom = new Item("mushroom", 2, 4, 200, 325, (double)10);
+		icecream = new Item("ice cream", 3, 4, 74, 221, (double)-5);
+		
+		//Setup store inventory for addItemName
+//		Stock inventory = new Stock();
+//		inventory.addItem(rice, 0);
+//		inventory.addItem(bread, 0);
+//		inventory.addItem(mushroom, 0);
+//		inventory.addItem(icecream, 0);
+//		Store.getInstance().setInventory(inventory);
+		
 		stock = null;
 		tempStock = null;
 	}
