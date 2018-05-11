@@ -12,13 +12,13 @@ import Stock.Item;
 public class Refrigerated_TruckTest {
 	
 	//Declaring items to be used in tests
-	Item pork = new Item("Pork", 10, 15, 200, 300, -3);
-	Item iceCream = new Item("Ice Cream", 10, 15, 200, 300, -5);
-	Item milk = new Item("Milk", 10, 15, 200, 300, 2);
-	Item banana = new Item("Banana", 10, 15, 200, 300, 4);
-	Item yoghurt = new Item("Yoghurt", 10, 15, 200, 300, 2);
-	Item chicken = new Item("Chicken", 10, 15, 200, 300, -2);
-	Item peas = new Item("Peas", 10, 15, 200, 300, -20);
+	Item pork = new Item("Pork", 10, 15, 200, 300, (double) -3);
+	Item iceCream = new Item("Ice Cream", 10, 15, 200, 300, (double) -5);
+	Item milk = new Item("Milk", 10, 15, 200, 300, (double) 2);
+	Item banana = new Item("Banana", 10, 15, 200, 300, (double) 4);
+	Item yoghurt = new Item("Yoghurt", 10, 15, 200, 300, (double) 2);
+	Item chicken = new Item("Chicken", 10, 15, 200, 300, (double) -2);
+	Item peas = new Item("Peas", 10, 15, 200, 300, (double) -20);
 
 	/* Test 0: Declaring R-Truck objects */
 	Truck rTruck;
@@ -36,7 +36,7 @@ public class Refrigerated_TruckTest {
 	}
 	
 	/* Test 2: Add one kind of item to truck cargo */
-	@Test
+	@Test(expected = DeliveryException.class)
 	public void addAnItem() {
 		int testQuantity = 52;
 		
@@ -45,7 +45,7 @@ public class Refrigerated_TruckTest {
 	}
 	
 	/* Test 3: Add multiple kinds of item to truck cargo */
-	@Test
+	@Test(expected = DeliveryException.class)
 	public void addMultipleItems() {
 		int iceCreamQuantity = 128;
 		int milkQuantity = 67;
@@ -75,12 +75,14 @@ public class Refrigerated_TruckTest {
 	
 	
 	/* Test 6: Removing an item from the truck cargo */
+	@Test(expected = DeliveryException.class)
 	public void removeAnItem() {
 		rTruck.removeItem(iceCream, 128); //will remove all ice cream items
 		assertEquals(0, rTruck.getCargoItem(iceCream));
 	}
 	
 	/* Test 7: Adding items and removing items from multiple trucks */
+	@Test(expected = DeliveryException.class)
 	public void manageMultipleTrucks() {
 		rTruck_02.addItem(yoghurt, 128);
 		rTruck_02.addItem(peas, 132);

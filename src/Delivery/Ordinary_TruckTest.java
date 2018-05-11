@@ -21,7 +21,7 @@ public class Ordinary_TruckTest {
 		Item bread = new Item("Bread", 10, 15, 200, 300);
 		Item chips = new Item("Chips", 10, 15, 200, 300);
 		
-		Item iceCream = new Item("Ice Cream", 10, 15, 200, 300, -5);
+		Item iceCream = new Item("Ice Cream", 10, 15, 200, 300, (double) -5);
 
 	/* Test 0: Declaring O-Truck objects */
 	Truck oTruck;
@@ -39,14 +39,14 @@ public class Ordinary_TruckTest {
 
 	
 	/* Test 2: Add one kind of item to truck cargo */
-	@Test
+	@Test(expected = DeliveryException.class)
 	public void addAnItem() {
 		oTruck.addItem(rice, 52);
 		assertEquals(52, oTruck.getCargoItem(rice));
 	}
 	
 	/* Test 3: Add multiple kinds of item to truck cargo */
-	@Test
+	@Test(expected = DeliveryException.class)
 	public void addMultipleItems() {
 		oTruck.addItem(biscuits, 128);
 		oTruck.addItem(almonds, 67);
@@ -66,7 +66,7 @@ public class Ordinary_TruckTest {
 	} 
 	
 	/* Test 5: Removing an item from the truck cargo */
-	@Test
+	@Test(expected = DeliveryException.class)
 	public void removeAnItem() {
 		oTruck.removeItem(rice, 52);
 		assertEquals(0, oTruck.getCargoItem(rice));
@@ -75,6 +75,7 @@ public class Ordinary_TruckTest {
 	
 	/* Test 6: Adding items and removing items from multiple trucks */
 	@Test
+	(expected = DeliveryException.class)
 	public void manageMultipleTrucks() {
 		oTruck_02.addItem(cereal, 128);
 		oTruck_02.addItem(muffins, 132);
@@ -114,7 +115,7 @@ public class Ordinary_TruckTest {
 	/* Test 10: Checking there are no temperature-controlled items in the truck */
 	@Test (expected = DeliveryException.class)
 	public void checkForColdItems() {
-		oTruck.addTruckItem(iceCream, 50);
+		oTruck.addItem(iceCream, 50);
 	}
 	
 	
