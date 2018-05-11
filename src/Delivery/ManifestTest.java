@@ -36,10 +36,12 @@ public class ManifestTest {
 		manifestArray = new ArrayList<Truck>();
 	}
 	
-	/* Test : Check manifest isn't empty (check array isn't empty) */
-	@Test (expected = DeliveryException.class)
+	/* Test : Check manifest is empty */
+	@Test
 	public void emptyManifest() {
+		int initSize = 0;
 		
+		assertEquals(initSize, manifestArray.size());
 	}
 	
 	public void setup() throws DeliveryException {

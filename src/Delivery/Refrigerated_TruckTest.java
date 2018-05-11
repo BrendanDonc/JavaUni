@@ -36,7 +36,7 @@ public class Refrigerated_TruckTest {
 	}
 	
 	/* Test 2: Add one kind of item to truck cargo */
-	@Test(expected = DeliveryException.class)
+	@Test
 	public void addAnItem() throws DeliveryException {
 		int testQuantity = 52;
 		
@@ -45,7 +45,7 @@ public class Refrigerated_TruckTest {
 	}
 	
 	/* Test 3: Add multiple kinds of item to truck cargo */
-	@Test(expected = DeliveryException.class)
+	@Test
 	public void addMultipleItems() throws DeliveryException {
 		int iceCreamQuantity = 128;
 		int milkQuantity = 67;
@@ -75,14 +75,14 @@ public class Refrigerated_TruckTest {
 	
 	
 	/* Test 6: Removing an item from the truck cargo */
-	@Test(expected = DeliveryException.class)
+	@Test
 	public void removeAnItem() {
 		rTruck.removeItem(iceCream, 128); //will remove all ice cream items
 		assertEquals(0, rTruck.getCargoItem(iceCream));
 	}
 	
 	/* Test 7: Adding items and removing items from multiple trucks */
-	@Test(expected = DeliveryException.class)
+	@Test
 	public void manageMultipleTrucks() throws DeliveryException {
 		rTruck_02.addItem(yoghurt, 128);
 		rTruck_02.addItem(peas, 132);
@@ -106,7 +106,7 @@ public class Refrigerated_TruckTest {
 	}
 	
 	/* Test 9: Checking the truck cargo has not exceeded capacity */
-	@Test (expected = DeliveryException.class)
+	@Test
 	public void maxCapacity() {
 		rTruck.addItem(iceCream, 776);
 		
@@ -114,7 +114,7 @@ public class Refrigerated_TruckTest {
 	}
 	
 	/* Test 10: Checking the truck is not empty */
-	@Test (expected = DeliveryException.class)
+	@Test
 	public void emptyTruck() {
 		rTruck.removeItem(iceCream, 904);
 		rTruck.removeItem(milk, 67);
@@ -124,7 +124,7 @@ public class Refrigerated_TruckTest {
 	}
 	
 	/* Test 11: Checking the temperature of the truck is safe (ie. has not exceeded either limit) */
-	@Test(expected = DeliveryException.class)
+	@Test
 	public void checkTemp() {
 		rTruck.addItem(peas, 5);
 		double newTemp = -20.0;
