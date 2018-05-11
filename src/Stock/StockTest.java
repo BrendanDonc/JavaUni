@@ -14,7 +14,7 @@ public class StockTest {
 	Item icecream;
 	Stock inventory;
 	
-	public void setup() {
+	public void setup() throws StockException {
 		//Setup items to be used in stock tests
 		Item rice = new Item("rice", 2, 3, 225, 300);
 		Item bread = new Item("bread", 1, 2, 185, 224);
@@ -220,7 +220,7 @@ public class StockTest {
 	 * 
 	 */
 	@Test
-	public void testSubtractItem() {
+	public void testSubtractItem() throws StockException{
 		stock = new Stock();
 		int startAmount = 200;
 		int subtractAmount = 50;
@@ -236,7 +236,7 @@ public class StockTest {
 	 * 
 	 */
 	@Test(expected = StockException.class)
-	public void testNoItemName() {
+	public void testNoItemName() throws StockException{
 		stock = new Stock();
 		stock.addItemName("apple", 50);
 	}
@@ -246,7 +246,7 @@ public class StockTest {
 	 * 
 	 */
 	@Test(expected = StockException.class)
-	public void testNotEnoughItem() {
+	public void testNotEnoughItem() throws StockException{
 		stock = new Stock();
 		stock.addItem(rice, 20);
 		stock.subtractItem(rice, 400);
@@ -257,7 +257,7 @@ public class StockTest {
 	 * 
 	 */
 	@Test(expected = StockException.class)
-	public void testNoItem() {
+	public void testNoItem() throws StockException{
 		stock = new Stock();
 		stock.subtractItem(rice, 10);
 	}
