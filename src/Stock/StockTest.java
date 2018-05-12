@@ -108,7 +108,7 @@ public class StockTest {
 		stock = new Stock();
 		stock.addItem(rice, 100);
 		stock.addItem(mushroom, 300);
-		double result = 500;
+		double result = 2.00 * 100.00 + 2.00 * 300.00;
 		assertEquals(result, stock.sumCosts(), 0.1);
 	}
 	
@@ -121,7 +121,7 @@ public class StockTest {
 		stock = new Stock();
 		stock.addItem(rice, 100);
 		stock.addItem(mushroom, 300);
-		double result = 900;
+		double result = 3.00 * 100.00 + 4.00 * 300.00;
 		assertEquals(result, stock.sumPrices(), 0.1);
 	}
 	
@@ -166,7 +166,7 @@ public class StockTest {
 		stock.addItem(mushroom, 300);
 		stock.addItem(bread, 400);
 		stock.addItem(icecream, 500);
-		Item[] resultArray = {};
+		Item[] resultArray = {rice, bread};
 		assertArrayEquals(resultArray, stock.getListOrdinary());
 	}
 	
