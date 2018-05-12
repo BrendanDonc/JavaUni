@@ -2,7 +2,7 @@ package Stock;
 
 import java.util.Objects;
 
-public class Item {
+public class Item implements Comparable<Item>{
 	
 	//Initialise variables
 	String name;
@@ -93,6 +93,17 @@ public class Item {
 			equal = false;
 		}
 		return equal;
+	}
+
+	@Override
+	public int compareTo(Item otherItem) {
+		if(this.getTemp() > otherItem.getTemp()) {
+            return 1;
+		}
+        else if (this.getTemp() == otherItem.getTemp()) {
+            return 0;
+        }
+        return -1;
 	}
 
 }

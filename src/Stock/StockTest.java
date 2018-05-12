@@ -3,7 +3,6 @@ package Stock;
 import org.junit.Test;
 import org.junit.Before;
 import static org.junit.Assert.*;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 
 public class StockTest {
@@ -408,7 +407,7 @@ public class StockTest {
 		stock = new Stock();
 		stock.addItem(rice, 40);
 		stock.addItem(rice, 60);
-		assertArrayEquals(result, stock.getAmount(rice));
+		assertEquals(result, stock.getAmount(rice));
 	}
 	
 	/*
@@ -416,7 +415,7 @@ public class StockTest {
 	 * 
 	 */
 	@Test
-	public void testAddStockValue() {
+	public void testAddStockValueAlreadyExist() {
 		int mushResult = 100;
 		int riceResult = 22;
 		Stock tempStock = new Stock();
@@ -429,5 +428,6 @@ public class StockTest {
 		assertEquals(mushResult, stock.getAmount(mushroom));
 		assertEquals(riceResult, stock.getAmount(rice));
 	}
+	
 	
 }
