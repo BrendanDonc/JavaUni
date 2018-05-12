@@ -27,14 +27,19 @@ public class Refrigerated_Truck extends Truck {
 	}
 
 	@Override
-	public double truckCost() {
+	public double truckCost() throws DeliveryException {
 		double cost = 900.00 + 200.00 * java.lang.Math.pow(0.7,this.getTemp());
 		return cost;
 	}
 
 	@Override
-	public Double getColdestTemp() {
-		return this.getCargo().getTemp();
+	public Double getTemp() throws DeliveryException {
+		if(this.getCargo().getListCold().length == 0) {
+			throw new DeliveryException("Refrigerated truck has no refrigerated items");
+		}
+		else {
+			return this.getCargo().getColdestTemp();
+		}
 	}
 
 }

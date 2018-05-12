@@ -30,7 +30,7 @@ public abstract class Truck {
 		return cargo.sumAmount();
 	}
 	
-	public abstract double truckCost();
+	public abstract double truckCost() throws DeliveryException;
 	
 	public abstract void addItem(Item item, int amount) throws DeliveryException;
 	
@@ -39,9 +39,9 @@ public abstract class Truck {
 	}
 	
 	public int getCargoItem(Item item) {
-		return this.getCargo().getAmount();
+		return this.getCargo().getAmount(item);
 	}
 	
-	public abstract Double getTemp();
+	public abstract Double getTemp() throws DeliveryException;
 
 }
