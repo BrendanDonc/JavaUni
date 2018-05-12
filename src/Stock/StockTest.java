@@ -196,7 +196,7 @@ public class StockTest {
 		stock.addItem(bread, 400);
 		stock.addItem(icecream, 500);
 		String result = "rice,100\nmushroom,300\nbread,400\nice cream,500\n";
-		assetEquals(result, stock.getManifestPrintStyle());
+		assertEquals(result, stock.getManifestPrintStyle());
 	}
 	
 	/*
