@@ -59,15 +59,15 @@ public class Refrigerated_TruckTest {
 	}
 
 	/*Test 4: Get the temperature of the truck */
-	@Test public void calcTruckTemp() {
-		int actualTemp = -5;
-		assertEquals(actualTemp, rTruck.getTemp()); //getTemp will need to get the lowest temperature from the items added
+	@Test public void calcTruckTemp() throws DeliveryException {
+		double actualTemp = -5;
+		assertEquals(actualTemp, rTruck.getTemp(), 0.1); //getTemp will need to get the lowest temperature from the items added
 	}
 	
 	
 	/* Test 5: Calculating the refrigerated truck cost */
 	@Test
-	public void calcRTruckCost() {
+	public void calcRTruckCost() throws DeliveryException {
 		int actualTemp = -5;
 		double actualCost = Math.pow(900.0 + 200.0 * 0.7, actualTemp/5.0);
 		assertEquals(rTruck.truckCost(), actualCost, 0.1);
@@ -107,7 +107,7 @@ public class Refrigerated_TruckTest {
 	
 	/* Test 9: Checking the truck cargo has not exceeded capacity */
 	@Test
-	public void maxCapacity() {
+	public void maxCapacity() throws DeliveryException {
 		rTruck.addItem(iceCream, 776);
 		
 		rTruck.truckCapacity();
@@ -133,18 +133,19 @@ public class Refrigerated_TruckTest {
 	
 	/* Test 12: Checking that at there is least 1 temperature-controlled item in cargo */
 	@Test
-	public void getMinTemp() {
+	public void getMinTemp() throws DeliveryException {
 		Double actualMinTemp = (double) -5;
 		
-		assertEquals(actualMinTemp, rTruck.getColdestTemp());
+		assertEquals(actualMinTemp, rTruck.getTemp());
 		
 	}
 	
-	/* Test : Gets the truck type */
+	/* Test 13 : Gets the truck type */
+	@Test
 	public void getTruckType() {
-		String actualTruckType = "Refrigerated Truck";
+		String actualTruckType = "Refrigerated";
 		
-		assertEquals(actualTruckType, rTruck.truckType());
+		assertEquals(actualTruckType, rTruck.getTruckType());
 	}
 	
 }

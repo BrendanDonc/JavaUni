@@ -58,7 +58,7 @@ public class Ordinary_TruckTest {
 
 	/* Test 4: Calculating the ordinary truck cost */
 	@Test
-	public void calcOTruckCost() {
+	public void calcOTruckCost() throws DeliveryException {
 		int truckSize = oTruck.getTruckSize(); 
 		double actualCost = 750 + (25 * truckSize);
 		
@@ -104,7 +104,7 @@ public class Ordinary_TruckTest {
 	}
 	
 	/* Test 9: Checking the truck cargo has not exceeded capacity */
-	@Test
+	@Test(expected = DeliveryException.class)
 	public void maxCapacity() throws DeliveryException {
 		oTruck.addItem(rice, 1000);
 		
@@ -112,15 +112,16 @@ public class Ordinary_TruckTest {
 	}
 	
 	/* Test 10: Checking there are no temperature-controlled items in the truck */
-	@Test
+	@Test(expected = DeliveryException.class)
 	public void checkForColdItems() throws DeliveryException {
 		oTruck.addItem(iceCream, 50);
 	}
 	
 	
-	/* Test : Gets the truck type */
+	/* Test 11 : Gets the truck type */
+	@Test
 	public void checkTruckType() {
-		String actualTruckType = "Refrigerated Truck";
+		String actualTruckType = "Ordinary";
 		
 		assertEquals(actualTruckType, oTruck.getTruckType());
 	}
