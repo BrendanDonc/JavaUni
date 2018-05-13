@@ -181,7 +181,8 @@ public class StockTest {
 		stock.addItem(mushroom, 300);
 		stock.addItem(bread, 400);
 		stock.addItem(icecream, 500);
-		assertEquals(-5, stock.getColdestTemp);
+		Double temp = (double) -5;
+		assertEquals(temp, stock.getColdestTemp());
 	}
 	
 	/*

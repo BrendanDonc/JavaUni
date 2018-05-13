@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Map.Entry;
 
+import coll.UserAccounts.UserException;
+
 
 
 public class Stock {
@@ -24,10 +26,8 @@ public class Stock {
 		
 		if (stockArray.containsKey(item)) {
 			int existingQuantity = stockArray.get(item);
-			System.out.println("The item " + item.getName() + " already exists. Adding " + quantity + " to it...");
 			int newQuantity = existingQuantity + quantity;
 			stockArray.put(item, newQuantity);
-			System.out.println("The item " + item.getName() + " now has " + getAmount(item) + " things");
 		}
 		else {
 			stockArray.put(item, quantity);
@@ -49,7 +49,15 @@ public class Stock {
 	}
 	
 	public void addStock(Stock stock) {
-		stockArray.putAll(stock.stockArray);
+		for (Entry<Object, Integer> entry : stock.stockArray.entrySet()) {
+			Item item = (Item) entry.getKey();
+		    Integer quantity = entry.getValue();
+		    
+		    addItem(item, quantity);
+		}
+		
+		
+		//stockArray.putAll(stock.stockArray);
 	}
 	
 	public double sumCosts() {
@@ -59,14 +67,8 @@ public class Stock {
 			Item item = (Item) entry.getKey();
 		    Integer quantity = entry.getValue();
 		    
-		   // System.out.println("The cost of " + item.getName() + " is $" + item.getCost());
-		   // System.out.println("There are " + quantity + " of it.");
-		    
-		    
 		    result = result + (item.getCost() * quantity);   
 		}
-		
-		System.out.println("The result for sumCosts() is " + result);
 		
 		return result;
 	}
@@ -78,14 +80,9 @@ public class Stock {
 			Item item = (Item) entry.getKey();
 		    Integer quantity = entry.getValue();
 		    
-		  //  System.out.println("The price of " + item.getName() + " is $" + item.getPrice());
-		  //  System.out.println("There are " + quantity + " of it.");
-		    
-		    
 		    result = result + (item.getPrice() * quantity);   
 		}
 		
-		System.out.println("The result for sumPrices() is " + result);
 		return result;
 	}
 
@@ -109,13 +106,8 @@ public class Stock {
 			Item item = (Item) entry.getKey();  
 		    
 		    if (item.tempRequired() == true) {
-		    		//System.out.println(item.getName() + " is cold. Adding to list...");
 		    		coldItems[position] = item;
 		    		position++;
-		    }
-		    
-		    else {
-		    		//System.out.println(item.getName() + " is not cold.");
 		    }
 		}
 		
@@ -144,13 +136,8 @@ public class Stock {
 			Item item = (Item) entry.getKey();  
 		    
 		    if (item.tempRequired() == false) {
-		    		//System.out.println(item.getName() + " is not cold. Adding to list...");
 		    		ordinaryItems[position] = item;
 		    		position++;
-		    }
-		    
-		    else {
-		    		//System.out.println(item.getName() + " is cold.");
 		    }
 		}
 		
@@ -178,13 +165,8 @@ public class Stock {
 			Item item = (Item) entry.getKey();  
 		    
 		    if (item.tempRequired() == true) {
-		    		//System.out.println(item.getName() + " is cold. Adding to list...");
 		    		coldItems[position] = item;
 		    		position++;
-		    }
-		    
-		    else {
-		    		//System.out.println(item.getName() + " is not cold.");
 		    }
 		}
 		
@@ -211,32 +193,49 @@ public class Stock {
 		return stockArray.get(item);
 	}
 
-	public int subtractItem(Item item, int subtractAmount) {
-		//to-do: add exception
-		int origAmount = stockArray.get(item);
+	public void subtractItem(Item item, int subtractAmount) throws StockException {
+		StockException badItemAmount = new StockException();
+		StockException badItem = new StockException();
 		
-		stockArray.put(item, subtractAmount);
-	
-		int newAmount = origAmount - subtractAmount;
-		
-		//System.out.println("The original amount is " + origAmount + ", minus " + subtractAmount + " equals " + newAmount);
-		
-		return newAmount;
+		if (stockArray.containsKey(item)) {
+			int origAmount = stockArray.get(item);
+			
+			if (origAmount >= subtractAmount) {
+				int newAmount = origAmount - subtractAmount;
+				
+				stockArray.put(item, newAmount);
+				
+			}
+			else {
+				throw badItemAmount;
+			}
+		}
+		else {
+			throw badItem;
+		}
 		
 	}
 
 	public void addItemName(String string, int quantity) {
-		//to-do: add exception
+		//need to check if item is in store
+		StockException badItemName = new StockException();
+		
 		stockArray.put(string, quantity);
 	}
 
 	public void subtractStock(Stock stock) {
-		//to-do: add exception in subtractItem
+	
 		for (Entry<Object, Integer> entry : stock.stockArray.entrySet()) {
 			Item item = (Item) entry.getKey();
 		    Integer quantity = entry.getValue();
 		    
-		    subtractItem(item, quantity);
+		    try {
+				subtractItem(item, quantity);
+			} 
+		    catch (StockException badItem) {
+		    		System.out.println("badItem exception reached");
+		    }
+		    //catch (StockException badItemName) {}
 		}
 	}
 
@@ -247,12 +246,10 @@ public class Stock {
 		
 		for (Entry<Object, Integer> entry : stockArray.entrySet()) {
 		    Integer quantity = entry.getValue();
-		    //System.out.println("The item in position " + pos + " has " + quantity + " things");
 		    result = result + quantity;  
 		    pos++;
 		}
-		
-		//System.out.println("There are " + result + " total things");
+
 		return result;
 	}
 
@@ -278,15 +275,9 @@ public class Stock {
 			Item item = (Item) entry.getKey();
 		    Integer quantity = entry.getValue();
 		    
-		    System.out.println("There is " + quantity + " of " + item.getName());
-		    
 		    if (item.getRePoint() < quantity) {
-		    		System.out.println(item.getName() + " needs reordering");
 		    		reOrdItems[position] = item;
 		    		position++;
-		    }
-		    else {
-		    		System.out.println(item.getName() + " is fine");
 		    }
 		}
 		
@@ -294,11 +285,4 @@ public class Stock {
 		
 		return reOrdItems;
 	}
-
-	
-	
-	
-	
-	
-
 }
