@@ -82,6 +82,7 @@ public class StoreTest {
 	 */
 	@Test
 	public void testGetInventory() {
+		Store.getInstance().setInventory(inventory);
 		assertArrayEquals(inventory.getItems(), Store.getInstance().getInventory().getItems());
 	}
 	
