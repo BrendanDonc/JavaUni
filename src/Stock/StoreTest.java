@@ -53,7 +53,7 @@ public class StoreTest {
 	@Test
 	public void testGetCapital() {
 		double capital = 100000.00;
-		assertEquals(capital, Store.getInstance().getCapital);
+		assertEquals(capital, Store.getInstance().getCapital(), 0.1);
 	}
 	
 	/*
@@ -93,7 +93,7 @@ public class StoreTest {
 		double prevCapital = Store.getInstance().getCapital();
 		double raiseAmount = 500.00;
 		Store.getInstance().raiseCapital(raiseAmount);
-		assertEquals(prevCapital + raiseAmount, Store.getInstance().getCapital());
+		assertEquals(prevCapital + raiseAmount, Store.getInstance().getCapital(), 0.1);
 	}
 	
 	/*
