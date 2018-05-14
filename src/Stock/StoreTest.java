@@ -12,15 +12,16 @@ public class StoreTest {
 	Item icecream;
 	Stock inventory;
 	
+	@Before
 	public void setup() {
 		//Setup items to be used in store tests
-		Item rice = new Item("rice", 2, 3, 225, 300);
-		Item bread = new Item("bread", 1, 2, 185, 224);
-		Item mushroom = new Item("mushroom", 2, 4, 200, 325, (double)10);
-		Item icecream = new Item("ice cream", 3, 4, 74, 221, (double)-5);
+		rice = new Item("rice", 2, 3, 225, 300);
+		bread = new Item("bread", 1, 2, 185, 224);
+		mushroom = new Item("mushroom", 2, 4, 200, 325, (double)10);
+		icecream = new Item("ice cream", 3, 4, 74, 221, (double)-5);
 		
 		//Setup inventory stock for setInventory
-		Stock inventory = new Stock();
+		inventory = new Stock();
 		inventory.addItem(rice, 0);
 		inventory.addItem(bread, 0);
 		inventory.addItem(mushroom, 0);
@@ -81,7 +82,7 @@ public class StoreTest {
 	 */
 	@Test
 	public void testGetInventory() {
-		assertEquals(inventory, Store.getInstance().getInventory());
+		assertArrayEquals(inventory.getItems(), Store.getInstance().getInventory().getItems());
 	}
 	
 	/*
