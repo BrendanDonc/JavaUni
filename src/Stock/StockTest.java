@@ -278,7 +278,7 @@ public class StockTest {
 	public void testValidSubtractItemFailureAmount() {
 		stock = new Stock();
 		stock.addItem(rice, 50);
-		assertEquals(true, stock.validSubtractItem(rice, 70));
+		assertEquals(false, stock.validSubtractItem(rice, 70));
 	}
 	
 	/*
@@ -288,7 +288,7 @@ public class StockTest {
 	@Test
 	public void testValidSubtractItemFailureExist() {
 		stock = new Stock();
-		assertEquals(true, stock.validSubtractItem(rice, 70));
+		assertEquals(false, stock.validSubtractItem(rice, 70));
 	}
 	
 	/*
