@@ -63,7 +63,7 @@ public class StoreTest {
 	 */
 	@Test
 	public void testGetCapitalString() {
-		String capitalString = "$100,000.00";
+		String capitalString = "$100,300.00";
 		assertEquals(capitalString, Store.getInstance().getCapitalString());
 	}
 	

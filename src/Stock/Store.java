@@ -1,5 +1,7 @@
 package Stock;
 
+import java.text.DecimalFormat;
+
 public final class Store {
 
 	private static final Store INSTANCE = new Store();
@@ -9,14 +11,16 @@ public final class Store {
 	//double capital;
 	//Stock inventory;
 	
-	String name = "SuperMart";
-	String startCapital = "$100,000.00";
-	double capital = 100000.00;
-	Stock inventory = new Stock();
+	String name;
+	double capital;
+	Stock inventory;
 	
 	int getCap = 1;
 
     private Store() {
+    	this.name = "SuperMart";
+    	this.capital = 100000.00;
+    	this.inventory = new Stock();
     		
     }
 
@@ -37,7 +41,8 @@ public final class Store {
 	}
 
 	public void setInventory(Stock inputInv) throws StockException {
-		inventory.addStock(inputInv);		
+		this.inventory.clearStock();
+		this.inventory.addStock(inputInv);		
 	}
 
 	public Stock getInventory() {
@@ -58,7 +63,8 @@ public final class Store {
 	}
 
 	public String getCapitalString() {
-		return this.startCapital;
+		DecimalFormat formatter = new DecimalFormat("$###,###,###,###,###,###.00");
+		return formatter.format(this.getCapital());
 	}
 
 	
