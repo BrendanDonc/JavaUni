@@ -151,30 +151,8 @@ public class Stock {
 
 	public Double getColdestTemp() {
 		Item[] coldItems = null;
-		int arraySize = 0;
 		
-		//find the needed size of the array
-		for (Entry<Item, Integer> entry : stockArray.entrySet()) {
-			Item item = (Item) entry.getKey();
-		    
-		    if (item.getTemp() != null) {
-		    		arraySize++;
-		    }
-		}
-		coldItems = new Item[arraySize];
-		int position = 0;
-		
-		//add items to the array
-		for (Entry<Item, Integer> entry : stockArray.entrySet()) {
-			Item item = (Item) entry.getKey();  
-		    
-		    if (item.tempRequired() == true) {
-		    		coldItems[position] = item;
-		    		position++;
-		    }
-		}
-		
-		Arrays.sort(coldItems);
+		coldItems = this.getListCold();
 		
 		return coldItems[0].getTemp();
 	}
@@ -228,11 +206,10 @@ public class Stock {
 			if (item.getName().equals(string)) {
 				stringInput = item;
 			}
-			else {
-				throw new StockException();
-			}	
 		}
-		
+		if (stringInput == null) {
+			throw new StockException();
+		}
 		this.addItem(stringInput, quantity);
 	}
 
