@@ -220,11 +220,20 @@ public class Stock {
 		
 	}
 
-	public void addItemName(String string, int quantity) {
+	public void addItemName(String string, int quantity) throws StockException {
 		//need to check if item is in store
-		StockException badItemName = new StockException();
 		
-		stockArray.put(string, quantity);
+		Item stringInput = null;
+		for (Item item:Store.getInstance().getInventory().getItems()) {
+			if (item.getName().equals(string)) {
+				stringInput = item;
+			}
+			else {
+				throw new StockException();
+			}	
+		}
+		
+		this.addItem(stringInput, quantity);
 	}
 
 	public void subtractStock(Stock stock) {
@@ -239,7 +248,7 @@ public class Stock {
 		    catch (StockException badItem) {
 		    		System.out.println("badItem exception reached");
 		    }
-		    //catch (StockException badItemName) {}
+		    catch (StockException badItemName) {}
 		}
 	}
 

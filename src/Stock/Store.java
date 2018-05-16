@@ -40,7 +40,7 @@ public final class Store {
 		inventory.addStock(inputInv);		
 	}
 
-	public Object getInventory() {
+	public Stock getInventory() {
 		return this.inventory;
 	}
 
