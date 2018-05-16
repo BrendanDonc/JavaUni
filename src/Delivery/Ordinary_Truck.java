@@ -8,7 +8,7 @@ public class Ordinary_Truck extends Truck {
 	public Ordinary_Truck() {
 		this.cargo = new Stock();
 		this.truckType = "Ordinary";
-		this.capacity = 750;
+		this.capacity = 1000;
 	}
 
 	@Override
@@ -29,7 +29,7 @@ public class Ordinary_Truck extends Truck {
 
 	@Override
 	public double truckCost() {
-		double cost = 750 + (25*this.getTruckSize());
+		double cost = 750 + (0.25 * (double)this.getTruckSize());
 		return cost;
 	}
 
