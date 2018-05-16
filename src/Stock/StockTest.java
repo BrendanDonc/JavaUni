@@ -29,12 +29,11 @@ public class StockTest {
 		icecream = new Item("ice cream", 3, 4, 74, 221, (double)-5);
 		
 		//Setup store inventory for addItemName
-//		Stock inventory = new Stock();
-//		inventory.addItem(rice, 0);
-//		inventory.addItem(bread, 0);
-//		inventory.addItem(mushroom, 0);
-//		inventory.addItem(icecream, 0);
-//		Store.getInstance().setInventory(inventory);
+		Stock inventory = new Stock();
+		inventory.addItem(rice, 0);
+		inventory.addItem(bread, 0);
+		inventory.addItem(mushroom, 0);
+		inventory.addItem(icecream, 0);
 		
 		stock = null;
 		tempStock = null;
@@ -71,18 +70,19 @@ public class StockTest {
 		assertArrayEquals(resultArray, stock.getItems());
 	}
 	
-//Can't be done until store is implemented	
+	
 	/*
 	 * Test 4 Adding an item by name
 	 * 
 	 */
-//	@Test
-//	public void testAddItemName() {		
-//		Item[] resultArray = {rice};
-//		stock = new Stock();
-//		stock.addItemName("rice", 40);
-//		assertArrayEquals(resultArray, stock.getItems());
-//	}
+	@Test
+	public void testAddItemName() {	
+		Store.getInstance().setInventory(inventory);
+		Item[] resultArray = {rice};
+		stock = new Stock();
+		stock.addItemName("rice", 40);
+		assertArrayEquals(resultArray, stock.getItems());
+	}
 
 	/*
 	 * Test 5 Adding whole stock
