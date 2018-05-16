@@ -53,7 +53,7 @@ public class StoreTest {
 	 */
 	@Test
 	public void testGetCapital() {
-		double capital = 100000.00;
+		double capital = 99800.00;
 		assertEquals(capital, Store.getInstance().getCapital(), 0.1);
 	}
 	
@@ -72,7 +72,7 @@ public class StoreTest {
 	 * 
 	 */
 	@Test
-	public void testSetInventory() {
+	public void testSetInventory() throws StockException {
 		Store.getInstance().setInventory(inventory);		
 	}
 	
@@ -81,7 +81,7 @@ public class StoreTest {
 	 * 
 	 */
 	@Test
-	public void testGetInventory() {
+	public void testGetInventory() throws StockException {
 		Store.getInstance().setInventory(inventory);
 		assertArrayEquals(inventory.getItems(), Store.getInstance().getInventory().getItems());
 	}
