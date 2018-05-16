@@ -36,7 +36,7 @@ public final class Store {
 		return this.capital;
 	}
 
-	public void setInventory(Stock inputInv) {
+	public void setInventory(Stock inputInv) throws StockException {
 		inventory.addStock(inputInv);		
 	}
 
