@@ -13,8 +13,10 @@ public class Manifest {
 		manifest.add(truck);
 	}
 	
-	public ArrayList<Truck> returnManifest(){
-		return manifest;
+	public Truck[] returnManifest(){
+		Truck[] manifestArray = new Truck[manifest.size()];
+		this.manifest.toArray(manifestArray);
+		return manifestArray;
 	}
 	
 	public String printManifest() {
@@ -34,16 +36,16 @@ public class Manifest {
 	
 	public Truck importTruck(String string) throws DeliveryException {
 		Truck importTruck;
-		
-		if (string.substring(0,1) == ">") {
-			string = string.substring(1);			
+
+		if (string.substring(0,1).equals(">")) {
+			string = string.substring(1);
 		}
 		
-		if(string == "ordinary") {
+		if(string.equals("Ordinary")) {
 			importTruck = new Ordinary_Truck();
 		}
 		
-		else if(string == "refrigerated") {
+		else if(string.equals("Refrigerated")) {
 			importTruck = new Refrigerated_Truck();
 		}
 		else {
