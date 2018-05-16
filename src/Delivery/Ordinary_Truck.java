@@ -14,11 +14,11 @@ public class Ordinary_Truck extends Truck {
 	@Override
 	public void addItem(Item item, int amount) throws DeliveryException {
 		if(item.tempRequired()) {
-			throw new DeliveryException();
+			throw new DeliveryException("Attempted to add refrigerated item to an ordinary truck");
 		}
 		else {
 			if(this.getTruckSize() + amount > this.truckCapacity()) {
-				throw new DeliveryException();
+				throw new DeliveryException("Added amount exceeds truck capacity");
 			}
 			else {
 				cargo.addItem(item, amount);
