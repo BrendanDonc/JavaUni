@@ -7,6 +7,7 @@ import static org.junit.Assert.*;
 import org.junit.internal.JUnitSystem;
 
 import Stock.Item;
+import Stock.StockException;
 
 
 public class Refrigerated_TruckTest {
@@ -18,7 +19,7 @@ public class Refrigerated_TruckTest {
 	Item banana = new Item("Banana", 10, 15, 200, 300, (double) 4);
 	Item yoghurt = new Item("Yoghurt", 10, 15, 200, 300, (double) 2);
 	Item chicken = new Item("Chicken", 10, 15, 200, 300, (double) -2);
-	Item peas = new Item("Peas", 10, 15, 200, 300, (double) -20);
+	Item peas = new Item("Peas", 10, 15, 200, 300, (double) -21);
 
 	/* Test 0: Declaring R-Truck objects */
 	Truck rTruck;
@@ -60,6 +61,7 @@ public class Refrigerated_TruckTest {
 
 	/*Test 4: Get the temperature of the truck */
 	@Test public void calcTruckTemp() throws DeliveryException {
+		rTruck.addItem(iceCream, 50);
 		double actualTemp = -5;
 		assertEquals(actualTemp, rTruck.getTemp(), 0.1); //getTemp will need to get the lowest temperature from the items added
 	}
@@ -68,32 +70,31 @@ public class Refrigerated_TruckTest {
 	/* Test 5: Calculating the refrigerated truck cost */
 	@Test
 	public void calcRTruckCost() throws DeliveryException {
+		rTruck.addItem(iceCream, 50);
 		int actualTemp = -5;
-		double actualCost = Math.pow(900.0 + 200.0 * 0.7, actualTemp/5.0);
+		double actualCost = 900.0 + 200.0 *Math.pow(0.7, actualTemp/5.0);
 		assertEquals(rTruck.truckCost(), actualCost, 0.1);
 	} 
 	
 	
 	/* Test 6: Removing an item from the truck cargo */
 	@Test
-	public void removeAnItem() {
+	public void removeAnItem() throws StockException, DeliveryException {
+		rTruck.addItem(iceCream, 128);
 		rTruck.removeItem(iceCream, 128); //will remove all ice cream items
 		assertEquals(0, rTruck.getCargoItem(iceCream));
 	}
 	
 	/* Test 7: Adding items and removing items from multiple trucks */
 	@Test
-	public void manageMultipleTrucks() throws DeliveryException {
+	public void manageMultipleTrucks() throws DeliveryException, StockException {
 		rTruck_02.addItem(yoghurt, 128);
-		rTruck_02.addItem(peas, 132);
 		rTruck_03.addItem(chicken, 465);
 		rTruck_03.addItem(milk, 243);
 		
-		rTruck_02.removeItem(peas, 32);
 		rTruck_03.removeItem(chicken, 65);
 		
 		assertEquals(128, rTruck_02.getCargoItem(yoghurt));
-		assertEquals(100, rTruck_02.getCargoItem(peas));
 		assertEquals(400, rTruck_03.getCargoItem(chicken));
 		assertEquals(243, rTruck_03.getCargoItem(milk));
 	}
@@ -101,7 +102,7 @@ public class Refrigerated_TruckTest {
 	/* Test 8: Checking the truck cargo has the correct number of items */
 	@Test
 	public void checkCapacity() {
-		int actualCapacity = 171;
+		int actualCapacity = 800;
 		assertEquals(rTruck.truckCapacity(), actualCapacity);
 	}
 	
@@ -114,8 +115,8 @@ public class Refrigerated_TruckTest {
 	}
 	
 	/* Test 10: Checking the truck is not empty */
-	@Test
-	public void emptyTruck() {
+	@Test(expected = StockException.class)
+	public void emptyTruck() throws StockException {
 		rTruck.removeItem(iceCream, 904);
 		rTruck.removeItem(milk, 67);
 		rTruck.removeItem(banana, 52);
@@ -124,18 +125,16 @@ public class Refrigerated_TruckTest {
 	}
 	
 	/* Test 11: Checking the temperature of the truck is safe (ie. has not exceeded either limit) */
-	@Test
-	public void checkTemp() {
+	@Test(expected = DeliveryException.class)
+	public void checkTemp() throws DeliveryException {
 		rTruck.addItem(peas, 5);
-		double newTemp = -20.0;
-		assertEquals("Truck temperature is unsafe", newTemp, rTruck.getTemp());
 	}
 	
 	/* Test 12: Checking that at there is least 1 temperature-controlled item in cargo */
 	@Test
 	public void getMinTemp() throws DeliveryException {
 		Double actualMinTemp = (double) -5;
-		
+		rTruck.addItem(iceCream, 50);
 		assertEquals(actualMinTemp, rTruck.getTemp());
 		
 	}

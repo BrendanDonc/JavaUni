@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.junit.internal.JUnitSystem;
 
 import Stock.Item;
+import Stock.StockException;
 
 public class Ordinary_TruckTest {
 	
@@ -67,15 +68,16 @@ public class Ordinary_TruckTest {
 	
 	/* Test 5: Removing an item from the truck cargo */
 	@Test
-	public void removeAnItem() {
+	public void removeAnItem() throws StockException, DeliveryException {
+		oTruck.addItem(rice,  100);
 		oTruck.removeItem(rice, 52);
-		assertEquals(0, oTruck.getCargoItem(rice));
+		assertEquals(100-52, oTruck.getCargoItem(rice));
 	}
 	
 	
 	/* Test 6: Adding items and removing items from multiple trucks */
 	@Test
-	public void manageMultipleTrucks() throws DeliveryException {
+	public void manageMultipleTrucks() throws DeliveryException, StockException {
 		oTruck_02.addItem(cereal, 128);
 		oTruck_02.addItem(muffins, 132);
 		oTruck_03.addItem(bread, 465);
@@ -92,9 +94,11 @@ public class Ordinary_TruckTest {
 	
 	/* Test 7: Checking the truck cargo has the correct number of items */
 	@Test
-	public void checkTruckSize() {
-		int actualSize = 228;
-		assertEquals(actualSize, oTruck_02.getTruckSize());
+	public void checkTruckSize() throws DeliveryException {
+		oTruck.addItem(rice, 50);
+		oTruck.addItem(muffins, 80);
+		int actualSize = 50 + 80;
+		assertEquals(actualSize, oTruck.getTruckSize());
 	}
 
 	/* Test 8: Checking the truck is not empty */
