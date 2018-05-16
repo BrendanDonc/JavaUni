@@ -2,10 +2,15 @@ package Stock;
 
 
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 
-import coll.UserAccounts.UserException;
 
 
 
@@ -16,6 +21,10 @@ public class Stock {
 	public Stock() {
 		stockArray = new LinkedHashMap<Item, Integer>();
 		
+	}
+	
+	public void clearStock() {
+		this.stockArray = new LinkedHashMap<Item, Integer>();
 	}
 	
 	public void addItem(Item item, int quantity) {
@@ -91,31 +100,38 @@ public class Stock {
 	}
 
 	public Item[] getListCold() {
-		Item[] coldItems = null;
-		int arraySize = 0;
+		Map<Item, Double> unsortedColds = new HashMap<Item, Double>();
 		
 		//find the needed size of the array
-		for (Entry<Item, Integer> entry : stockArray.entrySet()) {
-			Item item = (Item) entry.getKey();
-		    
+		for (Item item : stockArray.keySet()) {		    
 		    if (item.getTemp() != null) {
-		    		arraySize++;
+		    	unsortedColds.put(item, item.getTemp());
 		    }
 		}
-		coldItems = new Item[arraySize];
+		
+		List<Map.Entry<Item, Double>> listColds 
+			= new LinkedList<Map.Entry<Item, Double>>(unsortedColds.entrySet());
+		
+		Collections.sort(listColds, new Comparator<Map.Entry<Item, Double>>() {
+			public int compare(Map.Entry<Item, Double> o1,
+								  Map.Entry<Item, Double> o2) {
+				return (o1.getValue()).compareTo(o2.getValue());
+				
+			}
+		});
+		
+		Map<Item, Double> sortedColds = new LinkedHashMap<Item, Double>();
+		for (Map.Entry<Item, Double> entry : listColds) {
+			sortedColds.put(entry.getKey(), entry.getValue());
+		}
+
+		Item[] coldItems = new Item[sortedColds.size()];
+		
 		int position = 0;
-		
-		//add items to the array
-		for (Entry<Item, Integer> entry : stockArray.entrySet()) {
-			Item item = (Item) entry.getKey();  
-		    
-		    if (item.tempRequired() == true) {
-		    		coldItems[position] = item;
-		    		position++;
-		    }
+		for(Entry<Item, Double> entry:sortedColds.entrySet()) {
+			coldItems[position] = entry.getKey();
+			position++;
 		}
-		
-		Arrays.sort(coldItems);
 		
 		return coldItems;
 	}
@@ -128,7 +144,7 @@ public class Stock {
 		for (Entry<Item, Integer> entry : stockArray.entrySet()) {
 			Item item = (Item) entry.getKey();
 		    
-		    if (item.getTemp() != null) {
+		    if (item.getTemp() == null) {
 		    		arraySize++;
 		    }
 		}
@@ -253,7 +269,7 @@ public class Stock {
 			Item item = (Item) entry.getKey();
 			Integer quantity = entry.getValue();
 		    
-		    if (item.getRePoint() < quantity) {
+		    if (item.getRePoint() > quantity) {
 		    		arraySize++;
 		    }
 		}
@@ -265,13 +281,12 @@ public class Stock {
 			Item item = (Item) entry.getKey();
 		    Integer quantity = entry.getValue();
 		    
-		    if (item.getRePoint() < quantity) {
+		    if (item.getRePoint() > quantity) {
 		    		reOrdItems[position] = item;
 		    		position++;
 		    }
 		}
 		
-		System.out.println(reOrdItems);
 		
 		return reOrdItems;
 	}
