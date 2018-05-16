@@ -38,26 +38,6 @@ public abstract class Truck {
 		return this.getCargo().getAmount(item);
 	}
 	
-	public Truck importTruck(String string) throws DeliveryException {
-		Truck importTruck;
-		
-		if (string.substring(0,1) == ">") {
-			string = string.substring(1);			
-		}
-		
-		if(string == "ordinary") {
-			importTruck = new Ordinary_Truck();
-		}
-		
-		else if(string == "refrigerated") {
-			importTruck = new Refrigerated_Truck();
-		}
-		else {
-			throw new DeliveryException();
-		}
-		return importTruck;
-	}
-	
 	public abstract Double getTemp() throws DeliveryException;
 	
 	public abstract double truckCost() throws DeliveryException;
