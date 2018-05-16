@@ -76,7 +76,7 @@ public class StockTest {
 	 * 
 	 */
 	@Test
-	public void testAddItemName() {	
+	public void testAddItemName() throws StockException {	
 		Store.getInstance().setInventory(inventory);
 		Item[] resultArray = {rice};
 		stock = new Stock();
