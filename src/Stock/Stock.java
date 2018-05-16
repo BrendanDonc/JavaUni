@@ -275,4 +275,17 @@ public class Stock {
 		
 		return reOrdItems;
 	}
+
+	public boolean validSubtractItem(Item item, int quantity) {
+		boolean success = true;
+		
+		try {
+			this.subtractItem(item, quantity);
+		} catch (StockException badItem) {
+			success = false;
+		}
+		
+		return success;
+
+	}
 }
