@@ -10,7 +10,9 @@ import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 import Stock.Item;
+import Stock.Stock;
 import Stock.StockException;
+import Stock.Store;
 
 public class ManifestTest {
 
@@ -30,10 +32,12 @@ public class ManifestTest {
 	Item iceCream; 
 	Item milk;
 	
+	Stock inventory;
+	
 	
 	/* Test 1: Constructing a manifest object*/
 	@Before
-	public void setUpManifest() throws DeliveryException {
+	public void setUpManifest() throws DeliveryException, StockException {
 		manifestTest = new Manifest();
 		manifestTest2 = new Manifest();
 		manifestArray = new ArrayList<Truck>();
@@ -91,6 +95,13 @@ public class ManifestTest {
 	/*Test: Import manifest from a .csv file (we're converting .csv to strings so just use string inputs - see if test 3 matches to "manual" input/test)*/
 	@Test
 	public void importManifest() throws DeliveryException, NumberFormatException, StockException {
+		inventory = new Stock();
+		inventory.addItem(rice, 0);
+		inventory.addItem(biscuits, 0);
+		inventory.addItem(iceCream, 0);
+		inventory.addItem(milk, 0);
+		Store.getInstance().setInventory(inventory);
+		
 		String inputTruck = ">Ordinary";
 		String inputItem1 = "Rice";
 		String inputValue1 = "50";
