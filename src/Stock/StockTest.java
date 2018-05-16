@@ -136,7 +136,7 @@ public class StockTest {
 		stock.addItem(mushroom, 300);
 		stock.addItem(bread, 400);
 		stock.addItem(icecream, 500);
-		Item[] resultArray = {mushroom, bread, icecream};
+		Item[] resultArray = {rice};
 		assertArrayEquals(resultArray, stock.needsReorder());
 	}
 	

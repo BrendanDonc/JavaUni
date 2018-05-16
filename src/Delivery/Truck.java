@@ -30,6 +30,10 @@ public abstract class Truck {
 		return cargo.sumAmount();
 	}
 	
+	public int getRemainingCapacity() {
+		return this.truckCapacity()-this.getTruckSize();
+	}
+	
 	public void removeItem(Item item, int amount) throws StockException {
 		cargo.subtractItem(item, amount);	
 	}

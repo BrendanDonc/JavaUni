@@ -61,7 +61,7 @@ public class Ordinary_TruckTest {
 	@Test
 	public void calcOTruckCost() throws DeliveryException {
 		int truckSize = oTruck.getTruckSize(); 
-		double actualCost = 750 + (25 * truckSize);
+		double actualCost = 750 + (0.25 * truckSize);
 		
 		assertEquals(oTruck.truckCost(), actualCost, 0.1);
 	} 
