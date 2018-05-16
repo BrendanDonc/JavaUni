@@ -30,7 +30,7 @@ public abstract class Truck {
 		return cargo.sumAmount();
 	}
 	
-	public void removeItem(Item item, int amount) {
+	public void removeItem(Item item, int amount) throws StockException {
 		cargo.subtractItem(item, amount);	
 	}
 	

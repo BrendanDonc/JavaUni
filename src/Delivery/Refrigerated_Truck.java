@@ -28,7 +28,7 @@ public class Refrigerated_Truck extends Truck {
 
 	@Override
 	public double truckCost() throws DeliveryException {
-		double cost = 900.00 + 200.00 * java.lang.Math.pow(0.7,this.getTemp());
+		double cost = 900.00 + 200.00 * java.lang.Math.pow(0.7,this.getTemp()/5);
 		return cost;
 	}
 
