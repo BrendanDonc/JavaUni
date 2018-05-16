@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.internal.JUnitSystem;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 import Stock.Item;
@@ -14,26 +15,39 @@ public class ManifestTest {
 
 	//Declaring a manifest object
 	Manifest manifestTest;
+	Manifest manifestTest2;
 	
 	//Initalise manifest array
 	ArrayList<Truck> manifestArray;
 	
 	//Initialise truck-related objects
-	Truck truckOrdinary = new Ordinary_Truck();
-	Item rice = new Item("Rice", 10, 15, 200, 300);
-	Item biscuits = new Item("Biscuits", 10, 15, 200, 300);
+	Truck truckOrdinary;
+	Item rice;
+	Item biscuits;
 	
-	Truck truckRefrigerated = new Refrigerated_Truck();
-	Item iceCream = new Item("Ice Cream", 10, 15, 200, 300, (double) -5); 
-	Item milk = new Item("Milk", 10, 15, 200, 300, (double) 2);
+	Truck truckRefrigerated;
+	Item iceCream; 
+	Item milk;
 	
 	
 	/* Test 1: Constructing a manifest object*/
 	@Before
-	@Test
-	public void setUpManifest() {
+	public void setUpManifest() throws DeliveryException {
 		manifestTest = new Manifest();
+		manifestTest2 = new Manifest();
 		manifestArray = new ArrayList<Truck>();
+		
+		truckOrdinary = new Ordinary_Truck();
+		rice = new Item("Rice", 10, 15, 200, 300);
+		biscuits = new Item("Biscuits", 10, 15, 200, 300);
+		truckOrdinary.addItem(rice, 50); 
+		truckOrdinary.addItem(biscuits, 30); 
+		
+		truckRefrigerated = new Refrigerated_Truck();
+		iceCream = new Item("Ice Cream", 10, 15, 200, 300, (double) -5);
+		milk = new Item("Milk", 10, 15, 200, 300, (double) 2);
+		truckRefrigerated.addItem(iceCream, 20);
+		truckRefrigerated.addItem(milk, 70);
 	}
 	
 	/* Test : Check manifest is empty */
@@ -44,55 +58,51 @@ public class ManifestTest {
 		assertEquals(initSize, manifestArray.size());
 	}
 	
-	public void setup() throws DeliveryException {
-		//Setting up ordinary truck for testing
-		truckOrdinary.addItem(rice, 50); 
-		truckOrdinary.addItem(biscuits, 30); 
-		
-		truckRefrigerated.addItem(iceCream, 20);
-		truckRefrigerated.addItem(milk, 70);
-		
-	}
-	
 	/* Test: Add truck to manifests (manifest is an array of trucks) */
 	@Test
 	public void addTruckToManifest() {
 		manifestArray.add(truckOrdinary); 
-		
+		manifestTest.addTruck(truckOrdinary);
 		int actualArraySize = 1;
-		
 		assertEquals(actualArraySize, 1);
-		assertEquals(manifestArray.get(0), manifestTest.addTruck());
 	}
 	
 	/* Test: Return the truck array */
 	@Test
 	public void returnTruckManifest() {
-		String stringResult = "Rice, 50"
-							+ "Biscuits, 30";
-		
-		assertEquals(stringResult, manifestTest.returnManifest());
+		manifestArray.add(truckOrdinary); 
+		manifestTest.addTruck(truckOrdinary);
+		assertArrayEquals(manifestArray.get(0).getCargo().getItems(), manifestTest.returnManifest()[0].getCargo().getItems());
 	}
 	
 	/* Test: Convert Manifest into 'printable' format (formatted) */
 	@Test
 	public void printManifestTest() {
 		String stringResult = 
-				">Ordinary Truck/n"
-				+ "Rice, 50/n"
-				+ "Biscuits, 30";
+				">Ordinary\n"
+				+ "Rice,50\n"
+				+ "Biscuits,30\n";
+		manifestTest.addTruck(truckOrdinary);
 						
 		assertEquals(stringResult, manifestTest.printManifest());
 	}
 	
 	/*Test: Import manifest from a .csv file (we're converting .csv to strings so just use string inputs - see if test 3 matches to "manual" input/test)*/
 	@Test
-	public void importManifest() {
-		String inputString = "Cereal, 100/n"
-							+ "Berries, 20/n"
-							+ "Beef, 45/n"
-							+ "Yoghurt, 70";
-		assertEquals(inputString, manifestTest.returnManifest());	
+	public void importManifest() throws DeliveryException {
+		String inputTruck = ">Ordinary";
+		String inputItem1 = "Rice";
+		String inputValue1 = "50";
+		String inputItem2 = "Biscuits";
+		String inputValue2 = "30";
+		
+		Truck truck = manifestTest.importTruck(inputTruck);
+		truck.getCargo().addItemName(inputItem1, Integer.parseInt(inputValue1));
+		truck.getCargo().addItemName(inputItem2, Integer.parseInt(inputValue2));
+		
+		manifestTest2.addTruck(truckOrdinary);
+		
+		assertEquals(manifestTest.printManifest(), manifestTest2.printManifest());	
 	}
 	
 }

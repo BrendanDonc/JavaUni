@@ -11,10 +11,10 @@ import coll.UserAccounts.UserException;
 
 public class Stock {
 	
-	LinkedHashMap<Object, Integer> stockArray;
+	LinkedHashMap<Item, Integer> stockArray;
 
 	public Stock() {
-		stockArray = new LinkedHashMap<Object, Integer>();
+		stockArray = new LinkedHashMap<Item, Integer>();
 		
 	}
 	
@@ -34,13 +34,20 @@ public class Stock {
 		}
 	}
 		
-	public Object[] getItems() {
-		Object[] stock = null;
+	public Item[] getItems() {
+		Item[] stock = null;
 		
 		if (stockArray.size() > 0) {
-			stock = stockArray.keySet().toArray();
-
-			return stock;		
+			stock = new Item[stockArray.size()];
+			int pos = 0;
+			for (Entry<Item, Integer> entry : stockArray.entrySet()) {
+				Item item = (Item) entry.getKey();
+			    
+			    stock[pos] = item;
+			    pos++;
+			    
+			}
+			return stock;
 		}
 		
 		else {
@@ -49,21 +56,18 @@ public class Stock {
 	}
 	
 	public void addStock(Stock stock) {
-		for (Entry<Object, Integer> entry : stock.stockArray.entrySet()) {
+		for (Entry<Item, Integer> entry : stock.stockArray.entrySet()) {
 			Item item = (Item) entry.getKey();
 		    Integer quantity = entry.getValue();
 		    
 		    addItem(item, quantity);
 		}
-		
-		
-		//stockArray.putAll(stock.stockArray);
 	}
 	
 	public double sumCosts() {
 		double result = 0;
 		
-		for (Entry<Object, Integer> entry : stockArray.entrySet()) {
+		for (Entry<Item, Integer> entry : stockArray.entrySet()) {
 			Item item = (Item) entry.getKey();
 		    Integer quantity = entry.getValue();
 		    
@@ -76,7 +80,7 @@ public class Stock {
 	public double sumPrices() {
 		double result = 0;
 		
-		for (Entry<Object, Integer> entry : stockArray.entrySet()) {
+		for (Entry<Item, Integer> entry : stockArray.entrySet()) {
 			Item item = (Item) entry.getKey();
 		    Integer quantity = entry.getValue();
 		    
@@ -86,23 +90,23 @@ public class Stock {
 		return result;
 	}
 
-	public Object[] getListCold() {
-		Object[] coldItems = null;
+	public Item[] getListCold() {
+		Item[] coldItems = null;
 		int arraySize = 0;
 		
 		//find the needed size of the array
-		for (Entry<Object, Integer> entry : stockArray.entrySet()) {
+		for (Entry<Item, Integer> entry : stockArray.entrySet()) {
 			Item item = (Item) entry.getKey();
 		    
 		    if (item.getTemp() != null) {
 		    		arraySize++;
 		    }
 		}
-		coldItems = new Object[arraySize];
+		coldItems = new Item[arraySize];
 		int position = 0;
 		
 		//add items to the array
-		for (Entry<Object, Integer> entry : stockArray.entrySet()) {
+		for (Entry<Item, Integer> entry : stockArray.entrySet()) {
 			Item item = (Item) entry.getKey();  
 		    
 		    if (item.tempRequired() == true) {
@@ -121,7 +125,7 @@ public class Stock {
 		int arraySize = 0;
 		
 		//find the needed size of the array
-		for (Entry<Object, Integer> entry : stockArray.entrySet()) {
+		for (Entry<Item, Integer> entry : stockArray.entrySet()) {
 			Item item = (Item) entry.getKey();
 		    
 		    if (item.getTemp() != null) {
@@ -132,7 +136,7 @@ public class Stock {
 		int position = 0;
 		
 		//add items to the array
-		for (Entry<Object, Integer> entry : stockArray.entrySet()) {
+		for (Entry<Item, Integer> entry : stockArray.entrySet()) {
 			Item item = (Item) entry.getKey();  
 		    
 		    if (item.tempRequired() == false) {
@@ -150,7 +154,7 @@ public class Stock {
 		int arraySize = 0;
 		
 		//find the needed size of the array
-		for (Entry<Object, Integer> entry : stockArray.entrySet()) {
+		for (Entry<Item, Integer> entry : stockArray.entrySet()) {
 			Item item = (Item) entry.getKey();
 		    
 		    if (item.getTemp() != null) {
@@ -161,7 +165,7 @@ public class Stock {
 		int position = 0;
 		
 		//add items to the array
-		for (Entry<Object, Integer> entry : stockArray.entrySet()) {
+		for (Entry<Item, Integer> entry : stockArray.entrySet()) {
 			Item item = (Item) entry.getKey();  
 		    
 		    if (item.tempRequired() == true) {
@@ -178,7 +182,7 @@ public class Stock {
 	public String getManifestPrintStyle() {
 		String result = "";
 		
-		for (Entry<Object, Integer> entry : stockArray.entrySet()) {
+		for (Entry<Item, Integer> entry : stockArray.entrySet()) {
 			Item item = (Item) entry.getKey();
 		    Integer quantity = entry.getValue();
 		    
@@ -225,7 +229,7 @@ public class Stock {
 
 	public void subtractStock(Stock stock) {
 	
-		for (Entry<Object, Integer> entry : stock.stockArray.entrySet()) {
+		for (Entry<Item, Integer> entry : stock.stockArray.entrySet()) {
 			Item item = (Item) entry.getKey();
 		    Integer quantity = entry.getValue();
 		    
@@ -244,7 +248,7 @@ public class Stock {
 		
 		int pos = 1;
 		
-		for (Entry<Object, Integer> entry : stockArray.entrySet()) {
+		for (Entry<Item, Integer> entry : stockArray.entrySet()) {
 		    Integer quantity = entry.getValue();
 		    result = result + quantity;  
 		    pos++;
@@ -259,7 +263,7 @@ public class Stock {
 		
 		
 		//find the needed size of the array
-		for (Entry<Object, Integer> entry : stockArray.entrySet()) {
+		for (Entry<Item, Integer> entry : stockArray.entrySet()) {
 			Item item = (Item) entry.getKey();
 			Integer quantity = entry.getValue();
 		    
@@ -271,7 +275,7 @@ public class Stock {
 		reOrdItems = new Item[arraySize];
 		int position = 0;
 		
-		for (Entry<Object, Integer> entry : stockArray.entrySet()) {
+		for (Entry<Item, Integer> entry : stockArray.entrySet()) {
 			Item item = (Item) entry.getKey();
 		    Integer quantity = entry.getValue();
 		    
