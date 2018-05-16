@@ -29,7 +29,7 @@ public class StockTest {
 		icecream = new Item("ice cream", 3, 4, 74, 221, (double)-5);
 		
 		//Setup store inventory for addItemName
-		Stock inventory = new Stock();
+		inventory = new Stock();
 		inventory.addItem(rice, 0);
 		inventory.addItem(bread, 0);
 		inventory.addItem(mushroom, 0);

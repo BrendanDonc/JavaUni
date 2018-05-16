@@ -10,6 +10,7 @@ import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 import Stock.Item;
+import Stock.StockException;
 
 public class ManifestTest {
 
@@ -89,7 +90,7 @@ public class ManifestTest {
 	
 	/*Test: Import manifest from a .csv file (we're converting .csv to strings so just use string inputs - see if test 3 matches to "manual" input/test)*/
 	@Test
-	public void importManifest() throws DeliveryException {
+	public void importManifest() throws DeliveryException, NumberFormatException, StockException {
 		String inputTruck = ">Ordinary";
 		String inputItem1 = "Rice";
 		String inputValue1 = "50";
