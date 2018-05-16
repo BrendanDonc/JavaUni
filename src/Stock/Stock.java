@@ -225,7 +225,7 @@ public class Stock {
 		    catch (StockException badItem) {
 		    		System.out.println("badItem exception reached");
 		    }
-		    catch (StockException badItemName) {}
+		   // catch (StockException badItemName) {}
 		}
 	}
 
@@ -278,14 +278,43 @@ public class Stock {
 
 	public boolean validSubtractItem(Item item, int quantity) {
 		boolean success = true;
-		
-		try {
-			this.subtractItem(item, quantity);
-		} catch (StockException badItem) {
+			
+		if (stockArray.containsKey(item)) {
+			int origAmount = stockArray.get(item);
+			
+			if (origAmount >= quantity) {
+				
+			}
+			else {
+				success = false;
+			}
+		}
+		else {
 			success = false;
 		}
 		
 		return success;
 
+	}
+
+	public boolean validSubtractStock(Stock stock) {
+		boolean success = true;
+		
+		if (stock.stockArray.entrySet() != null) {
+			for (Entry<Item, Integer> entry : stock.stockArray.entrySet()) {
+				Item item = (Item) entry.getKey();
+			    Integer quantity = entry.getValue();
+			    	
+			    if (this.validSubtractItem(item, quantity) == false) {
+			    		success = false;
+			    }
+			}
+		}
+		else {
+			success = false;
+		}
+		
+		
+		return success;
 	}
 }
