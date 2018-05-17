@@ -40,7 +40,7 @@ public final class Store {
 		return this.capital;
 	}
 
-	public void setInventory(Stock inputInv) throws StockException {
+	public void setInventory(Stock inputInv) {
 		this.inventory.clearStock();
 		this.inventory.addStock(inputInv);		
 	}

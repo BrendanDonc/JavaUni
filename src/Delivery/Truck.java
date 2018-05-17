@@ -34,8 +34,12 @@ public abstract class Truck {
 		return this.truckCapacity()-this.getTruckSize();
 	}
 	
-	public void removeItem(Item item, int amount) throws StockException {
-		cargo.subtractItem(item, amount);	
+	public void removeItem(Item item, int amount) throws StockException{
+		try {
+			cargo.subtractItem(item, amount);
+		} catch (StockException e) {
+			throw e;
+		}	
 	}
 	
 	public int getCargoItem(Item item) {

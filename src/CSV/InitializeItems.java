@@ -11,24 +11,17 @@ import Stock.StockException;
 
 public class InitializeItems {
 	
-	public static void InitializeItems() throws CSVFormatException {
+	public static void InitializeItems() throws CSVFormatException, StockException, IOException{
 		Stock inventory = new Stock();
 		try {
 			inventory.addStock(ReadCSV());
 		} catch (CSVFormatException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-			throw new CSVFormatException();
+			throw e1;
 		}
-		try {
-			Store.getInstance().setInventory(inventory);
-		} catch (StockException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Store.getInstance().setInventory(inventory);
 	}
 	
-	public static Stock ReadCSV() throws CSVFormatException {
+	public static Stock ReadCSV() throws CSVFormatException, StockException, IOException {
 		String csvFile = "item_properties.csv";
 		Stock inventory = new Stock();
 		
@@ -68,28 +61,28 @@ public class InitializeItems {
 	                		cost = Integer.parseInt(item[1]);
 	                	}
 	                	catch (NumberFormatException e){
-	                		throw new CSVFormatException();
+	                		throw new CSVFormatException("Item with name " + name +  " has an invalid cost");
 	                	}
 	                	
 	                	try {
 	                		price = Integer.parseInt(item[2]);
 	                	}
 	                	catch (NumberFormatException e){
-	                		throw new CSVFormatException();
+	                		throw new CSVFormatException("Item with name " + name +  " has an invalid price");
 	                	}
 	                	
 	                	try {
 	                		rePoint = Integer.parseInt(item[3]);
 	                	}
 	                	catch (NumberFormatException e){
-	                		throw new CSVFormatException();
+	                		throw new CSVFormatException("Item with name " + name +  " has an invalid reorder point");
 	                	}
 	                	
 	                	try {
 	                		reAmount = Integer.parseInt(item[4]);
 	                	}
 	                	catch (NumberFormatException e){
-	                		throw new CSVFormatException();
+	                		throw new CSVFormatException("Item with name " + name +  " has an invalid reorder amount");
 	                	}
 	                	
 	                	if (item.length == 6) {
@@ -97,14 +90,14 @@ public class InitializeItems {
 	                			temp = Double.valueOf(item[5]);
 	                		}
 	                		catch (NumberFormatException e){
-		                		throw new CSVFormatException();
+		                		throw new CSVFormatException("Item with name " + name +  " has an invalid temperature");
 		                	}
 	                		
 	                		
 	                		try {
 								inventory.addItem(new Item(name, cost, price, rePoint, reAmount, temp), 0);
 							} catch (StockException e) {
-								e.printStackTrace();
+								throw e;
 							}
 	                	}
 	                	
@@ -112,7 +105,7 @@ public class InitializeItems {
 	                		 try {
 								inventory.addItem(new Item(name, cost, price, rePoint, reAmount), 0);
 							} catch (StockException e) {
-								e.printStackTrace();
+								throw e;
 							}
 	                	}
 	                	
@@ -123,21 +116,21 @@ public class InitializeItems {
 	            }
 
 	        } catch (FileNotFoundException e) {
-	            e.printStackTrace();
+	            throw new CSVFormatException("File does not exist");
 	        } catch (IOException e) {
-	            e.printStackTrace();
+	            throw e;
 	        } finally {
 	            if (br != null) {
 	                try {
 	                    br.close();
 	                } catch (IOException e) {
-	                    e.printStackTrace();
+	                    throw e;
 	                }
 	            }
 	        }
 		}
 		else {
-			throw new CSVFormatException();
+			throw new CSVFormatException("File does not exist");
 		}
 		return inventory;
 	}

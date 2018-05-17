@@ -65,7 +65,7 @@ public class Manifest {
 	/*
 	 * 
 	 */
-	public static Manifest manifestToExport() {
+	public static Manifest manifestToExport() throws DeliveryException, StockException {
 		Item[] exportItems = Store.getInstance().getInventory().needsReorder();
 		Stock exportStock = new Stock();
 		for(Item item : exportItems) {
@@ -120,14 +120,12 @@ public class Manifest {
 									try {
 										currentTruck.addItem(item, amount);
 									} catch (DeliveryException e1) {
-										// TODO Auto-generated catch block
-										e1.printStackTrace();
+										throw e1;
 									}
 									try {
 										exportStock.subtractItem(item, amount);
 									} catch (StockException e) {
-										// TODO Auto-generated catch block
-										e.printStackTrace();
+										throw e;
 									}
 									
 								}
@@ -137,14 +135,12 @@ public class Manifest {
 									try {
 										currentTruck.addItem(item, amount);
 									} catch (DeliveryException e1) {
-										// TODO Auto-generated catch block
-										e1.printStackTrace();
+										throw e1;
 									}
 									try {
 										exportStock.subtractItem(item, amount);
 									} catch (StockException e) {
-										// TODO Auto-generated catch block
-										e.printStackTrace();
+										throw e;
 									}
 									
 								}
@@ -204,14 +200,12 @@ public class Manifest {
 									try {
 										currentTruck.addItem(item, amount);
 									} catch (DeliveryException e1) {
-										// TODO Auto-generated catch block
-										e1.printStackTrace();
+										throw e1;
 									}
 									try {
 										exportStock.subtractItem(item, amount);
 									} catch (StockException e) {
-										// TODO Auto-generated catch block
-										e.printStackTrace();
+										throw e;
 									}
 									
 								}
@@ -221,14 +215,12 @@ public class Manifest {
 									try {
 										currentTruck.addItem(item, amount);
 									} catch (DeliveryException e1) {
-										// TODO Auto-generated catch block
-										e1.printStackTrace();
+										throw e1;
 									}
 									try {
 										exportStock.subtractItem(item, amount);
 									} catch (StockException e) {
-										// TODO Auto-generated catch block
-										e.printStackTrace();
+										throw e;
 									}
 								}
 								
@@ -247,14 +239,13 @@ public class Manifest {
 	}
 	
 	
-	public double sumManifestCost() {
+	public double sumManifestCost() throws DeliveryException {
 		double sumAmount = 0;
 		for(Truck truck : this.returnManifest()) {
 			try {
 				sumAmount += truck.truckCost();
 			} catch (DeliveryException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				throw e;
 			}
 			sumAmount += truck.getCargo().sumCosts();
 		}
