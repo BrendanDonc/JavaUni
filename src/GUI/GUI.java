@@ -8,6 +8,7 @@ import java.awt.GraphicsConfiguration;
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.LinkedList;
 
 import javax.swing.BorderFactory;
@@ -22,7 +23,11 @@ import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 
+import CSV.CSVFormatException;
+import CSV.InitializeItems;
 import Stock.Item;
+import Stock.Stock;
+import Stock.StockException;
 import Stock.Store;
 
 import java.awt.*;
@@ -66,7 +71,8 @@ public class GUI extends JFrame implements ActionListener, Runnable {
 
 	
 	//Declaring back-end variables;
-	
+	Stock inventory;
+	Item[] inventoryArray;
 	
 	
 	/**
@@ -103,6 +109,9 @@ public class GUI extends JFrame implements ActionListener, Runnable {
 		}
 		else if (src == buttonLoadMan){
 			JOptionPane.showMessageDialog(this, "A Stupid Error Message", "Wiring Class: Error", JOptionPane.ERROR_MESSAGE);
+		}
+		else if (src == buttonLoadItemProp) {
+			InitItemPropDoc();
 		}
 	}
 
@@ -216,7 +225,7 @@ public class GUI extends JFrame implements ActionListener, Runnable {
 		buttonLoadItemProp = createButton("Load Item Properties Document");
 		
 		//Create Labels
-		labelStoreCap = createLabel("Store Capital: ");
+		labelStoreCap = createLabel("Store Capital: " + Store.getInstance().getCapitalString());
 		
 		// Create text area
 		areaDisplay = createTextArea(DEFAULT_TEXT_SIZE);
@@ -242,29 +251,75 @@ public class GUI extends JFrame implements ActionListener, Runnable {
 	
 	public static void main(String[] args) {
 		JFrame.setDefaultLookAndFeelDecorated(true);
-		SwingUtilities.invokeLater(new GUI("SuperMart Stock Manager"));
+		SwingUtilities.invokeLater(new GUI(Store.getInstance().getName() + "'s Stock Manager"));
 
 	}
 	
 	
 	//CREATING ITEM TABLES - STORE INVENTORY
 	public void createInvTable() {
-		String[] columns = new String[] {
-				"Item Name", "Manufacturing Cost", "Sell Price", "Reorder Point", "Reorder Amount", "Temperature", "Quantity"
-		};
-         
-        //actual data for the table in a 2d array
-        Object[][] data = new Object[][] {
-        		//table data
-        };
+		//getting the 'current' inventory from the Store class
+		inventory = Store.getInstance().getInventory();
+		Store.getInstance().setInventory(inventory);
+		inventoryArray = inventory.getItems();        
         
         //create table with data
-        JTable table = new JTable(data, columns);
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Item Name");
+        model.addColumn("Manufacturing Cost");
+        model.addColumn("Sell Price");
+        model.addColumn("Reorder Point");
+        model.addColumn("Reorder Amount");
+        model.addColumn("Temperature");
+        model.addColumn("Quantity");
+        
+        //for each item in inventory, add row to table
+//        if (inventoryArray.length > 0) {
+//	        for (int i = 0; i < inventoryArray.length; i++) {
+//	        		Object[] rowData = {
+//	        				inventoryArray[i].getName(), 
+//	        				inventoryArray[i].getCost(), 
+//	        				inventoryArray[i].getPrice(),
+//	        				inventoryArray[i].getRePoint(),
+//	        				inventoryArray[i].getReAmount(),
+//	        				inventoryArray[i].getTemp(),
+//	        				inventory.getAmount(inventoryArray[i])
+//	        				};
+//	        		model.addRow(rowData);
+//	        }
+//	        JOptionPane.showMessageDialog(this, "Items have been added to the inventory.", "Wiring Class: Warning", JOptionPane.WARNING_MESSAGE);
+//        }
+//        else {
+//        	JOptionPane.showMessageDialog(this, "There are no items in the inventory.", "Wiring Class: Warning", JOptionPane.WARNING_MESSAGE);
+//        }
+        
+        JTable table = new JTable(model);
+        
+        JOptionPane.showMessageDialog(this, "The current inventory is being shown.", "Wiring Class: Warning", JOptionPane.WARNING_MESSAGE);
          
         //add the table to the frame
         this.add(new JScrollPane(table));
          
         this.setVisible(true);
 		
+	}
+	
+	public void InitItemPropDoc() {
+		FileDialog dialog = new FileDialog((Frame)null, "Select File to Open");
+	    dialog.setMode(FileDialog.LOAD);
+	    dialog.setVisible(true);
+	    String file = dialog.getFile();
+	    System.out.println(file + " chosen.");
+	    try {
+			InitializeItems.InitializeItems(file);
+			JOptionPane.showMessageDialog(this, "Success! Item Properties have been initialised.", "Loaded Items Properties Document", JOptionPane.WARNING_MESSAGE);
+		} catch (CSVFormatException e) {
+			JOptionPane.showMessageDialog(this, "File is not in the correct format. Please try again.", "Item Initialisation Failure", JOptionPane.ERROR_MESSAGE);
+		} catch (StockException e) {
+			JOptionPane.showMessageDialog(this, "Failed adding stock to inventory. Please try again.", "Item Initialisation Failure", JOptionPane.ERROR_MESSAGE);
+		} catch (IOException e) {
+			JOptionPane.showMessageDialog(this, "IOException error. Please try again.", "Item Initialisation Failure", JOptionPane.ERROR_MESSAGE);
+			e.printStackTrace();
+		}
 	}
 }
