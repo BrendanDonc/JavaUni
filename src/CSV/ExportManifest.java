@@ -16,7 +16,11 @@ public class ExportManifest {
 		} catch (DeliveryException | StockException e) {
 			throw e;
 		}
-		export(toExport, exportDir);
+		try {
+			export(toExport, exportDir);
+		} catch (DeliveryException e) {
+			throw e;
+		}
 	}
 	
 	public static void export(Manifest manifest, String exportDir) throws DeliveryException {

@@ -11,17 +11,21 @@ import Stock.StockException;
 
 public class InitializeItems {
 	
-	public static void InitializeItems(String file) throws CSVFormatException, StockException, IOException{
+	public static void InitializeItems(String file) throws CSVFormatException, StockException, IOException {
 		Stock inventory = new Stock();
+
 		try {
-			inventory.addStock(ReadCSV(file));
-		} catch (CSVFormatException e1) {
-			throw e1;
+			inventory.addStock(ReadItemCSV(file));
+		} catch (CSVFormatException | StockException | IOException e) {
+			throw e;
 		}
+
 		Store.getInstance().setInventory(inventory);
 	}
 	
-	public static Stock ReadCSV(String file) throws CSVFormatException, StockException, IOException {
+	
+	
+	public static Stock ReadItemCSV(String file) throws CSVFormatException, StockException, IOException {
 		String csvFile = file;
 		Stock inventory = new Stock();
 		
@@ -29,7 +33,7 @@ public class InitializeItems {
 			
 	        BufferedReader br = null;
 	        String line = "";
-	        String cvsSplitBy = ",";
+	        String csvSplitBy = ",";
 	        String name;
 	        int cost;
 	        int price;
@@ -50,9 +54,9 @@ public class InitializeItems {
 	            	
 
 	                // use comma as separator
-	                String[] item = line.split(cvsSplitBy);
+	                String[] item = line.split(csvSplitBy);
 	                if (item.length > 6 || item.length < 5) {
-	                	throw new CSVFormatException();
+	                	throw new CSVFormatException("Item property does not have correct amount of fields(either 5 or 6)");
 	                	}
 	                else {
 	                	name = item[0];

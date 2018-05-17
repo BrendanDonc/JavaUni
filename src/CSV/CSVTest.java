@@ -15,6 +15,7 @@ public class CSVTest {
 	public void test() throws CSVFormatException, StockException, DeliveryException, IOException {
 		InitializeItems.InitializeItems("item_properties.csv");
 		ExportManifest.ExportManifestCSV("Manifest.csv");
+		//LoadSales.LoadSales("sales_log_0.csv");
 	}
 
 }

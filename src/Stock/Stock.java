@@ -223,7 +223,7 @@ public class Stock {
 			}
 		}
 		if (stringInput == null) {
-			throw new StockException();
+			throw new StockException("Item name not found in store");
 		}
 		this.addItem(stringInput, quantity);
 	}
@@ -289,8 +289,10 @@ public class Stock {
 		return reOrdItems;
 	}
 
-	public boolean validSubtractItem(Item item, int quantity) {
+	public boolean validSubtractItem(Item item, int quantity) throws StockException {
 		boolean success = true;
+		StockException badItemAmount = new StockException("An item did not have enough to sell");
+		StockException badItem = new StockException("Store did not contain an item");
 			
 		if (stockArray.containsKey(item)) {
 			int origAmount = stockArray.get(item);
@@ -300,17 +302,19 @@ public class Stock {
 			}
 			else {
 				success = false;
+				throw badItemAmount;
 			}
 		}
 		else {
 			success = false;
+			throw badItem;
 		}
 		
 		return success;
 
 	}
 
-	public boolean validSubtractStock(Stock stock) {
+	public boolean validSubtractStock(Stock stock) throws StockException {
 		boolean success = true;
 		
 		if (stock.stockArray.entrySet() != null) {
@@ -318,9 +322,13 @@ public class Stock {
 				Item item = (Item) entry.getKey();
 			    Integer quantity = entry.getValue();
 			    	
-			    if (this.validSubtractItem(item, quantity) == false) {
-			    		success = false;
-			    }
+			    try {
+					if (this.validSubtractItem(item, quantity) == false) {
+							success = false;
+					}
+				} catch (StockException e) {
+					throw e;
+				}
 			}
 		}
 		else {
