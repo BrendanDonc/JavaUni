@@ -269,7 +269,7 @@ public class StockTest {
 	 * 
 	 */
 	@Test
-	public void testValidSubtractItemSuccess() {
+	public void testValidSubtractItemSuccess() throws StockException {
 		stock = new Stock();
 		stock.addItem(rice, 50);
 		assertEquals(true, stock.validSubtractItem(rice, 30));
@@ -279,8 +279,8 @@ public class StockTest {
 	 * Test 19 Check if item is a valid subtraction (failure, not enough of item)
 	 * 
 	 */
-	@Test
-	public void testValidSubtractItemFailureAmount() {
+	@Test (expected = StockException.class)
+	public void testValidSubtractItemFailureAmount() throws StockException {
 		stock = new Stock();
 		stock.addItem(rice, 50);
 		assertEquals(false, stock.validSubtractItem(rice, 70));
@@ -290,8 +290,8 @@ public class StockTest {
 	 * Test 20 Check if item is a valid subtraction (failure, item does not exist)
 	 * 
 	 */
-	@Test
-	public void testValidSubtractItemFailureExist() {
+	@Test (expected = StockException.class)
+	public void testValidSubtractItemFailureExist() throws StockException {
 		stock = new Stock();
 		assertEquals(false, stock.validSubtractItem(rice, 70));
 	}
@@ -350,7 +350,7 @@ public class StockTest {
 	 * 
 	 */
 	@Test
-	public void testValidSubtractStockSuccess() {
+	public void testValidSubtractStockSuccess() throws StockException {
 		stock = new Stock();
 		tempStock = new Stock();
 		stock.addItem(rice, 500);
@@ -362,8 +362,8 @@ public class StockTest {
 	 * Test 25 Check if stock is a valid subtraction (failure, not enough of an item)
 	 * 
 	 */
-	@Test
-	public void testValidSubtractStockFailureAmount() {
+	@Test (expected = StockException.class)
+	public void testValidSubtractStockFailureAmount() throws StockException {
 		stock = new Stock();
 		tempStock = new Stock();
 		stock.addItem(rice, 200);
@@ -375,7 +375,7 @@ public class StockTest {
 	 * Test 26 Check if stock is a valid subtraction (failure, an item does not exist)
 	 * 
 	 */
-	@Test
+	@Test (expected = StockException.class)
 	public void testValidSubtractStockFailureExist() throws StockException {
 		stock = new Stock();
 		tempStock = new Stock();
