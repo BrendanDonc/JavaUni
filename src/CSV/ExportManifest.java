@@ -8,12 +8,13 @@ import Delivery.*;
 public class ExportManifest {
 	
 	public static void ExportManifestCSV() throws FileNotFoundException {
-		export(Manifest.manifestToExport());
+		String exportDir = "Manifest.csv";
+		export(Manifest.manifestToExport(), exportDir);
 	}
 	
-	public static void export(Manifest manifest) throws FileNotFoundException {
-		boolean result = new File("Manifest.csv").delete();
-		PrintWriter pw = new PrintWriter(new File("Manifest.csv"));
+	public static void export(Manifest manifest, String exportDir) throws FileNotFoundException {
+		boolean result = new File(exportDir).delete();
+		PrintWriter pw = new PrintWriter(new File(exportDir));
 		pw.write(manifest.printManifest());
 		pw.close();
 	}
