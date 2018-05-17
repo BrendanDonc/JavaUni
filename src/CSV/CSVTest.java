@@ -2,7 +2,6 @@ package CSV;
 
 import static org.junit.Assert.*;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import org.junit.Test;
@@ -14,8 +13,8 @@ public class CSVTest {
 
 	@Test
 	public void test() throws CSVFormatException, StockException, DeliveryException, IOException {
-		InitializeItems.InitializeItems();
-		ExportManifest.ExportManifestCSV();
+		InitializeItems.InitializeItems("item_properties.csv");
+		ExportManifest.ExportManifestCSV("Manifest.csv");
 	}
 
 }

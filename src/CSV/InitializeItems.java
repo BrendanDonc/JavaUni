@@ -11,18 +11,18 @@ import Stock.StockException;
 
 public class InitializeItems {
 	
-	public static void InitializeItems() throws CSVFormatException, StockException, IOException{
+	public static void InitializeItems(String file) throws CSVFormatException, StockException, IOException{
 		Stock inventory = new Stock();
 		try {
-			inventory.addStock(ReadCSV());
+			inventory.addStock(ReadCSV(file));
 		} catch (CSVFormatException e1) {
 			throw e1;
 		}
 		Store.getInstance().setInventory(inventory);
 	}
 	
-	public static Stock ReadCSV() throws CSVFormatException, StockException, IOException {
-		String csvFile = "item_properties.csv";
+	public static Stock ReadCSV(String file) throws CSVFormatException, StockException, IOException {
+		String csvFile = file;
 		Stock inventory = new Stock();
 		
 		if(new File(csvFile).isFile()) {

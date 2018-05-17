@@ -8,8 +8,8 @@ import Stock.StockException;
 
 public class ExportManifest {
 	
-	public static void ExportManifestCSV() throws DeliveryException, StockException{
-		String exportDir = "Manifest.csv";
+	public static void ExportManifestCSV(String file) throws DeliveryException, StockException{
+		String exportDir = file;
 		Manifest toExport;
 		try {
 			toExport = Manifest.manifestToExport();
