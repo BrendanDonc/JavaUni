@@ -33,10 +33,6 @@ public final class Store {
 	}
 
 	public double getCapital() {
-		System.out.println("The capital is currently " + this.capital);
-		System.out.println("This function has been run " + this.getCap + " times.");
-		this.getCap++;
-		
 		return this.capital;
 	}
 
