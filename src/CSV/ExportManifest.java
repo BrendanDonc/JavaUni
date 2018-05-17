@@ -1,16 +1,20 @@
 package CSV;
 
-import Stock.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import Delivery.*;
 
 public class ExportManifest {
 	
-	public void ExportManifestCSV() {
+	public static void ExportManifestCSV() throws FileNotFoundException {
 		export(Manifest.manifestToExport());
 	}
 	
-	public void export(Manifest manifest) {
-		
+	public static void export(Manifest manifest) throws FileNotFoundException {
+		boolean result = new File("Manifest.csv").delete();
+		PrintWriter pw = new PrintWriter(new File("Manifest.csv"));
+		pw.write(manifest.printManifest());
+		pw.close();
 	}
-
 }

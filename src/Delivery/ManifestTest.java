@@ -1,10 +1,13 @@
 package Delivery;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.internal.JUnitSystem;
+
+import CSV.ExportManifest;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
@@ -166,7 +169,7 @@ public class ManifestTest {
 	
 	/*Test 7: Generate a manifest of items that need reordering*/
 	@Test
-	public void generateManifest() throws StockException {
+	public void generateManifest() throws StockException, FileNotFoundException {
 		inventory = new Stock();
 		inventory.addItem(asparagus, 0);
 		inventory.addItem(beans, 0);
@@ -200,6 +203,7 @@ public class ManifestTest {
 		System.out.println(exportManifest.sumManifestCost());
 		Store.getInstance().lowerCapital(exportManifest.sumManifestCost());
 		System.out.println(Store.getInstance().getCapitalString());
+		ExportManifest.ExportManifestCSV();
 		assertEquals(42717.88, Store.getInstance().getCapital(), 0.01);
 	}
 	
