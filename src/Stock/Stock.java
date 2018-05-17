@@ -1,6 +1,8 @@
 package Stock;
 
 
+import static org.junit.Assert.fail;
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
@@ -27,11 +29,7 @@ public class Stock {
 		this.stockArray = new LinkedHashMap<Item, Integer>();
 	}
 	
-	public void addItem(Item item, int quantity) {
-		
-		StockException badItemType = new StockException();
-		
-		
+	public void addItem(Item item, int quantity)  {
 		
 		if (stockArray.containsKey(item)) {
 			int existingQuantity = stockArray.get(item);
@@ -41,6 +39,7 @@ public class Stock {
 		else {
 			stockArray.put(item, quantity);
 		}
+
 	}
 		
 	public Item[] getItems() {
@@ -229,8 +228,7 @@ public class Stock {
 		this.addItem(stringInput, quantity);
 	}
 
-	public void subtractStock(Stock stock) {
-	
+	public void subtractStock(Stock stock) throws StockException {
 		for (Entry<Item, Integer> entry : stock.stockArray.entrySet()) {
 			Item item = (Item) entry.getKey();
 		    Integer quantity = entry.getValue();
@@ -238,10 +236,10 @@ public class Stock {
 		    try {
 				subtractItem(item, quantity);
 			} 
-		    catch (StockException badItem) {
-		    		System.out.println("badItem exception reached");
+		    catch (StockException subtractError) {
+		    		//fail("Failed to subtract item from stock: " + stock);
+		    		throw subtractError;
 		    }
-		   // catch (StockException badItemName) {}
 		}
 	}
 

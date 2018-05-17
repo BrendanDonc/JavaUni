@@ -1,7 +1,7 @@
 package Delivery;
 
 import static org.junit.Assert.assertEquals;
-
+import static org.junit.Assert.fail;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -13,16 +13,17 @@ import Stock.StockException;
 public class Ordinary_TruckTest {
 	
 	//Declaring items to be used in tests
-		Item rice = new Item("Rice", 10, 15, 200, 300);
-		Item biscuits = new Item("Biscuits", 10, 15, 200, 300);
-		Item almonds = new Item("Almonds", 10, 15, 200, 300);
-		Item cannedSpag = new Item("Canned Spaghetti", 10, 15, 200, 300);
-		Item cereal = new Item("Cereal", 10, 15, 200, 300);
-		Item muffins = new Item("Muffins", 10, 15, 200, 300);
-		Item bread = new Item("Bread", 10, 15, 200, 300);
-		Item chips = new Item("Chips", 10, 15, 200, 300);
-		
-		Item iceCream = new Item("Ice Cream", 10, 15, 200, 300, (double) -5);
+	Item rice;
+	Item biscuits;
+	Item almonds;
+	Item cannedSpag;
+	Item cereal;
+	Item muffins;
+	Item bread;
+	Item chips;
+	
+	Item iceCream;
+	
 
 	/* Test 0: Declaring O-Truck objects */
 	Truck oTruck;
@@ -36,6 +37,22 @@ public class Ordinary_TruckTest {
 		oTruck = new Ordinary_Truck();
 		oTruck_02 = new Ordinary_Truck();
 		oTruck_03 = new Ordinary_Truck();
+		
+		try {
+			rice = new Item("Rice", 10, 15, 200, 300);
+			biscuits = new Item("Biscuits", 10, 15, 200, 300);
+			almonds = new Item("Almonds", 10, 15, 200, 300);
+			cannedSpag = new Item("Canned Spaghetti", 10, 15, 200, 300);
+			cereal = new Item("Cereal", 10, 15, 200, 300);
+			muffins = new Item("Muffins", 10, 15, 200, 300);
+			bread = new Item("Bread", 10, 15, 200, 300);
+			chips = new Item("Chips", 10, 15, 200, 300);
+			
+			iceCream = new Item("Ice Cream", 10, 15, 200, 300, (double) -5);
+		}
+		catch (StockException badParam) {
+			fail("Ordinary Truck items failed to initialise.");
+		}
 	}
 
 	

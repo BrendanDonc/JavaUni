@@ -4,7 +4,6 @@ import org.junit.Test;
 import org.junit.Before;
 import static org.junit.Assert.*;
 
-
 public class StockTest {
 	
 	Item rice;
@@ -12,6 +11,7 @@ public class StockTest {
 	Item mushroom;
 	Item icecream;
 	Stock inventory;
+
 	
 	/*
 	 * Test 0 Declaring Stock object
@@ -22,18 +22,23 @@ public class StockTest {
 	
 	//Clear stock before each test
 	@Before
-	public void setupStock() {
-		rice = new Item("rice", 2, 3, 225, 300);
-		bread = new Item("bread", 1, 2, 185, 224);
-		mushroom = new Item("mushroom", 2, 4, 200, 325, (double)10);
-		icecream = new Item("ice cream", 3, 4, 74, 221, (double)-5);
+	public void setupStock() throws StockException {
+		try {
+			rice = new Item("rice", 2, 3, 225, 300);
+			bread = new Item("bread", 1, 2, 185, 224);
+			mushroom = new Item("mushroom", 2, 4, 200, 325, (double)10);
+			icecream = new Item("ice cream", 3, 4, 74, 221, (double)-5);
+		}
+		catch (StockException badParam) {
+			fail("Refrigerated Truck items failed to initialise.");
+		}
 		
 		//Setup store inventory for addItemName
 		inventory = new Stock();
-		inventory.addItem(rice, 0);
-		inventory.addItem(bread, 0);
-		inventory.addItem(mushroom, 0);
-		inventory.addItem(icecream, 0);
+		inventory.addItem(rice, 1);
+		inventory.addItem(bread, 1);
+		inventory.addItem(mushroom, 1);
+		inventory.addItem(icecream, 1);
 		
 		stock = null;
 		tempStock = null;
@@ -63,7 +68,7 @@ public class StockTest {
 	 * 
 	 */
 	@Test
-	public void testAddItem() {
+	public void testAddItem() throws StockException {
 		Item[] resultArray = {rice};
 		stock = new Stock();
 		stock.addItem(rice, 40);
@@ -89,7 +94,7 @@ public class StockTest {
 	 * 
 	 */
 	@Test
-	public void testAddStock() {
+	public void testAddStock() throws StockException {
 		Item[] resultArray = {rice, mushroom};
 		Stock tempStock = new Stock();
 		tempStock.addItem(rice, 2);
@@ -104,7 +109,7 @@ public class StockTest {
 	 * 
 	 */
 	@Test
-	public void testSumCosts() {
+	public void testSumCosts() throws StockException {
 		stock = new Stock();
 		stock.addItem(rice, 100);
 		stock.addItem(mushroom, 300);
@@ -117,7 +122,7 @@ public class StockTest {
 	 * 
 	 */
 	@Test
-	public void testSumPrices() {
+	public void testSumPrices() throws StockException {
 		stock = new Stock();
 		stock.addItem(rice, 100);
 		stock.addItem(mushroom, 300);
@@ -130,7 +135,7 @@ public class StockTest {
 	 * 
 	 */
 	@Test
-	public void testNeedsReorder() {
+	public void testNeedsReorder() throws StockException {
 		stock = new Stock();
 		stock.addItem(rice, 100);
 		stock.addItem(mushroom, 300);
@@ -145,7 +150,7 @@ public class StockTest {
 	 *  
 	 */
 	@Test
-	public void testGetListCold() {
+	public void testGetListCold() throws StockException {
 		stock = new Stock();
 		stock.addItem(rice, 100);
 		stock.addItem(mushroom, 300);
@@ -160,7 +165,7 @@ public class StockTest {
 	 * 
 	 */
 	@Test
-	public void testGetListOrdinary() {
+	public void testGetListOrdinary() throws StockException {
 		stock = new Stock();
 		stock.addItem(rice, 100);
 		stock.addItem(mushroom, 300);
@@ -296,7 +301,7 @@ public class StockTest {
 	 * 
 	 */
 	@Test
-	public void testSubtractStock() {
+	public void testSubtractStock() throws StockException {
 		stock = new Stock();
 		tempStock = new Stock();
 		stock.addItem(rice, 500);
@@ -309,25 +314,35 @@ public class StockTest {
 	 * Test 22 Subtract a stock with invalid amount
 	 * 
 	 */
-	@Test(expected = StockException.class)
+	@Test//(expected = StockException.class)
 	public void testSubtractStockAmount() {
 		stock = new Stock();
 		tempStock = new Stock();
 		stock.addItem(rice, 200);
 		tempStock.addItem(rice, 300);
-		stock.subtractStock(tempStock);
+		try {
+			stock.subtractStock(tempStock);
+			fail("error not caught");
+		} catch (StockException subtractErr) {
+			assertTrue(true);
+		}
 	}
 	
 	/*
 	 * Test 23 Subtract a stock without the item
 	 * 
 	 */
-	@Test(expected = StockException.class)
+	@Test//(expected = StockException.class)
 	public void testSubtractStockExist() {
 		stock = new Stock();
 		tempStock = new Stock();
 		tempStock.addItem(rice, 200);
-		stock.subtractStock(tempStock);
+		try {
+			stock.subtractStock(tempStock);
+			fail("error not caught");
+		} catch (StockException subtractErr) {
+			assertTrue(true);
+		}
 	}
 	
 	/*
@@ -361,7 +376,7 @@ public class StockTest {
 	 * 
 	 */
 	@Test
-	public void testValidSubtractStockFailureExist() {
+	public void testValidSubtractStockFailureExist() throws StockException {
 		stock = new Stock();
 		tempStock = new Stock();
 		tempStock.addItem(rice, 200);
@@ -373,7 +388,7 @@ public class StockTest {
 	 * 
 	 */
 	@Test
-	public void testSumAmount() {
+	public void testSumAmount() throws StockException {
 		stock = new Stock();
 		stock.addItem(rice, 200);
 		stock.addItem(bread, 100);

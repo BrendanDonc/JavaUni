@@ -15,10 +15,16 @@ public class StoreTest {
 	@Before
 	public void setup() {
 		//Setup items to be used in store tests
-		rice = new Item("rice", 2, 3, 225, 300);
-		bread = new Item("bread", 1, 2, 185, 224);
-		mushroom = new Item("mushroom", 2, 4, 200, 325, (double)10);
-		icecream = new Item("ice cream", 3, 4, 74, 221, (double)-5);
+		
+		try {	
+			rice = new Item("rice", 2, 3, 225, 300);	
+			bread = new Item("bread", 1, 2, 185, 224);
+			mushroom = new Item("mushroom", 2, 4, 200, 325, (double)10);
+			icecream = new Item("ice cream", 3, 4, 74, 221, (double)-5);
+		
+		} catch (StockException badParam) {
+			fail("Store items failed to initialise.");
+		}
 		
 		//Setup inventory stock for setInventory
 		inventory = new Stock();

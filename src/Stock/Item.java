@@ -12,21 +12,33 @@ public class Item implements Comparable<Item>{
 	int reAmount;
 	Double temp;
 	
-	public Item(String itemName, double itemCost, double itemPrice, int itemReorderPoint, int itemReorderAmount) {
-		this.name = itemName;
-		this.cost = itemCost;
-		this.price = itemPrice;
-		this.rePoint = itemReorderPoint;
-		this.reAmount = itemReorderAmount;
+	public Item(String itemName, double itemCost, double itemPrice, int itemReorderPoint, int itemReorderAmount) throws StockException {
+		StockException badParam = new StockException();
+		if (itemCost <= 0 || itemPrice <= 0 || itemReorderPoint <= 0 || itemReorderAmount <= 0) {
+			throw badParam;	
+		}
+		else {
+			this.name = itemName;
+			this.cost = itemCost;
+			this.price = itemPrice;
+			this.rePoint = itemReorderPoint;
+			this.reAmount = itemReorderAmount;
+		}
 	}
 	
-	public Item(String itemName, double itemCost, double itemPrice, int itemReorderPoint, int itemReorderAmount, Double itemTemp) {
-		this.name = itemName;
-		this.cost = itemCost;
-		this.price = itemPrice;
-		this.rePoint = itemReorderPoint;
-		this.reAmount = itemReorderAmount;
-		this.temp = itemTemp;
+	public Item(String itemName, double itemCost, double itemPrice, int itemReorderPoint, int itemReorderAmount, Double itemTemp) throws StockException {
+		StockException badParam = new StockException();
+		if (itemCost <= 0 || itemPrice <= 0 || itemReorderPoint <= 0 || itemReorderAmount <= 0) {
+			throw badParam;	
+		}
+		else {
+			this.name = itemName;
+			this.cost = itemCost;
+			this.price = itemPrice;
+			this.rePoint = itemReorderPoint;
+			this.reAmount = itemReorderAmount;
+			this.temp = itemTemp;
+		}	
 	}
 	
 	public String getName() {

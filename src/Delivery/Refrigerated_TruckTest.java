@@ -13,13 +13,13 @@ import Stock.StockException;
 public class Refrigerated_TruckTest {
 	
 	//Declaring items to be used in tests
-	Item pork = new Item("Pork", 10, 15, 200, 300, (double) -3);
-	Item iceCream = new Item("Ice Cream", 10, 15, 200, 300, (double) -5);
-	Item milk = new Item("Milk", 10, 15, 200, 300, (double) 2);
-	Item banana = new Item("Banana", 10, 15, 200, 300, (double) 4);
-	Item yoghurt = new Item("Yoghurt", 10, 15, 200, 300, (double) 2);
-	Item chicken = new Item("Chicken", 10, 15, 200, 300, (double) -2);
-	Item peas = new Item("Peas", 10, 15, 200, 300, (double) -21);
+	Item pork;
+	Item iceCream;
+	Item milk;
+	Item banana;
+	Item yoghurt;
+	Item chicken;
+	Item peas;
 
 	/* Test 0: Declaring R-Truck objects */
 	Truck rTruck;
@@ -31,6 +31,19 @@ public class Refrigerated_TruckTest {
 	@Before
 	@Test
 	public void setUpRTruck() {
+		try {
+			pork = new Item("Pork", 10, 15, 200, 300, (double) -3);
+			iceCream = new Item("Ice Cream", 10, 15, 200, 300, (double) -5);
+			milk = new Item("Milk", 10, 15, 200, 300, (double) 2);
+			banana = new Item("Banana", 10, 15, 200, 300, (double) 4);
+			yoghurt = new Item("Yoghurt", 10, 15, 200, 300, (double) 2);
+			chicken = new Item("Chicken", 10, 15, 200, 300, (double) -2);
+			peas = new Item("Peas", 10, 15, 200, 300, (double) -21);
+		}
+		catch (StockException badParam) {
+			fail("Refrigerated Truck items failed to initialise.");
+		}
+		
 		rTruck = new Refrigerated_Truck();
 		rTruck_02 = new Refrigerated_Truck();
 		rTruck_03 = new Refrigerated_Truck();
