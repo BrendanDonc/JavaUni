@@ -117,9 +117,9 @@ public abstract class Truck {
 	public abstract Double getTemp() throws DeliveryException;
 	
 	/**
-	 * 
-	 * @return
-	 * @throws DeliveryException
+	 * Calculate the cost of the truck
+	 * @return double value for the cost of the truck
+	 * @throws DeliveryException Refrigerated Truck can't be calculated because it lacks a refrigerated item
 	 */
 	public abstract double truckCost() throws DeliveryException;
 	
