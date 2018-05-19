@@ -1,14 +1,9 @@
 package CSV;
 
-import static org.junit.Assert.*;
-
 import java.io.IOException;
-
 import org.junit.Test;
-
 import Delivery.DeliveryException;
-import Stock.StockException;
-import Stock.Store;
+import Stock.*;
 
 public class CSVTest {
 

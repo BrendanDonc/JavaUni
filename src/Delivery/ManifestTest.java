@@ -1,21 +1,9 @@
 package Delivery;
 
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
-
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.internal.JUnitSystem;
-
-import CSV.ExportManifest;
-
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
-
-import Stock.Item;
-import Stock.Stock;
-import Stock.StockException;
-import Stock.Store;
+import org.junit.*;
+import static org.junit.Assert.*;
+import Stock.*;
 
 public class ManifestTest {
 

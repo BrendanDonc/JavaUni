@@ -3,11 +3,7 @@ package Delivery;
 import org.junit.Test;
 import org.junit.Before;
 import static org.junit.Assert.*;
-
-import org.junit.internal.JUnitSystem;
-
-import Stock.Item;
-import Stock.StockException;
+import Stock.*;
 
 
 public class Refrigerated_TruckTest {

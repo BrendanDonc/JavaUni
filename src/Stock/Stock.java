@@ -1,9 +1,6 @@
 package Stock;
 
 
-import static org.junit.Assert.fail;
-
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -246,12 +243,9 @@ public class Stock {
 	public int sumAmount() {
 		int result = 0;
 		
-		int pos = 1;
-		
 		for (Entry<Item, Integer> entry : stockArray.entrySet()) {
 		    Integer quantity = entry.getValue();
 		    result = result + quantity;  
-		    pos++;
 		}
 
 		return result;

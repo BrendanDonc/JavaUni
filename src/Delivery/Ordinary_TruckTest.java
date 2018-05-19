@@ -1,14 +1,8 @@
 package Delivery;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
-
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.internal.JUnitSystem;
-
-import Stock.Item;
-import Stock.StockException;
+import static org.junit.Assert.*;
+import org.junit.*;
+import Stock.*;
 
 public class Ordinary_TruckTest {
 	
@@ -127,7 +121,7 @@ public class Ordinary_TruckTest {
 	/* Test 9: Checking the truck cargo has not exceeded capacity */
 	@Test(expected = DeliveryException.class)
 	public void maxCapacity() throws DeliveryException {
-		oTruck.addItem(rice, 1000);
+		oTruck.addItem(rice, 1100);
 		
 		oTruck.getTruckSize();
 	}
