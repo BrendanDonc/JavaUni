@@ -199,11 +199,7 @@ public class ManifestTest {
 		Store.getInstance().setInventory(inventory);
 		
 		exportManifest = Manifest.manifestToExport();
-		System.out.println(exportManifest.printManifest());
-		System.out.println(exportManifest.sumManifestCost());
 		Store.getInstance().lowerCapital(exportManifest.sumManifestCost());
-		System.out.println(Store.getInstance().getCapitalString());
-		ExportManifest.ExportManifestCSV();
 		assertEquals(42717.88, Store.getInstance().getCapital(), 0.01);
 	}
 	
