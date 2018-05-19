@@ -1,29 +1,49 @@
 package Delivery;
 
+
 import java.util.ArrayList;
+import Stock.*;
 
-import Stock.Item;
-import Stock.Stock;
-import Stock.StockException;
-import Stock.Store;
 
+/**
+ *A manifest class used for storing trucks that contain stocks of items that need to be delivered
+ *@author Brendan Doncaster
+ *@see Truck
+ *@see Stock
+ *@see Item
+ */
 public class Manifest {
 	private ArrayList<Truck> manifest;
 
+	/**
+	 * 
+	 */
 	public Manifest() {
 		manifest = new ArrayList<Truck>();
 	}
 	
+	/**
+	 * 
+	 * @param truck
+	 */
 	public void addTruck(Truck truck) {
 		manifest.add(truck);
 	}
 	
+	/**
+	 * 
+	 *@return
+	 */
 	public Truck[] returnManifest(){
 		Truck[] manifestArray = new Truck[manifest.size()];
 		this.manifest.toArray(manifestArray);
 		return manifestArray;
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public String printManifest() {
 		String print = "";
 		if (manifest.isEmpty()) {
@@ -39,6 +59,12 @@ public class Manifest {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param string
+	 * @return
+	 * @throws DeliveryException
+	 */
 	public Truck importTruck(String string) throws DeliveryException {
 		Truck importTruck;
 
@@ -62,8 +88,11 @@ public class Manifest {
 	
 	
 
-	/*
+	/**
 	 * 
+	 * @return
+	 * @throws DeliveryException
+	 * @throws StockException
 	 */
 	public static Manifest manifestToExport() throws DeliveryException, StockException {
 		Item[] exportItems = Store.getInstance().getInventory().needsReorder();
@@ -71,6 +100,7 @@ public class Manifest {
 		for(Item item : exportItems) {
 			exportStock.addItem(item, item.getReAmount());
 		}
+		
 		Item[] cold = exportStock.getListCold();
 		Item[] ordinary = exportStock.getListOrdinary();
 		
@@ -238,7 +268,11 @@ public class Manifest {
 		
 	}
 	
-	
+	/**
+	 * Sum the cost of all trucks and items within the manifest
+	 * @return double value for the cost of the manifest
+	 * @throws DeliveryException Manifest contains a refrigerated truck with no refrigerated items and therefore has no cost
+	 */
 	public double sumManifestCost() throws DeliveryException {
 		double sumAmount = 0;
 		for(Truck truck : this.returnManifest()) {
@@ -247,6 +281,7 @@ public class Manifest {
 			} catch (DeliveryException e) {
 				throw e;
 			}
+			
 			sumAmount += truck.getCargo().sumCosts();
 		}
 		
