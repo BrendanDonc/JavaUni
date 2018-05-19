@@ -1,15 +1,34 @@
 package Delivery;
 
+
 import Stock.*;
 
+/**
+ * Refrigerated Truck class that extends the abstract class Truck.
+ * Used for implementing a truck that can store refrigerated items within its cargo(Stock)
+ * 
+ * @author Brendan Doncaster
+ * @see Truck
+ * @see Ordinary_Truck
+ */
 public class Refrigerated_Truck extends Truck {
 
+    /**
+     * Constructor method for a refrigerated truck
+     * 
+     * @author Brendan Doncaster
+     * @see Truck
+     * @see Ordinary_Truck
+     */
 	public Refrigerated_Truck() {
 		this.cargo = new Stock();
 		this.truckType = "Refrigerated";
 		this.capacity = 800;
 	}
 
+	/**
+     * {@inheritDoc}
+     */
 	@Override
 	public void addItem(Item item, int amount) throws DeliveryException {
 		if(item.getTemp() != null && ( item.getTemp() > 10 || item.getTemp() < -20)) {
@@ -26,6 +45,9 @@ public class Refrigerated_Truck extends Truck {
 		
 	}
 
+	/**
+     * {@inheritDoc}
+     */
 	@Override
 	public double truckCost() throws DeliveryException{
 		double temp;
@@ -38,6 +60,9 @@ public class Refrigerated_Truck extends Truck {
 		return cost;
 	}
 
+	/**
+     * {@inheritDoc}
+     */
 	@Override
 	public Double getTemp() throws DeliveryException {
 		if(this.getCargo().getListCold().length == 0) {

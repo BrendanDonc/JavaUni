@@ -24,7 +24,7 @@ public class ExportManifest {
 	}
 	
 	public static void export(Manifest manifest, String exportDir) throws DeliveryException {
-		boolean result = new File(exportDir).delete();
+		new File(exportDir).delete();
 		PrintWriter pw;
 		try {
 			pw = new PrintWriter(new File(exportDir));
