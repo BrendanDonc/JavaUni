@@ -27,6 +27,7 @@ import CSV.CSVFormatException;
 import CSV.ExportManifest;
 import CSV.InitializeItems;
 import CSV.LoadManifest;
+import CSV.LoadSales;
 import Delivery.DeliveryException;
 import Stock.Item;
 import Stock.Stock;
@@ -110,7 +111,8 @@ public class GUI extends JFrame implements ActionListener, Runnable {
 			exportManifest();
 		}
 		else if (src == buttonLoadSales){
-			JOptionPane.showMessageDialog(this, "A Stupid Warning Message", "Wiring Class: Warning", JOptionPane.WARNING_MESSAGE);
+			loadSalesLog();
+			labelStoreCap.setText("Store Capital: " + Store.getInstance().getCapitalString());
 		}
 		else if (src == buttonLoadMan){
 			loadManifest();
@@ -299,8 +301,8 @@ public class GUI extends JFrame implements ActionListener, Runnable {
 	        for (int i = 0; i < inventoryArray.length; i++) {
 	        		Object[] rowData = {
 	        				inventoryArray[i].getName(), 
-	        				inventoryArray[i].getCost(), 
-	        				inventoryArray[i].getPrice(),
+	        				"$" + inventoryArray[i].getCost() + "0", 
+	        				"$" + inventoryArray[i].getPrice() + "0",
 	        				inventoryArray[i].getRePoint(),
 	        				inventoryArray[i].getReAmount(),
 	        				inventoryArray[i].getTemp(),
@@ -310,17 +312,11 @@ public class GUI extends JFrame implements ActionListener, Runnable {
 	        }
 	        
 	        JTable table = new JTable(model);
-	        
-	        model.fireTableDataChanged();
-	        
-	        JOptionPane.showMessageDialog(this, "The current inventory is being shown.", "Notice", JOptionPane.WARNING_MESSAGE);
-	         
+	                 
 	        //add the table to the frame
 	        this.add(new JScrollPane(table));
 	         
 	        this.setVisible(true);
-	        
-	        JOptionPane.showMessageDialog(this, "Items have been added to the inventory.", "Notice", JOptionPane.WARNING_MESSAGE);
         }
         else {
         		JOptionPane.showMessageDialog(this, "There are no items in the inventory.", "Notice", JOptionPane.WARNING_MESSAGE);
@@ -337,13 +333,8 @@ public class GUI extends JFrame implements ActionListener, Runnable {
 	    try {
 			InitializeItems.InitializeItems(file);
 			JOptionPane.showMessageDialog(this, "Success! Item Properties have been initialised.", "Loaded Items Properties Document", JOptionPane.PLAIN_MESSAGE);
-		} catch (CSVFormatException e) {
-			JOptionPane.showMessageDialog(this, "File is not in the correct format. Please try again.", "Item Initialisation Failure", JOptionPane.ERROR_MESSAGE);
-		} catch (StockException e) {
-			JOptionPane.showMessageDialog(this, "Failed adding stock to inventory. Please try again.", "Item Initialisation Failure", JOptionPane.ERROR_MESSAGE);
-		} catch (IOException e) {
-			JOptionPane.showMessageDialog(this, "IOException error. Please try again.", "Item Initialisation Failure", JOptionPane.ERROR_MESSAGE);
-			e.printStackTrace();
+		} catch (CSVFormatException | StockException | IOException e) {
+			JOptionPane.showMessageDialog(this, e.getMessage(), "Item Initialisation Failure", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	
@@ -352,7 +343,7 @@ public class GUI extends JFrame implements ActionListener, Runnable {
 		dialog.setMode(FileDialog.SAVE);
 		dialog.setVisible(true);
 		
-		String directory = dialog.getDirectory() + dialog.getFile();
+		String directory = dialog.getDirectory() + dialog.getFile() + ".csv";
 		
 		System.out.println(directory);
 		
@@ -360,8 +351,8 @@ public class GUI extends JFrame implements ActionListener, Runnable {
 			ExportManifest.ExportManifestCSV(directory);
 			JOptionPane.showMessageDialog(this, "Success! Current manifest has been exported.", "Export Manifest", JOptionPane.PLAIN_MESSAGE);
 		}
-		catch (DeliveryException | StockException e){ //handle exception
-			JOptionPane.showMessageDialog(this, "Error encountered. Please try again.", "Manifest Export Failure", JOptionPane.ERROR_MESSAGE);
+		catch (DeliveryException | StockException e){ 
+			JOptionPane.showMessageDialog(this, e.getMessage(), "Manifest Export Failure", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	
@@ -376,15 +367,23 @@ public class GUI extends JFrame implements ActionListener, Runnable {
 	    		model.fireTableDataChanged();
 	    		JOptionPane.showMessageDialog(this, "Success! The selected manifest has been loaded. Please reload the store inventory to view the relevant changes.", "Load Manifest", JOptionPane.PLAIN_MESSAGE);
 	    }
-	    catch (CSVFormatException e) {
-			JOptionPane.showMessageDialog(this, "File is not in the correct format. Please try again.", "Item Initialisation Failure", JOptionPane.ERROR_MESSAGE);
-		} catch (StockException e) {
-			JOptionPane.showMessageDialog(this, "Failed adding stock to inventory. Please try again.", "Item Initialisation Failure", JOptionPane.ERROR_MESSAGE);
-		} catch (IOException e) {
-			JOptionPane.showMessageDialog(this, "IOException error. Please try again.", "Item Initialisation Failure", JOptionPane.ERROR_MESSAGE);
-			e.printStackTrace();
-		} catch (DeliveryException e) { //handle exception
-			JOptionPane.showMessageDialog(this, "DeliveryException encountered", "Item Initialisation Failure", JOptionPane.ERROR_MESSAGE);
-		}
+	    catch (CSVFormatException | StockException | IOException | DeliveryException e) {
+			JOptionPane.showMessageDialog(this, e.getMessage(), "Load Manifest Failure", JOptionPane.ERROR_MESSAGE);
+	    }
+	}
+	
+	public void loadSalesLog() {
+		FileDialog dialog = new FileDialog((Frame)null, "Select File to Open...");
+	    dialog.setMode(FileDialog.LOAD);
+	    dialog.setVisible(true);
+	    String file = dialog.getFile();
+	    
+	    try {
+	    		LoadSales.LoadSales(file);
+	    		model.fireTableDataChanged();
+	    		JOptionPane.showMessageDialog(this, "Success! The selected sales log has been loaded. Please reload the store inventory to view the relevant changes.", "Load Sales Log", JOptionPane.PLAIN_MESSAGE);
+	    } catch (CSVFormatException | StockException | IOException e1) {
+	    		JOptionPane.showMessageDialog(this, e1.getMessage(), "Load Sales Log Failure", JOptionPane.ERROR_MESSAGE);
+	    }
 	}
 }

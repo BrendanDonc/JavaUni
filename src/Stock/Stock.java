@@ -285,8 +285,7 @@ public class Stock {
 
 	public boolean validSubtractItem(Item item, int quantity) throws StockException {
 		boolean success = true;
-		StockException badItemAmount = new StockException("An item did not have enough to sell");
-		StockException badItem = new StockException("Store did not contain an item");
+		
 			
 		if (stockArray.containsKey(item)) {
 			int origAmount = stockArray.get(item);
@@ -296,11 +295,13 @@ public class Stock {
 			}
 			else {
 				success = false;
+				StockException badItemAmount = new StockException("There was not enough of item '" + item.getName() + "' to sell." );
 				throw badItemAmount;
 			}
 		}
 		else {
 			success = false;
+			StockException badItem = new StockException("Store did not contain item '" + item.getName() + "'.");
 			throw badItem;
 		}
 		
