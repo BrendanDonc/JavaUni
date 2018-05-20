@@ -71,7 +71,7 @@ public class GUI extends JFrame implements ActionListener, Runnable {
 
 	
 	//Declaring back-end variables;
-	Stock inventory;
+	Stock inventory = new Stock();
 	Item[] inventoryArray;
 	
 	
@@ -258,11 +258,32 @@ public class GUI extends JFrame implements ActionListener, Runnable {
 	
 	//CREATING ITEM TABLES - STORE INVENTORY
 	public void createInvTable() {
+		System.out.println("createInvTable() call: success");
+		
 		//getting the 'current' inventory from the Store class
+		System.out.println("'Getting' current inventory: success");
 		inventory = Store.getInstance().getInventory();
-		Store.getInstance().setInventory(inventory);
-		inventoryArray = inventory.getItems();        
-        
+		
+		System.out.println("The current manifest is: \n" + inventory.getManifestPrintStyle());
+		
+		//initialising length of inventoryArray
+		if (inventory.getItems().length > 0) {
+			inventoryArray = new Item[inventory.getItems().length];
+			
+			//assigning items in 'inventory' to 'inventoryArray'
+			inventoryArray = inventory.getItems(); 
+			
+			System.out.println("Populated inventoryArray initialisation: success");
+		}
+		else {
+			inventoryArray = new Item[0];
+			System.out.println("Empty inventoryArray initialisation: success");
+		}
+		       
+		
+		System.out.println(inventoryArray.length);
+		
+		
         //create table with data
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("Item Name");
@@ -274,28 +295,28 @@ public class GUI extends JFrame implements ActionListener, Runnable {
         model.addColumn("Quantity");
         
         //for each item in inventory, add row to table
-//        if (inventoryArray.length > 0) {
-//	        for (int i = 0; i < inventoryArray.length; i++) {
-//	        		Object[] rowData = {
-//	        				inventoryArray[i].getName(), 
-//	        				inventoryArray[i].getCost(), 
-//	        				inventoryArray[i].getPrice(),
-//	        				inventoryArray[i].getRePoint(),
-//	        				inventoryArray[i].getReAmount(),
-//	        				inventoryArray[i].getTemp(),
-//	        				inventory.getAmount(inventoryArray[i])
-//	        				};
-//	        		model.addRow(rowData);
-//	        }
-//	        JOptionPane.showMessageDialog(this, "Items have been added to the inventory.", "Wiring Class: Warning", JOptionPane.WARNING_MESSAGE);
-//        }
-//        else {
-//        	JOptionPane.showMessageDialog(this, "There are no items in the inventory.", "Wiring Class: Warning", JOptionPane.WARNING_MESSAGE);
-//        }
+        if (inventoryArray.length > 0) {
+	        for (int i = 0; i < inventoryArray.length; i++) {
+	        		Object[] rowData = {
+	        				inventoryArray[i].getName(), 
+	        				inventoryArray[i].getCost(), 
+	        				inventoryArray[i].getPrice(),
+	        				inventoryArray[i].getRePoint(),
+	        				inventoryArray[i].getReAmount(),
+	        				inventoryArray[i].getTemp(),
+	        				inventory.getAmount(inventoryArray[i])
+	        				};
+	        		model.addRow(rowData);
+	        }
+	        JOptionPane.showMessageDialog(this, "Items have been added to the inventory.", "Notice", JOptionPane.WARNING_MESSAGE);
+        }
+        else {
+        		JOptionPane.showMessageDialog(this, "There are no items in the inventory.", "Notice", JOptionPane.WARNING_MESSAGE);
+        }
         
         JTable table = new JTable(model);
         
-        JOptionPane.showMessageDialog(this, "The current inventory is being shown.", "Wiring Class: Warning", JOptionPane.WARNING_MESSAGE);
+        JOptionPane.showMessageDialog(this, "The current inventory is being shown.", "Notice", JOptionPane.WARNING_MESSAGE);
          
         //add the table to the frame
         this.add(new JScrollPane(table));
