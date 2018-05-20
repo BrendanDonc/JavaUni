@@ -24,7 +24,9 @@ import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 
 import CSV.CSVFormatException;
+import CSV.ExportManifest;
 import CSV.InitializeItems;
+import Delivery.DeliveryException;
 import Stock.Item;
 import Stock.Stock;
 import Stock.StockException;
@@ -101,8 +103,7 @@ public class GUI extends JFrame implements ActionListener, Runnable {
             panelDisplay.add(storeInvTable);
 		} 
 		else if (src == buttonExpMan){
-			JButton btn = ((JButton)src);
-			areaDisplay.setText(btn.getText().trim());
+			exportManifest();
 		}
 		else if (src == buttonLoadSales){
 			JOptionPane.showMessageDialog(this, "A Stupid Warning Message", "Wiring Class: Warning", JOptionPane.WARNING_MESSAGE);
@@ -111,7 +112,7 @@ public class GUI extends JFrame implements ActionListener, Runnable {
 			JOptionPane.showMessageDialog(this, "A Stupid Error Message", "Wiring Class: Error", JOptionPane.ERROR_MESSAGE);
 		}
 		else if (src == buttonLoadItemProp) {
-			InitItemPropDoc();
+			initItemPropDoc();
 		}
 	}
 
@@ -273,29 +274,22 @@ public class GUI extends JFrame implements ActionListener, Runnable {
 			//assigning items in 'inventory' to 'inventoryArray'
 			inventoryArray = inventory.getItems(); 
 			
-			System.out.println("Populated inventoryArray initialisation: success");
-		}
-		else {
-			inventoryArray = new Item[0];
-			System.out.println("Empty inventoryArray initialisation: success");
-		}
-		       
+			System.out.println("Populated inventoryArray initialisation: success");		       
 		
-		System.out.println(inventoryArray.length);
-		
-		
-        //create table with data
-        DefaultTableModel model = new DefaultTableModel();
-        model.addColumn("Item Name");
-        model.addColumn("Manufacturing Cost");
-        model.addColumn("Sell Price");
-        model.addColumn("Reorder Point");
-        model.addColumn("Reorder Amount");
-        model.addColumn("Temperature");
-        model.addColumn("Quantity");
+			System.out.println(inventoryArray.length);
+			
+			
+	        //create table with data
+	        DefaultTableModel model = new DefaultTableModel();
+	        model.addColumn("Item Name");
+	        model.addColumn("Manufacturing Cost");
+	        model.addColumn("Sell Price");
+	        model.addColumn("Reorder Point");
+	        model.addColumn("Reorder Amount");
+	        model.addColumn("Temperature");
+	        model.addColumn("Quantity");
         
         //for each item in inventory, add row to table
-        if (inventoryArray.length > 0) {
 	        for (int i = 0; i < inventoryArray.length; i++) {
 	        		Object[] rowData = {
 	        				inventoryArray[i].getName(), 
@@ -308,29 +302,30 @@ public class GUI extends JFrame implements ActionListener, Runnable {
 	        				};
 	        		model.addRow(rowData);
 	        }
+	        
+	        JTable table = new JTable(model);
+	        
+	        JOptionPane.showMessageDialog(this, "The current inventory is being shown.", "Notice", JOptionPane.WARNING_MESSAGE);
+	         
+	        //add the table to the frame
+	        this.add(new JScrollPane(table));
+	         
+	        this.setVisible(true);
+	        
 	        JOptionPane.showMessageDialog(this, "Items have been added to the inventory.", "Notice", JOptionPane.WARNING_MESSAGE);
         }
         else {
         		JOptionPane.showMessageDialog(this, "There are no items in the inventory.", "Notice", JOptionPane.WARNING_MESSAGE);
         }
-        
-        JTable table = new JTable(model);
-        
-        JOptionPane.showMessageDialog(this, "The current inventory is being shown.", "Notice", JOptionPane.WARNING_MESSAGE);
-         
-        //add the table to the frame
-        this.add(new JScrollPane(table));
-         
-        this.setVisible(true);
 		
 	}
 	
-	public void InitItemPropDoc() {
-		FileDialog dialog = new FileDialog((Frame)null, "Select File to Open");
+	public void initItemPropDoc() {
+		FileDialog dialog = new FileDialog((Frame)null, "Select File to Open...");
 	    dialog.setMode(FileDialog.LOAD);
 	    dialog.setVisible(true);
 	    String file = dialog.getFile();
-	    System.out.println(file + " chosen.");
+
 	    try {
 			InitializeItems.InitializeItems(file);
 			JOptionPane.showMessageDialog(this, "Success! Item Properties have been initialised.", "Loaded Items Properties Document", JOptionPane.WARNING_MESSAGE);
@@ -341,6 +336,24 @@ public class GUI extends JFrame implements ActionListener, Runnable {
 		} catch (IOException e) {
 			JOptionPane.showMessageDialog(this, "IOException error. Please try again.", "Item Initialisation Failure", JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();
+		}
+	}
+	
+	public void exportManifest() {
+		FileDialog dialog = new FileDialog((Frame)null, "Save File...");
+		dialog.setMode(FileDialog.SAVE);
+		dialog.setVisible(true);
+		
+		String directory = dialog.getDirectory() + dialog.getFile();
+		
+		System.out.println(directory);
+		
+		try {
+			ExportManifest.ExportManifestCSV(directory);
+			JOptionPane.showMessageDialog(this, "Success! Current manifest has been exported.", "Export Manifest", JOptionPane.WARNING_MESSAGE);
+		}
+		catch (DeliveryException | StockException e){
+			JOptionPane.showMessageDialog(this, "Error encountered. Please try again.", "Manifest Export Failure", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 }
