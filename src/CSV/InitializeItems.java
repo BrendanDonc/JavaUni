@@ -40,11 +40,13 @@ public class InitializeItems {
 	        int rePoint;
 	        int reAmount;
 	        Double temp;
+	        int currentLine = 0;
 
 	        try {
 
 	            br = new BufferedReader(new FileReader(csvFile));
 	            while ((line = br.readLine()) != null) {
+	                currentLine++;
 	            	name = null;
 	            	cost = -1;
 	            	price = -1;
@@ -56,7 +58,7 @@ public class InitializeItems {
 	                // use comma as separator
 	                String[] item = line.split(csvSplitBy);
 	                if (item.length > 6 || item.length < 5) {
-	                	throw new CSVFormatException("Item property does not have correct amount of fields(either 5 or 6)");
+	                	throw new CSVFormatException("Item property on line " + currentLine + " does not have correct amount of fields(either 5 or 6)");
 	                	}
 	                else {
 	                	name = item[0];
@@ -114,9 +116,6 @@ public class InitializeItems {
 	                	}
 	                	
 	                }
-	                
-	                
-
 	            }
 
 	        } catch (FileNotFoundException e) {
