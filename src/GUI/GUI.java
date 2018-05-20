@@ -321,7 +321,7 @@ public class GUI extends JFrame implements ActionListener, Runnable {
 		FileDialog dialog = new FileDialog((Frame)null, "Select File to Open...");
 	    dialog.setMode(FileDialog.LOAD);
 	    dialog.setVisible(true);
-	    String file = dialog.getFile();
+	    String file = dialog.getDirectory() + dialog.getFile();
 
 	    try {
 			InitializeItems.InitializeItems(file);
@@ -351,7 +351,7 @@ public class GUI extends JFrame implements ActionListener, Runnable {
 		FileDialog dialog = new FileDialog((Frame)null, "Select File to Open...");
 	    dialog.setMode(FileDialog.LOAD);
 	    dialog.setVisible(true);
-	    String file = dialog.getFile();
+	    String file = dialog.getDirectory() + dialog.getFile();
 	    
 	    try {
 	    		LoadManifest.LoadManifest(file);
@@ -367,7 +367,7 @@ public class GUI extends JFrame implements ActionListener, Runnable {
 		FileDialog dialog = new FileDialog((Frame)null, "Select File to Open...");
 	    dialog.setMode(FileDialog.LOAD);
 	    dialog.setVisible(true);
-	    String file = dialog.getFile();
+	    String file = dialog.getDirectory() + dialog.getFile();
 	    
 	    try {
 	    		LoadSales.LoadSales(file);
