@@ -26,6 +26,7 @@ import javax.swing.table.DefaultTableModel;
 import CSV.CSVFormatException;
 import CSV.ExportManifest;
 import CSV.InitializeItems;
+import CSV.LoadManifest;
 import Delivery.DeliveryException;
 import Stock.Item;
 import Stock.Stock;
@@ -71,6 +72,9 @@ public class GUI extends JFrame implements ActionListener, Runnable {
 	
 	private static final int DEFAULT_TEXT_SIZE = 24;
 
+	//Inventory table variables
+	DefaultTableModel model;
+	
 	
 	//Declaring back-end variables;
 	Stock inventory = new Stock();
@@ -109,7 +113,9 @@ public class GUI extends JFrame implements ActionListener, Runnable {
 			JOptionPane.showMessageDialog(this, "A Stupid Warning Message", "Wiring Class: Warning", JOptionPane.WARNING_MESSAGE);
 		}
 		else if (src == buttonLoadMan){
-			JOptionPane.showMessageDialog(this, "A Stupid Error Message", "Wiring Class: Error", JOptionPane.ERROR_MESSAGE);
+			loadManifest();
+			labelStoreCap.setText("Store Capital: " + Store.getInstance().getCapitalString());
+			
 		}
 		else if (src == buttonLoadItemProp) {
 			initItemPropDoc();
@@ -280,7 +286,7 @@ public class GUI extends JFrame implements ActionListener, Runnable {
 			
 			
 	        //create table with data
-	        DefaultTableModel model = new DefaultTableModel();
+	        model = new DefaultTableModel();
 	        model.addColumn("Item Name");
 	        model.addColumn("Manufacturing Cost");
 	        model.addColumn("Sell Price");
@@ -305,6 +311,8 @@ public class GUI extends JFrame implements ActionListener, Runnable {
 	        
 	        JTable table = new JTable(model);
 	        
+	        model.fireTableDataChanged();
+	        
 	        JOptionPane.showMessageDialog(this, "The current inventory is being shown.", "Notice", JOptionPane.WARNING_MESSAGE);
 	         
 	        //add the table to the frame
@@ -328,7 +336,7 @@ public class GUI extends JFrame implements ActionListener, Runnable {
 
 	    try {
 			InitializeItems.InitializeItems(file);
-			JOptionPane.showMessageDialog(this, "Success! Item Properties have been initialised.", "Loaded Items Properties Document", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(this, "Success! Item Properties have been initialised.", "Loaded Items Properties Document", JOptionPane.PLAIN_MESSAGE);
 		} catch (CSVFormatException e) {
 			JOptionPane.showMessageDialog(this, "File is not in the correct format. Please try again.", "Item Initialisation Failure", JOptionPane.ERROR_MESSAGE);
 		} catch (StockException e) {
@@ -350,10 +358,33 @@ public class GUI extends JFrame implements ActionListener, Runnable {
 		
 		try {
 			ExportManifest.ExportManifestCSV(directory);
-			JOptionPane.showMessageDialog(this, "Success! Current manifest has been exported.", "Export Manifest", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(this, "Success! Current manifest has been exported.", "Export Manifest", JOptionPane.PLAIN_MESSAGE);
 		}
-		catch (DeliveryException | StockException e){
+		catch (DeliveryException | StockException e){ //handle exception
 			JOptionPane.showMessageDialog(this, "Error encountered. Please try again.", "Manifest Export Failure", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	
+	public void loadManifest() {
+		FileDialog dialog = new FileDialog((Frame)null, "Select File to Open...");
+	    dialog.setMode(FileDialog.LOAD);
+	    dialog.setVisible(true);
+	    String file = dialog.getFile();
+	    
+	    try {
+	    		LoadManifest.LoadManifest(file);
+	    		model.fireTableDataChanged();
+	    		JOptionPane.showMessageDialog(this, "Success! The selected manifest has been loaded. Please reload the store inventory to view the relevant changes.", "Load Manifest", JOptionPane.PLAIN_MESSAGE);
+	    }
+	    catch (CSVFormatException e) {
+			JOptionPane.showMessageDialog(this, "File is not in the correct format. Please try again.", "Item Initialisation Failure", JOptionPane.ERROR_MESSAGE);
+		} catch (StockException e) {
+			JOptionPane.showMessageDialog(this, "Failed adding stock to inventory. Please try again.", "Item Initialisation Failure", JOptionPane.ERROR_MESSAGE);
+		} catch (IOException e) {
+			JOptionPane.showMessageDialog(this, "IOException error. Please try again.", "Item Initialisation Failure", JOptionPane.ERROR_MESSAGE);
+			e.printStackTrace();
+		} catch (DeliveryException e) { //handle exception
+			JOptionPane.showMessageDialog(this, "DeliveryException encountered", "Item Initialisation Failure", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 }
