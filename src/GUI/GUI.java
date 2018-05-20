@@ -267,10 +267,8 @@ public class GUI extends JFrame implements ActionListener, Runnable {
 	
 	//CREATING ITEM TABLES - STORE INVENTORY
 	public void createInvTable() {
-		System.out.println("createInvTable() call: success");
 		
 		//getting the 'current' inventory from the Store class
-		System.out.println("'Getting' current inventory: success");
 		inventory = Store.getInstance().getInventory();
 		
 		System.out.println("The current manifest is: \n" + inventory.getManifestPrintStyle());
@@ -280,12 +278,7 @@ public class GUI extends JFrame implements ActionListener, Runnable {
 			inventoryArray = new Item[inventory.getItems().length];
 			
 			//assigning items in 'inventory' to 'inventoryArray'
-			inventoryArray = inventory.getItems(); 
-			
-			System.out.println("Populated inventoryArray initialisation: success");		       
-		
-			System.out.println(inventoryArray.length);
-			
+			inventoryArray = inventory.getItems();       
 			
 	        //create table with data
 	        model = new DefaultTableModel();
@@ -344,8 +337,6 @@ public class GUI extends JFrame implements ActionListener, Runnable {
 		dialog.setVisible(true);
 		
 		String directory = dialog.getDirectory() + dialog.getFile() + ".csv";
-		
-		System.out.println(directory);
 		
 		try {
 			ExportManifest.ExportManifestCSV(directory);
