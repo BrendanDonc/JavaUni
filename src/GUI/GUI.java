@@ -251,8 +251,6 @@ public class GUI extends JFrame implements ActionListener, Runnable {
 		this.getContentPane().add(panelFive, BorderLayout.WEST);
 		this.getContentPane().add(panelStoreCap, BorderLayout.NORTH);
 		
-		
-		
 		repaint();
 		
 		this.setVisible(true);
@@ -268,13 +266,13 @@ public class GUI extends JFrame implements ActionListener, Runnable {
 	//CREATING ITEM TABLES - STORE INVENTORY
 	public void createInvTable() {
 		
+		
 		//getting the 'current' inventory from the Store class
 		inventory = Store.getInstance().getInventory();
 		
 		System.out.println("The current manifest is: \n" + inventory.getManifestPrintStyle());
-		
 		//initialising length of inventoryArray
-		if (inventory.getItems().length > 0) {
+		if (inventory.getManifestPrintStyle() != "") {
 			inventoryArray = new Item[inventory.getItems().length];
 			
 			//assigning items in 'inventory' to 'inventoryArray'
@@ -322,13 +320,16 @@ public class GUI extends JFrame implements ActionListener, Runnable {
 	    dialog.setMode(FileDialog.LOAD);
 	    dialog.setVisible(true);
 	    String file = dialog.getDirectory() + dialog.getFile();
-
-	    try {
-			InitializeItems.InitializeItems(file);
-			JOptionPane.showMessageDialog(this, "Success! Item Properties have been initialised.", "Loaded Items Properties Document", JOptionPane.PLAIN_MESSAGE);
-		} catch (CSVFormatException | StockException | IOException e) {
-			JOptionPane.showMessageDialog(this, e.getMessage(), "Item Initialisation Failure", JOptionPane.ERROR_MESSAGE);
-		}
+	    
+	    if (dialog.getFile() != null) {
+		    try {
+				InitializeItems.InitializeItems(file);
+				JOptionPane.showMessageDialog(this, "Success! Item Properties have been initialised.", "Loaded Items Properties Document", JOptionPane.PLAIN_MESSAGE);
+			} catch (CSVFormatException | StockException | IOException e) {
+				JOptionPane.showMessageDialog(this, e.getMessage(), "Item Initialisation Failure", JOptionPane.ERROR_MESSAGE);
+			}
+	    }
+	    else {}
 	}
 	
 	public void exportManifest() {
@@ -338,13 +339,16 @@ public class GUI extends JFrame implements ActionListener, Runnable {
 		
 		String directory = dialog.getDirectory() + dialog.getFile() + ".csv";
 		
-		try {
-			ExportManifest.ExportManifestCSV(directory);
-			JOptionPane.showMessageDialog(this, "Success! Current manifest has been exported.", "Export Manifest", JOptionPane.PLAIN_MESSAGE);
+		if (dialog.getFile() != null) {
+			try {
+				ExportManifest.ExportManifestCSV(directory);
+				JOptionPane.showMessageDialog(this, "Success! Current manifest has been exported to '" + dialog.getDirectory() + "' under the name '" + dialog.getFile() + "'.", "Export Manifest", JOptionPane.PLAIN_MESSAGE);
+			}
+			catch (DeliveryException | StockException e){ 
+				JOptionPane.showMessageDialog(this, e.getMessage(), "Manifest Export Failure", JOptionPane.ERROR_MESSAGE);
+			}
 		}
-		catch (DeliveryException | StockException e){ 
-			JOptionPane.showMessageDialog(this, e.getMessage(), "Manifest Export Failure", JOptionPane.ERROR_MESSAGE);
-		}
+		else {}
 	}
 	
 	public void loadManifest() {
@@ -353,14 +357,17 @@ public class GUI extends JFrame implements ActionListener, Runnable {
 	    dialog.setVisible(true);
 	    String file = dialog.getDirectory() + dialog.getFile();
 	    
-	    try {
-	    		LoadManifest.LoadManifest(file);
-	    		model.fireTableDataChanged();
-	    		JOptionPane.showMessageDialog(this, "Success! The selected manifest has been loaded. Please reload the store inventory to view the relevant changes.", "Load Manifest", JOptionPane.PLAIN_MESSAGE);
+	    if (dialog.getFile() != null) {
+		    try {
+		    		LoadManifest.LoadManifest(file);
+		    		model.fireTableDataChanged();
+		    		JOptionPane.showMessageDialog(this, "Success! The selected manifest has been loaded. Please reload the store inventory to view the relevant changes.", "Load Manifest", JOptionPane.PLAIN_MESSAGE);
+		    }
+		    catch (CSVFormatException | StockException | IOException | DeliveryException e) {
+				JOptionPane.showMessageDialog(this, e.getMessage(), "Load Manifest Failure", JOptionPane.ERROR_MESSAGE);
+		    }
 	    }
-	    catch (CSVFormatException | StockException | IOException | DeliveryException e) {
-			JOptionPane.showMessageDialog(this, e.getMessage(), "Load Manifest Failure", JOptionPane.ERROR_MESSAGE);
-	    }
+	    else {}
 	}
 	
 	public void loadSalesLog() {
@@ -369,12 +376,15 @@ public class GUI extends JFrame implements ActionListener, Runnable {
 	    dialog.setVisible(true);
 	    String file = dialog.getDirectory() + dialog.getFile();
 	    
-	    try {
-	    		LoadSales.LoadSales(file);
-	    		model.fireTableDataChanged();
-	    		JOptionPane.showMessageDialog(this, "Success! The selected sales log has been loaded. Please reload the store inventory to view the relevant changes.", "Load Sales Log", JOptionPane.PLAIN_MESSAGE);
-	    } catch (CSVFormatException | StockException | IOException e1) {
-	    		JOptionPane.showMessageDialog(this, e1.getMessage(), "Load Sales Log Failure", JOptionPane.ERROR_MESSAGE);
+	    if (dialog.getFile() != null) {
+		    try {
+		    		LoadSales.LoadSales(file);
+		    		model.fireTableDataChanged();
+		    		JOptionPane.showMessageDialog(this, "Success! The selected sales log has been loaded. Please reload the store inventory to view the relevant changes.", "Load Sales Log", JOptionPane.PLAIN_MESSAGE);
+		    } catch (CSVFormatException | StockException | IOException e1) {
+		    		JOptionPane.showMessageDialog(this, e1.getMessage(), "Load Sales Log Failure", JOptionPane.ERROR_MESSAGE);
+		    }
 	    }
+	    else {}
 	}
 }
