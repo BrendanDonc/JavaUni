@@ -155,7 +155,7 @@ public class Item implements Comparable<Item>{
 	}
 	
 	/**
-	 * This method compares each parameter of the item against the input to determine if they equal.
+	 * This method compares each parameter of the current item against the input to determine if they equal.
 	 * 
 	 * @param item The item that needs to be compared.
 	 * 
