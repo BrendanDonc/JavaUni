@@ -103,7 +103,7 @@ public class InitializeItems {
 	                		try {
 								inventory.addItem(new Item(name, cost, price, rePoint, reAmount, temp), 0);
 							} catch (StockException e) {
-								throw e;
+								throw new StockException("Error on line " + currentLine + ": " + e.getMessage());
 							}
 	                	}
 	                	
@@ -111,7 +111,7 @@ public class InitializeItems {
 	                		 try {
 								inventory.addItem(new Item(name, cost, price, rePoint, reAmount), 0);
 							} catch (StockException e) {
-								throw e;
+								throw new StockException("Error on line " + currentLine + ": " + e.getMessage());
 							}
 	                	}
 	                	

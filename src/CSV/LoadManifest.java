@@ -68,7 +68,7 @@ public class LoadManifest {
 	            		try {
 							importManifest.importTruck(truckType);
 						} catch (DeliveryException e) {
-							throw e;
+							throw new DeliveryException("Error on line " + currentLine + ": " + e.getMessage());
 						}
 	            		truck++;
 	            	}
@@ -88,7 +88,7 @@ public class LoadManifest {
 	            		try {
 							importManifest.returnManifest()[truck].getCargo().addItemName(name, quantity);
 						} catch (StockException e) {
-							throw e;
+							throw new StockException("Error on line " + currentLine + ": " + e.getMessage());
 						}
 	            		
 	            		

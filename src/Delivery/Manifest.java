@@ -80,7 +80,7 @@ public class Manifest {
 			importTruck = new Refrigerated_Truck();
 		}
 		else {
-			throw new DeliveryException();
+			throw new DeliveryException("Unrecognised truck type '" + string + "'");
 		}
 		manifest.add(importTruck);
 		return importTruck;
