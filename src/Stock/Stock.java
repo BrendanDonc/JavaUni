@@ -267,24 +267,20 @@ public class Stock {
 	 * @throws StockException The exception thrown if either the item name or quantity is invalid.
 	 */
 	public void subtractItem(Item item, int subtractAmount) throws StockException {
-		StockException badItemAmount = new StockException();
-		StockException badItem = new StockException();
-		
 		if (stockArray.containsKey(item)) {
 			int origAmount = stockArray.get(item);
 			
 			if (origAmount >= subtractAmount) {
 				int newAmount = origAmount - subtractAmount;
 				
-				stockArray.put(item, newAmount);
-				
+				stockArray.put(item, newAmount);				
 			}
 			else {
-				throw badItemAmount;
+				throw new StockException("There was not enough of '" +  item.getName() + "' to subtract from the stock.");
 			}
 		}
 		else {
-			throw badItem;
+			throw new StockException("Item '" +  item.getName() + "' does not exist in the stock.");
 		}
 		
 	}
