@@ -258,7 +258,7 @@ public class GUI extends JFrame implements ActionListener, Runnable {
 	
 	public static void main(String[] args) {
 		JFrame.setDefaultLookAndFeelDecorated(true);
-		SwingUtilities.invokeLater(new GUI(Store.getInstance().getName() + "'s Stock Manager"));
+		SwingUtilities.invokeLater(new GUI(Store.getInstance().getName() + "'s Inventory Management Application"));
 
 	}
 	
