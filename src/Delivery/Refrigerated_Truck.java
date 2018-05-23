@@ -44,6 +44,29 @@ public class Refrigerated_Truck extends Truck {
 		}
 		
 	}
+	
+    @Override
+    public void addItemName(String string, int amount) throws DeliveryException, StockException {
+        Item stringItem;
+        try {
+            stringItem = Stock.getItemFromName(string);
+        } catch (StockException e) {
+            throw e;
+        }
+        
+        if(stringItem.getTemp() != null && ( stringItem.getTemp() > 10 || stringItem.getTemp() < -20)) {
+            throw new DeliveryException("Added item requires a temperature outside of truck capabilities");
+        }
+        else {
+            if(this.getTruckSize() + amount > this.truckCapacity()) {
+                throw new DeliveryException("Added amount exceeds truck capacity");
+            }
+            else {
+                cargo.addItem(stringItem, amount);
+            }
+        }
+        
+    }
 
 	/**
      * {@inheritDoc}

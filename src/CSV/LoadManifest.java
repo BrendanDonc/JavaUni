@@ -85,9 +85,10 @@ public class LoadManifest {
 	                		throw new CSVFormatException("Sale for item " + name +  " on line " + currentLine + " has an invalid amount");
 	                	}
 	            		
-	            		try {
-							importManifest.returnManifest()[truck].getCargo().addItemName(name, quantity);
-						} catch (StockException e) {
+	            		
+						try {
+                            importManifest.returnManifest()[truck].addItemName(name, quantity);
+                        } catch (DeliveryException | StockException e) {
 							throw new StockException("Error on line " + currentLine + ": " + e.getMessage());
 						}
 	            		

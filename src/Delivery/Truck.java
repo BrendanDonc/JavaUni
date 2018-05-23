@@ -132,5 +132,7 @@ public abstract class Truck {
 	 * @author Brendan Doncaster
 	 */
 	public abstract void addItem(Item item, int amount) throws DeliveryException;
+	
+	public abstract void addItemName(String string, int amount) throws DeliveryException, StockException;
 
 }
