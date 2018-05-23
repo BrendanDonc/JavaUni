@@ -59,7 +59,8 @@ public class StoreTest {
 	 */
 	@Test
 	public void testGetCapital() {
-		double capital = 99800.00;
+	    Store.getInstance().raiseCapital(100000.00-Store.getInstance().getCapital());
+		double capital = 100000.00;
 		assertEquals(capital, Store.getInstance().getCapital(), 0.1);
 	}
 	
@@ -69,7 +70,8 @@ public class StoreTest {
 	 */
 	@Test
 	public void testGetCapitalString() {
-		String capitalString = "$100,300.00";
+	    Store.getInstance().raiseCapital(100000.00-Store.getInstance().getCapital());
+		String capitalString = "$100,000.00";
 		assertEquals(capitalString, Store.getInstance().getCapitalString());
 	}
 	
@@ -99,7 +101,7 @@ public class StoreTest {
 	@Test
 	public void testRaiseCapital() {
 		double prevCapital = Store.getInstance().getCapital();
-		double raiseAmount = 500.00;
+		double raiseAmount = 200.00;
 		Store.getInstance().raiseCapital(raiseAmount);
 		assertEquals(prevCapital + raiseAmount, Store.getInstance().getCapital(), 0.1);
 	}
@@ -111,7 +113,7 @@ public class StoreTest {
 	@Test
 	public void testLowerCapital() {
 		double prevCapital = Store.getInstance().getCapital();
-		double lowerAmount = 200.00;
+		double lowerAmount = 700.00;
 		Store.getInstance().lowerCapital(lowerAmount);
 		assertEquals(prevCapital - lowerAmount, Store.getInstance().getCapital(), 0.1);
 	}

@@ -158,6 +158,7 @@ public class ManifestTest {
 	/*Test 7: Generate a manifest of items that need reordering*/
 	@Test
 	public void generateManifest() throws StockException, DeliveryException {
+	    Store.getInstance().raiseCapital(100000.00-Store.getInstance().getCapital());
 		inventory = new Stock();
 		inventory.addItem(asparagus, 0);
 		inventory.addItem(beans, 0);
