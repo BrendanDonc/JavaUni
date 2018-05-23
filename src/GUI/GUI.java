@@ -107,7 +107,6 @@ public class GUI extends JFrame implements ActionListener, Runnable {
 		//If the 'view store inventory' button is pressed, view the current inventory
 		if (src == buttonStoreInv) { 
 			createInvTable();
-            panelDisplay.add(storeInvTable);
 		} 
 		
 		//If the 'export manifest' button is pressed, prompt the user to save generated manifest
