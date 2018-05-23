@@ -120,6 +120,7 @@ public abstract class Truck {
 	 * Calculate the cost of the truck
 	 * @return double value for the cost of the truck
 	 * @throws DeliveryException Refrigerated Truck can't be calculated because it lacks a refrigerated item
+	 * @author Brendan Doncaster
 	 */
 	public abstract double truckCost() throws DeliveryException;
 	
@@ -133,6 +134,15 @@ public abstract class Truck {
 	 */
 	public abstract void addItem(Item item, int amount) throws DeliveryException;
 	
+	/**
+	 * Adds an item to the truck's cargo based on its name
+	 * 
+	 * @param string name of an Item to add to the cargo
+	 * @param amount Quantity of the item to add
+	 * @throws DeliveryException Item exceeds cargo space or temperature is invalid
+	 * @throws StockException Item's name is not found in the store
+	 * @author Brendan Doncaster
+	 */
 	public abstract void addItemName(String string, int amount) throws DeliveryException, StockException;
 
 }

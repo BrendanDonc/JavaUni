@@ -45,6 +45,9 @@ public class Refrigerated_Truck extends Truck {
 		
 	}
 	
+	/**
+     * {@inheritDoc}
+     */
     @Override
     public void addItemName(String string, int amount) throws DeliveryException, StockException {
         Item stringItem;
