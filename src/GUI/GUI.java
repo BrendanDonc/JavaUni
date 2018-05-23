@@ -37,7 +37,9 @@ import Stock.Store;
 import java.awt.*;
 
 /**
- * @author Mez
+ * The 'GUI' class holds the code neccessary to create a GUI to display the combined information in the Item, Stock, Store, and Truck classes.
+ * 
+ * @author Mary Millar
  *
  */
 public class GUI extends JFrame implements ActionListener, Runnable {
@@ -76,60 +78,84 @@ public class GUI extends JFrame implements ActionListener, Runnable {
 	//Inventory table variables
 	DefaultTableModel model;
 	
-	
 	//Declaring back-end variables;
 	Stock inventory = new Stock();
 	Item[] inventoryArray;
 	
 	
-	/**
-	 * @param args
-	 */
 	public GUI(String message) {
 		super(message);
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Runnable#run()
+	 */
 	@Override
 	public void run() {
 		createGUI();	
 	}
 	
+	/* (non-Javadoc)
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent arg0)
 	{
 		//Get event source 
 		Object src = arg0.getSource(); 
 		
-		//Consider the alternatives - not all active at once.
+		//If the 'view store inventory' button is pressed, view the current inventory
 		if (src == buttonStoreInv) { 
-			//JButton btn = ((JButton)src);
 			createInvTable();
-            //areaDisplay.setText(btn.getText().trim());
             panelDisplay.add(storeInvTable);
 		} 
+		
+		//If the 'export manifest' button is pressed, prompt the user to save generated manifest
 		else if (src == buttonExpMan){
 			exportManifest();
 		}
+		
+		//If the 'load sales log' button is pressed, prompt the user to load a sales log. Also update the capital.
 		else if (src == buttonLoadSales){
 			loadSalesLog();
+			createInvTable();
 			labelStoreCap.setText("Store Capital: " + Store.getInstance().getCapitalString());
 		}
+		
+		//If the 'load manifest' button is pressed, prompt the user to load a manifest. Also update the capital.
 		else if (src == buttonLoadMan){
 			loadManifest();
+			createInvTable();
 			labelStoreCap.setText("Store Capital: " + Store.getInstance().getCapitalString());
 			
 		}
+		
+		//If the 'load item properties document' button is pressed, prompt the user to load document that holds that information.
 		else if (src == buttonLoadItemProp) {
 			initItemPropDoc();
 		}
 	}
 
+	/**
+	 * This method initialises a panel to be inserted into the GUI.
+	 * 
+	 * @param c The background colour of the panel.
+	 * 
+	 * @return A JPanel object that becomes a panel that can be inserted into the GUI.
+	 */
 	private JPanel createPanel(Color c) {
 		JPanel tempPanel = new JPanel();
 		tempPanel.setBackground(c);
 		return tempPanel;
 	}
 
+	/**
+	 * This method initialises a button to be inserted into the GUI.
+	 * 
+	 * @param string The text to be shown on top of the button.
+	 * 
+	 * @return A JButton object that becomes a button that can be inserted into the GUI.
+	 */
 	private JButton createButton(String string) {
 		JButton tempButton = new JButton();
 		tempButton.setText(string);
@@ -137,12 +163,26 @@ public class GUI extends JFrame implements ActionListener, Runnable {
 		return tempButton;
 	}
 	
+	/**
+	 * This method initialises a label to be inserted into the GUI.
+	 * 
+	 * @param string The text that is to make up the label.
+	 * 
+	 * @return A JLabel object that becomes a label that can be inserted into the GUI.
+	 */
 	private JLabel createLabel(String string) {
 		JLabel tempLabel = new JLabel();
 		tempLabel.setText(string);
 		return tempLabel;
 	}
 	
+	/**
+	 * This method initialises an area that can be filled with text.
+	 * 
+	 * @param fontSize The size of the text that can be displayed.
+	 * 
+	 * @return A JTextArea object that becomes a text-fillable area that can be inserted into the GUI.
+	 */
 	private JTextArea createTextArea(int fontSize)
 	{
 		JTextArea newDisplay = new JTextArea(); 
@@ -157,8 +197,9 @@ public class GUI extends JFrame implements ActionListener, Runnable {
 	}
 	
 	/** *
-	* A convenience method to add a component to given grid bag
-	* layout locations. *
+	* 
+	* This method gives the ability to simply add a component to given grid bag layout locations.
+	* 
 	* @param c the component to add
 	* @param constraints the grid bag constraints to use
 	* @param x the x grid position
@@ -174,16 +215,18 @@ public class GUI extends JFrame implements ActionListener, Runnable {
 		jp.add(c, constraints);
 	}
 	
+	/**
+	 * This method 
+	 * 
+	 */
 	private void layoutButtonPanel() {
 		GridBagLayout layout = new GridBagLayout();
 		panelBtn.setLayout(layout);
 		
-		//layout code
-		
 		//add components to grid
 		GridBagConstraints constraints = new GridBagConstraints();
 		
-		//Defaults
+		//defaults
 		constraints.fill = GridBagConstraints.NONE;
 		constraints.anchor = GridBagConstraints.CENTER;
 		constraints.weightx = 50;
@@ -197,6 +240,7 @@ public class GUI extends JFrame implements ActionListener, Runnable {
 		addToPanel(panelBtn, buttonLoadSales, constraints, 3, 2, 2, 1);
 		addToPanel(panelBtn, buttonExpMan, constraints, 5, 2, 2, 1);
 		
+		//add labels to panel
 		addToPanel(panelStoreCap, labelStoreCap, constraints, 0, 0, 2, 1);
 		
 	}
@@ -265,12 +309,8 @@ public class GUI extends JFrame implements ActionListener, Runnable {
 	
 	//CREATING ITEM TABLES - STORE INVENTORY
 	public void createInvTable() {
-		
-		
 		//getting the 'current' inventory from the Store class
 		inventory = Store.getInstance().getInventory();
-		
-		System.out.println("The current manifest is: \n" + inventory.getManifestPrintStyle());
 		//initialising length of inventoryArray
 		if (inventory.getManifestPrintStyle() != "") {
 			inventoryArray = new Item[inventory.getItems().length];
@@ -337,7 +377,19 @@ public class GUI extends JFrame implements ActionListener, Runnable {
 		dialog.setMode(FileDialog.SAVE);
 		dialog.setVisible(true);
 		
-		String directory = dialog.getDirectory() + dialog.getFile() + ".csv";
+		String directory = null;
+		
+		if (dialog.getFile().length() >= 4) {
+			if (dialog.getFile().substring(dialog.getFile().length() - 4).equals(".csv")) {
+				directory = dialog.getDirectory() + dialog.getFile();
+			}
+			else {
+				directory = dialog.getDirectory() + dialog.getFile() + ".csv";
+			}
+		}
+		else {
+			directory = dialog.getDirectory() + dialog.getFile() + ".csv";
+		}
 		
 		if (dialog.getFile() != null) {
 			try {
@@ -360,8 +412,8 @@ public class GUI extends JFrame implements ActionListener, Runnable {
 	    if (dialog.getFile() != null) {
 		    try {
 		    		LoadManifest.LoadManifest(file);
-		    		model.fireTableDataChanged();
-		    		JOptionPane.showMessageDialog(this, "Success! The selected manifest has been loaded. Please reload the store inventory to view the relevant changes.", "Load Manifest", JOptionPane.PLAIN_MESSAGE);
+		    		createInvTable();
+		    		JOptionPane.showMessageDialog(this, "Success! The selected manifest has been loaded.", "Load Manifest", JOptionPane.PLAIN_MESSAGE);
 		    }
 		    catch (CSVFormatException | StockException | IOException | DeliveryException e) {
 				JOptionPane.showMessageDialog(this, e.getMessage(), "Load Manifest Failure", JOptionPane.ERROR_MESSAGE);
@@ -379,8 +431,8 @@ public class GUI extends JFrame implements ActionListener, Runnable {
 	    if (dialog.getFile() != null) {
 		    try {
 		    		LoadSales.LoadSales(file);
-		    		model.fireTableDataChanged();
-		    		JOptionPane.showMessageDialog(this, "Success! The selected sales log has been loaded. Please reload the store inventory to view the relevant changes.", "Load Sales Log", JOptionPane.PLAIN_MESSAGE);
+		    		createInvTable();
+		    		JOptionPane.showMessageDialog(this, "Success! The selected sales log has been loaded.", "Load Sales Log", JOptionPane.PLAIN_MESSAGE);
 		    } catch (CSVFormatException | StockException | IOException e1) {
 		    		JOptionPane.showMessageDialog(this, e1.getMessage(), "Load Sales Log Failure", JOptionPane.ERROR_MESSAGE);
 		    }
