@@ -4,6 +4,8 @@ import org.junit.Test;
 import org.junit.Before;
 import static org.junit.Assert.*;
 
+//All tests within StoreTest were created by Brendan Doncaster
+
 public class StoreTest {
 	
 	Item rice;
