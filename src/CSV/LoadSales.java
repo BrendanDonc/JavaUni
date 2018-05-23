@@ -47,11 +47,13 @@ public class LoadSales {
 	        String csvSplitBy = ",";
 	        String name;
 	        int quantity;
+	        int currentLine = 0;
 
 	        try {
 
 	            br = new BufferedReader(new FileReader(csvFile));
 	            while ((line = br.readLine()) != null) {
+	                currentLine++;
 	            	name = null;
 	            	quantity = -1;
 	            	String[] item = line.split(csvSplitBy);
@@ -61,12 +63,12 @@ public class LoadSales {
 	                		quantity = Integer.parseInt(item[1]);
 	                	}
 	                	catch (NumberFormatException e){
-	                		throw new CSVFormatException("Sale for item " + name +  " has an invalid amount");
+	                		throw new CSVFormatException("Sale for item " + name +  " on line " + currentLine + " has an invalid amount");
 	                	}
 	            		sale.addItemName(name, quantity);
 	            	}
 	            	else {
-	            		throw new CSVFormatException("Sale does not have correct amount of fields(2)");
+	            		throw new CSVFormatException("Sale on line " + currentLine + " does not have correct amount of fields(2)");
 	            	}	
 	            }
 	        

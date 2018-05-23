@@ -51,11 +51,13 @@ public class LoadManifest {
 	        String truckType;
 	        int quantity;
 	        int truck = -1;
+	        int currentLine = 0;
 
 	        try {
 
 	            br = new BufferedReader(new FileReader(file));
 	            while ((line = br.readLine()) != null) {
+	                currentLine++;
 	            	name = null;
 	            	truckType = null;
 	            	quantity = -1;
@@ -80,7 +82,7 @@ public class LoadManifest {
 	                		quantity = Integer.parseInt(item[1]);
 	                	}
 	                	catch (NumberFormatException e){
-	                		throw new CSVFormatException("Sale for item " + name +  " has an invalid amount");
+	                		throw new CSVFormatException("Sale for item " + name +  " on line " + currentLine + " has an invalid amount");
 	                	}
 	            		
 	            		try {
@@ -93,7 +95,7 @@ public class LoadManifest {
 	            		
 	            	}
 	            	else {
-	            		throw new CSVFormatException("Manifest line does not have correct amount of fields(1 or 2)");
+	            		throw new CSVFormatException("Manifest line " + currentLine + " does not have correct amount of fields(1 or 2)");
 	            	}	
 	            }
 	        
