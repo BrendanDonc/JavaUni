@@ -342,10 +342,10 @@ public class GUI extends JFrame implements ActionListener, Runnable {
 	        		model.addRow(rowData);
 	        }
 	        
-	        JTable table = new JTable(model);
+	        storeInvTable = new JTable(model);
 	                 
 	        //add the table to the frame
-	        this.add(new JScrollPane(table));
+	        this.add(new JScrollPane(storeInvTable));
 	         
 	        this.setVisible(true);
         }
