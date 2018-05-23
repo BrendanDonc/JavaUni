@@ -362,7 +362,7 @@ public class GUI extends JFrame implements ActionListener, Runnable {
 	    
 	    if (dialog.getFile() != null) {
 		    try {
-				InitializeItems.InitializeItems(file);
+				InitializeItems.InitializeItemsFromCSV(file);
 				JOptionPane.showMessageDialog(this, "Success! Item Properties have been initialised.", "Loaded Items Properties Document", JOptionPane.PLAIN_MESSAGE);
 			} catch (CSVFormatException | StockException | IOException e) {
 				JOptionPane.showMessageDialog(this, e.getMessage(), "Item Initialisation Failure", JOptionPane.ERROR_MESSAGE);
@@ -395,7 +395,7 @@ public class GUI extends JFrame implements ActionListener, Runnable {
 				ExportManifest.ExportManifestCSV(directory);
 				JOptionPane.showMessageDialog(this, "Success! Current manifest has been exported to '" + dialog.getDirectory() + "' under the name '" + dialog.getFile() + "'.", "Export Manifest", JOptionPane.PLAIN_MESSAGE);
 			}
-			catch (DeliveryException | StockException e){ 
+			catch (DeliveryException | StockException | CSVFormatException e){ 
 				JOptionPane.showMessageDialog(this, e.getMessage(), "Manifest Export Failure", JOptionPane.ERROR_MESSAGE);
 			}
 		}
@@ -410,7 +410,7 @@ public class GUI extends JFrame implements ActionListener, Runnable {
 	    
 	    if (dialog.getFile() != null) {
 		    try {
-		    		LoadManifest.LoadManifest(file);
+		    		LoadManifest.LoadManifestCSV(file);
 		    		createInvTable();
 		    		JOptionPane.showMessageDialog(this, "Success! The selected manifest has been loaded.", "Load Manifest", JOptionPane.PLAIN_MESSAGE);
 		    }
@@ -429,7 +429,7 @@ public class GUI extends JFrame implements ActionListener, Runnable {
 	    
 	    if (dialog.getFile() != null) {
 		    try {
-		    		LoadSales.LoadSales(file);
+		    		LoadSales.LoadSalesCSV(file);
 		    		createInvTable();
 		    		JOptionPane.showMessageDialog(this, "Success! The selected sales log has been loaded.", "Load Sales Log", JOptionPane.PLAIN_MESSAGE);
 		    } catch (CSVFormatException | StockException | IOException e1) {

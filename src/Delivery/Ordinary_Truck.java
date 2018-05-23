@@ -9,8 +9,6 @@ import Stock.*;
  * 
  * @see Truck
  * @see Refrigerate_Truck
- * @see Item
- * @see Stock
  * @author Brendan Doncaster
  */
 public class Ordinary_Truck extends Truck {

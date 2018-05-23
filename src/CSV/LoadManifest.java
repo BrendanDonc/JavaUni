@@ -9,9 +9,25 @@ import java.io.IOException;
 import Delivery.*;
 import Stock.*;
 
+/**
+ * Class that contains static methods used for loading a manifest from a file and adding it to the store
+ * 
+ * @author Brendan Doncaster
+ *
+ */
 public class LoadManifest {
 
-	public static void LoadManifest(String file) throws DeliveryException, CSVFormatException, IOException, StockException  {
+    /**
+     * Takes the manifest created from the selected directory and adds 
+     * the items to the store and subtracts its cost from the store's capital
+     * 
+     * @param file String format of the file directory of a CSV formatted manifest
+     * @throws DeliveryException
+     * @throws CSVFormatException
+     * @throws IOException
+     * @throws StockException
+     */
+	public static void LoadManifestCSV(String file) throws DeliveryException, CSVFormatException, IOException, StockException  {
 		Manifest manifest;
 		Stock stock;
 		
@@ -38,7 +54,17 @@ public class LoadManifest {
 	}
 	
 	
-	
+	/**
+	 * Reads the selected file directory and turns its contents into a Manifest
+	 * 
+	 * @param file String format of the file directory of a CSV formatted manifest
+	 * @return Manifest object version of the csv file
+	 * @throws DeliveryException when truckType of a truck is unrecognised
+	 * @throws CSVFormatException when fields in the csv are incorrect or missing, or the file doesn't exist
+	 * @throws IOException default exception throws
+	 * @throws StockException when addItemName string is invalid
+	 * @see IOException
+	 */
 	public static Manifest ReadManifestCSV(String file) throws DeliveryException, CSVFormatException, IOException, StockException {
 		Manifest importManifest = new Manifest();
 		
@@ -72,6 +98,7 @@ public class LoadManifest {
 						}
 	            		truck++;
 	            	}
+	            	
 	            	else if(item.length == 2) {
 	            		
 	            		if(truck == -1) {
@@ -84,17 +111,14 @@ public class LoadManifest {
 	                	catch (NumberFormatException e){
 	                		throw new CSVFormatException("Sale for item " + name +  " on line " + currentLine + " has an invalid amount");
 	                	}
-	            		
-	            		
+
 						try {
                             importManifest.returnManifest()[truck].addItemName(name, quantity);
                         } catch (DeliveryException | StockException e) {
 							throw new StockException("Error on line " + currentLine + ": " + e.getMessage());
 						}
-	            		
-	            		
-	            		
 	            	}
+	            	
 	            	else {
 	            		throw new CSVFormatException("Manifest line " + currentLine + " does not have correct amount of fields(1 or 2)");
 	            	}	
