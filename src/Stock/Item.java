@@ -29,13 +29,12 @@ public class Item implements Comparable<Item>{
 	 * 
 	 * @throws StockException The exception thrown if: the item cost is less than zero,
 	 * 												  the item price is less than zero,
-	 * 												  the item reorder point is less than zero, or
+	 * 												  the item reorder point is less than zero, or 
 	 * 												  the item reorder amount is less than zero.
 	 */
 	public Item(String itemName, double itemCost, double itemPrice, int itemReorderPoint, int itemReorderAmount) throws StockException {
-		StockException badParam = new StockException();
 		if (itemCost <= 0 || itemPrice <= 0 || itemReorderPoint <= 0 || itemReorderAmount <= 0) {
-			throw badParam;	
+			throw new StockException("The item '" + itemName + "' has a bad parameter.");	
 		}
 		else {
 			this.name = itemName;
@@ -58,13 +57,13 @@ public class Item implements Comparable<Item>{
 	 * 
 	 * @throws StockException The exception thrown if: the item cost is less than zero,
 	 * 												  the item price is less than zero,
-	 * 												  the item reorder point is less than zero, or
-	 * 												  the item reorder amount is less than zero.
+	 * 												  the item reorder point is less than zero,
+	 * 												  the item reorder amount is less than zero, or
+	 * 												  the temperature is less than -20 or more than 10 degrees Celsius.
 	 */
 	public Item(String itemName, double itemCost, double itemPrice, int itemReorderPoint, int itemReorderAmount, Double itemTemp) throws StockException {
-		StockException badParam = new StockException();
-		if (itemCost <= 0 || itemPrice <= 0 || itemReorderPoint <= 0 || itemReorderAmount <= 0) {
-			throw badParam;	
+		if (itemCost <= 0 || itemPrice <= 0 || itemReorderPoint <= 0 || itemReorderAmount <= 0 || !(-20 <= itemTemp && itemTemp <= 10)) {
+			throw new StockException("The item '" + itemName + "' has a bad parameter");	
 		}
 		else {
 			this.name = itemName;

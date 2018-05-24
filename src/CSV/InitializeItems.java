@@ -91,28 +91,28 @@ public class InitializeItems {
 	                		cost = Integer.parseInt(item[1]);
 	                	}
 	                	catch (NumberFormatException e){
-	                		throw new CSVFormatException("Item with name " + name +  " has an invalid cost");
+	                		throw new CSVFormatException("Item with name '" + name +  "' has an invalid cost");
 	                	}
 	                	
 	                	try {
 	                		price = Integer.parseInt(item[2]);
 	                	}
 	                	catch (NumberFormatException e){
-	                		throw new CSVFormatException("Item with name " + name +  " has an invalid price");
+	                		throw new CSVFormatException("Item with name '" + name +  "' has an invalid price");
 	                	}
 	                	
 	                	try {
 	                		rePoint = Integer.parseInt(item[3]);
 	                	}
 	                	catch (NumberFormatException e){
-	                		throw new CSVFormatException("Item with name " + name +  " has an invalid reorder point");
+	                		throw new CSVFormatException("Item with name '" + name +  "' has an invalid reorder point");
 	                	}
 	                	
 	                	try {
 	                		reAmount = Integer.parseInt(item[4]);
 	                	}
 	                	catch (NumberFormatException e){
-	                		throw new CSVFormatException("Item with name " + name +  " has an invalid reorder amount");
+	                		throw new CSVFormatException("Item with name '" + name +  "' has an invalid reorder amount");
 	                	}
 	                	
 	                	if (item.length == 6) {
@@ -120,7 +120,7 @@ public class InitializeItems {
 	                			temp = Double.valueOf(item[5]);
 	                		}
 	                		catch (NumberFormatException e){
-		                		throw new CSVFormatException("Item with name " + name +  " has an invalid temperature");
+		                		throw new CSVFormatException("Item with name '" + name +  "' has an invalid temperature");
 		                	}
 	                		
 	                		

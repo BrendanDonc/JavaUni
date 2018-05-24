@@ -57,13 +57,19 @@ public final class Store {
 	}
 
 	/**
-	 * This method sets the inputted stock as the current stock of the store.
+	 * This method sets the inputed stock as the current stock of the store.
 	 * 
 	 * @param inputInv The stock to be set as the current stock.
+	 * @throws StockException The exception inherited from addStock().
 	 */
-	public void setInventory(Stock inputInv) {
+	public void setInventory(Stock inputInv) throws StockException{
 		this.inventory.clearStock();
-		this.inventory.addStock(inputInv);		
+		
+		try {
+			this.inventory.addStock(inputInv);	
+		} catch (StockException e) {
+			throw e;
+		}
 	}
 
 	/**

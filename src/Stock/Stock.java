@@ -43,8 +43,13 @@ public class Stock {
 	 * 
 	 * @param item The item that is being added.
 	 * @param quantity The quantity of the item to be added.
+	 * @throws StockException The exception thrown if attempting to add a negative amount of item to the store.
 	 */
-	public void addItem(Item item, int quantity)  {
+	public void addItem(Item item, int quantity) throws StockException {
+		
+		if (quantity < 0) {
+			throw new StockException("A negative quantity for '" + item.getName() + "' cannot be added.");
+		}
 		
 		if (stockArray.containsKey(item)) {
 			int existingQuantity = stockArray.get(item);
@@ -87,13 +92,18 @@ public class Stock {
 	 * A method that adds an 'outside' stock to the current stock.
 	 * 
 	 * @param stock The stock to be added to the current stock.
+	 * @throws StockException The exception inherited from addItem().
 	 */
-	public void addStock(Stock stock) {
+	public void addStock(Stock stock) throws StockException {
 		for (Entry<Item, Integer> entry : stock.stockArray.entrySet()) {
 			Item item = (Item) entry.getKey();
 		    Integer quantity = entry.getValue();
 		    
-		    addItem(item, quantity);
+		    try {
+		    		addItem(item, quantity);
+		    } catch (StockException e) {
+		    		throw e;
+		    }
 		}
 	}
 	
