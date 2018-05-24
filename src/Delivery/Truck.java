@@ -130,9 +130,10 @@ public abstract class Truck {
 	 * @param item Item to add to the cargo
 	 * @param amount Quantity of the item to add
 	 * @throws DeliveryException Item exceeds cargo space or temperature is invalid
+	 * @throws StockException Item attempts to add invalid amount
 	 * @author Brendan Doncaster
 	 */
-	public abstract void addItem(Item item, int amount) throws DeliveryException;
+	public abstract void addItem(Item item, int amount) throws DeliveryException, StockException;
 	
 	/**
 	 * Adds an item to the truck's cargo based on its name

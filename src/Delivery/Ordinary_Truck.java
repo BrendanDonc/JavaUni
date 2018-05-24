@@ -28,9 +28,10 @@ public class Ordinary_Truck extends Truck {
 
 	/**
 	 * {@inheritDoc}
+	 * 
 	 */
 	@Override
-	public void addItem(Item item, int amount) throws DeliveryException {
+	public void addItem(Item item, int amount) throws DeliveryException, StockException {
 		if(item.tempRequired()) {
 			throw new DeliveryException("Attempted to add refrigerated item to an ordinary truck");
 		}
@@ -39,7 +40,11 @@ public class Ordinary_Truck extends Truck {
 				throw new DeliveryException("Added amount exceeds truck capacity");
 			}
 			else {
-				cargo.addItem(item, amount);
+				try {
+					cargo.addItem(item, amount);
+				} catch (StockException e) {
+					throw e;
+				}
 			}
 		}
 		
