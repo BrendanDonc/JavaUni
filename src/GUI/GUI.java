@@ -387,34 +387,39 @@ public class GUI extends JFrame implements ActionListener, Runnable {
 	 * After selection, the manifest is then made.
 	 */
 	public void exportManifest() {
-		FileDialog dialog = new FileDialog((Frame)null, "Save File...");
-		dialog.setMode(FileDialog.SAVE);
-		dialog.setVisible(true);
-		
-		String directory = null;
-		
-		if (dialog.getFile() != null) {
-			if (dialog.getFile().length() >= 4) {
-				if (dialog.getFile().substring(dialog.getFile().length() - 4).equals(".csv")) {
-					directory = dialog.getDirectory() + dialog.getFile();
+		if (inventory.getManifestPrintStyle() != "") {
+			FileDialog dialog = new FileDialog((Frame)null, "Save File...");
+			dialog.setMode(FileDialog.SAVE);
+			dialog.setVisible(true);
+			
+			String directory = null;
+			
+			if (dialog.getFile() != null) {
+				if (dialog.getFile().length() >= 4) {
+					if (dialog.getFile().substring(dialog.getFile().length() - 4).equals(".csv")) {
+						directory = dialog.getDirectory() + dialog.getFile();
+					}
+					else {
+						directory = dialog.getDirectory() + dialog.getFile() + ".csv";
+					}
 				}
 				else {
 					directory = dialog.getDirectory() + dialog.getFile() + ".csv";
 				}
+			
+				try {
+					ExportManifest.ExportManifestCSV(directory);
+					JOptionPane.showMessageDialog(this, "Success! Current manifest has been exported to '" + dialog.getDirectory() + "' under the name '" + dialog.getFile() + "'.", "Export Manifest", JOptionPane.PLAIN_MESSAGE);
+				}
+				catch (DeliveryException | StockException | CSVFormatException e){ 
+					JOptionPane.showMessageDialog(this, e.getMessage(), "Manifest Export Failure", JOptionPane.ERROR_MESSAGE);
+				}
 			}
-			else {
-				directory = dialog.getDirectory() + dialog.getFile() + ".csv";
-			}
-		
-			try {
-				ExportManifest.ExportManifestCSV(directory);
-				JOptionPane.showMessageDialog(this, "Success! Current manifest has been exported to '" + dialog.getDirectory() + "' under the name '" + dialog.getFile() + "'.", "Export Manifest", JOptionPane.PLAIN_MESSAGE);
-			}
-			catch (DeliveryException | StockException | CSVFormatException e){ 
-				JOptionPane.showMessageDialog(this, e.getMessage(), "Manifest Export Failure", JOptionPane.ERROR_MESSAGE);
-			}
+			else {}
 		}
-		else {}
+		else {
+			JOptionPane.showMessageDialog(this, "Please intialise item properties before attempting to export a manifest.", "Manifest Export Failure", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 	
 	/**
@@ -422,22 +427,27 @@ public class GUI extends JFrame implements ActionListener, Runnable {
 	 * After selection, the .csv document is then read and item quantities are added to the store.
 	 */
 	public void loadManifest() {
-		FileDialog dialog = new FileDialog((Frame)null, "Select File to Open...");
-	    dialog.setMode(FileDialog.LOAD);
-	    dialog.setVisible(true);
-	    String file = dialog.getDirectory() + dialog.getFile();
-	    
-	    if (dialog.getFile() != null) {
-		    try {
-		    		LoadManifest.LoadManifestCSV(file);
-		    		createInvTable();
-		    		JOptionPane.showMessageDialog(this, "Success! The selected manifest has been loaded.", "Load Manifest", JOptionPane.PLAIN_MESSAGE);
+		if (inventory.getManifestPrintStyle() != "") {
+			FileDialog dialog = new FileDialog((Frame)null, "Select File to Open...");
+		    dialog.setMode(FileDialog.LOAD);
+		    dialog.setVisible(true);
+		    String file = dialog.getDirectory() + dialog.getFile();
+		    
+		    if (dialog.getFile() != null) {
+			    try {
+			    		LoadManifest.LoadManifestCSV(file);
+			    		createInvTable();
+			    		JOptionPane.showMessageDialog(this, "Success! The selected manifest has been loaded.", "Load Manifest", JOptionPane.PLAIN_MESSAGE);
+			    }
+			    catch (CSVFormatException | StockException | IOException | DeliveryException e) {
+					JOptionPane.showMessageDialog(this, e.getMessage(), "Load Manifest Failure", JOptionPane.ERROR_MESSAGE);
+			    }
 		    }
-		    catch (CSVFormatException | StockException | IOException | DeliveryException e) {
-				JOptionPane.showMessageDialog(this, e.getMessage(), "Load Manifest Failure", JOptionPane.ERROR_MESSAGE);
-		    }
-	    }
-	    else {}
+		    else {}
+		}
+		else {
+			JOptionPane.showMessageDialog(this, "Please intialise item properties before loading a manifest into the store.", "Load Manifest Failure", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 	
 	/**
@@ -445,20 +455,25 @@ public class GUI extends JFrame implements ActionListener, Runnable {
 	 * After selection, the .csv document is then read and item quantities are taken from the store.
 	 */
 	public void loadSalesLog() {
-		FileDialog dialog = new FileDialog((Frame)null, "Select File to Open...");
-	    dialog.setMode(FileDialog.LOAD);
-	    dialog.setVisible(true);
-	    String file = dialog.getDirectory() + dialog.getFile();
-	    
-	    if (dialog.getFile() != null) {
-		    try {
-		    		LoadSales.LoadSalesCSV(file);
-		    		createInvTable();
-		    		JOptionPane.showMessageDialog(this, "Success! The selected sales log has been loaded.", "Load Sales Log", JOptionPane.PLAIN_MESSAGE);
-		    } catch (CSVFormatException | StockException | IOException e1) {
-		    		JOptionPane.showMessageDialog(this, e1.getMessage(), "Load Sales Log Failure", JOptionPane.ERROR_MESSAGE);
+		if (inventory.getManifestPrintStyle() != "") {
+			FileDialog dialog = new FileDialog((Frame)null, "Select File to Open...");
+		    dialog.setMode(FileDialog.LOAD);
+		    dialog.setVisible(true);
+		    String file = dialog.getDirectory() + dialog.getFile();
+		    
+		    if (dialog.getFile() != null) {
+			    try {
+			    		LoadSales.LoadSalesCSV(file);
+			    		createInvTable();
+			    		JOptionPane.showMessageDialog(this, "Success! The selected sales log has been loaded.", "Load Sales Log", JOptionPane.PLAIN_MESSAGE);
+			    } catch (CSVFormatException | StockException | IOException e1) {
+			    		JOptionPane.showMessageDialog(this, e1.getMessage(), "Load Sales Log Failure", JOptionPane.ERROR_MESSAGE);
+			    }
 		    }
-	    }
-	    else {}
+		    else {}
+		}
+		else {
+			JOptionPane.showMessageDialog(this, "Please intialise item properties before loading a sales log into the store.", "Load Sales Log Failure", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 }
