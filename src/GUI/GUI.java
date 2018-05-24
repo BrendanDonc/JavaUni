@@ -117,14 +117,12 @@ public class GUI extends JFrame implements ActionListener, Runnable {
 		//If the 'load sales log' button is pressed, prompt the user to load a sales log. Also update the capital.
 		else if (src == buttonLoadSales){
 			loadSalesLog();
-			createInvTable();
 			labelStoreCap.setText("Store Capital: " + Store.getInstance().getCapitalString());
 		}
 		
 		//If the 'load manifest' button is pressed, prompt the user to load a manifest. Also update the capital.
 		else if (src == buttonLoadMan){
 			loadManifest();
-			createInvTable();
 			labelStoreCap.setText("Store Capital: " + Store.getInstance().getCapitalString());
 			
 		}
@@ -132,6 +130,7 @@ public class GUI extends JFrame implements ActionListener, Runnable {
 		//If the 'load item properties document' button is pressed, prompt the user to load document that holds that information.
 		else if (src == buttonLoadItemProp) {
 			initItemPropDoc();
+			createInvTable();
 		}
 	}
 
@@ -378,19 +377,19 @@ public class GUI extends JFrame implements ActionListener, Runnable {
 		
 		String directory = null;
 		
-		if (dialog.getFile().length() >= 4) {
-			if (dialog.getFile().substring(dialog.getFile().length() - 4).equals(".csv")) {
-				directory = dialog.getDirectory() + dialog.getFile();
+		if (dialog.getFile() != null) {
+			if (dialog.getFile().length() >= 4) {
+				if (dialog.getFile().substring(dialog.getFile().length() - 4).equals(".csv")) {
+					directory = dialog.getDirectory() + dialog.getFile();
+				}
+				else {
+					directory = dialog.getDirectory() + dialog.getFile() + ".csv";
+				}
 			}
 			else {
 				directory = dialog.getDirectory() + dialog.getFile() + ".csv";
 			}
-		}
-		else {
-			directory = dialog.getDirectory() + dialog.getFile() + ".csv";
-		}
 		
-		if (dialog.getFile() != null) {
 			try {
 				ExportManifest.ExportManifestCSV(directory);
 				JOptionPane.showMessageDialog(this, "Success! Current manifest has been exported to '" + dialog.getDirectory() + "' under the name '" + dialog.getFile() + "'.", "Export Manifest", JOptionPane.PLAIN_MESSAGE);
