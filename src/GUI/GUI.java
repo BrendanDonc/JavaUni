@@ -130,7 +130,6 @@ public class GUI extends JFrame implements ActionListener, Runnable {
 		//If the 'load item properties document' button is pressed, prompt the user to load document that holds that information.
 		else if (src == buttonLoadItemProp) {
 			initItemPropDoc();
-			createInvTable();
 		}
 	}
 
@@ -375,6 +374,7 @@ public class GUI extends JFrame implements ActionListener, Runnable {
 		    try {
 				InitializeItems.InitializeItemsFromCSV(file);
 				JOptionPane.showMessageDialog(this, "Success! Item Properties have been initialised.", "Loaded Items Properties Document", JOptionPane.PLAIN_MESSAGE);
+				createInvTable();
 			} catch (CSVFormatException | StockException | IOException e) {
 				JOptionPane.showMessageDialog(this, e.getMessage(), "Item Initialisation Failure", JOptionPane.ERROR_MESSAGE);
 			}
