@@ -37,7 +37,7 @@ import Stock.Store;
 import java.awt.*;
 
 /**
- * The 'GUI' class holds the code neccessary to create a GUI to display the combined information in the Item, Stock, Store, and Truck classes.
+ * The 'GUI' class holds the code necessary to create a GUI to display the combined information in the Item, Stock, Store, and Truck classes.
  * 
  * @author Mary Millar
  *
@@ -214,8 +214,7 @@ public class GUI extends JFrame implements ActionListener, Runnable {
 	}
 	
 	/**
-	 * This method 
-	 * 
+	 * This method places the buttons and labels in the bottom panel in a pre-set layout.
 	 */
 	private void layoutButtonPanel() {
 		GridBagLayout layout = new GridBagLayout();
@@ -243,6 +242,9 @@ public class GUI extends JFrame implements ActionListener, Runnable {
 		
 	}
 	
+	/**
+	 * This method places the text-editable area in the center of the GUI.
+	 */
 	private void layoutCentrePanel(){	
 		//Set layout
 		panelDisplay.setLayout(new BorderLayout());
@@ -253,7 +255,7 @@ public class GUI extends JFrame implements ActionListener, Runnable {
 
 	
 	/**
-	 * The method to initialse and create all panels and and JFrame size
+	 * This method initialises and creates all panels, buttons, labels, text areas, and sets the size of the GUI to pre-determined dimensions.
 	 */
 	private void createGUI() {
 		setSize(WIDTH, HEIGHT);
@@ -298,14 +300,20 @@ public class GUI extends JFrame implements ActionListener, Runnable {
 		this.setVisible(true);
 	}
 	
+	/**
+	 * This main method sets the name of the GUI.
+	 */
 	public static void main(String[] args) {
 		JFrame.setDefaultLookAndFeelDecorated(true);
 		SwingUtilities.invokeLater(new GUI(Store.getInstance().getName() + "'s Inventory Management Application"));
 
 	}
 	
-	
-	//CREATING ITEM TABLES - STORE INVENTORY
+	/**
+	 * This method formats the items stored in the store inventory into a comprehensible table format.
+	 * 
+	 * It also takes into account if there are no items in the inventory.
+	 */
 	public void createInvTable() {
 		//getting the 'current' inventory from the Store class
 		inventory = Store.getInstance().getInventory();
@@ -353,6 +361,10 @@ public class GUI extends JFrame implements ActionListener, Runnable {
 		
 	}
 	
+	/**
+	 * This method prompts the user to select a item properties document to initialise the item properties in the store inventory. 
+	 * After selection, the .csv document is then read and items are added to the store.
+	 */
 	public void initItemPropDoc() {
 		FileDialog dialog = new FileDialog((Frame)null, "Select File to Open...");
 	    dialog.setMode(FileDialog.LOAD);
@@ -370,6 +382,10 @@ public class GUI extends JFrame implements ActionListener, Runnable {
 	    else {}
 	}
 	
+	/**
+	 * This method prompts the user to select a location to save a manifest of the current version of the store. 
+	 * After selection, the manifest is then made.
+	 */
 	public void exportManifest() {
 		FileDialog dialog = new FileDialog((Frame)null, "Save File...");
 		dialog.setMode(FileDialog.SAVE);
@@ -401,6 +417,10 @@ public class GUI extends JFrame implements ActionListener, Runnable {
 		else {}
 	}
 	
+	/**
+	 * This method prompts the user to select a manifest document to load items quantities into the store inventory from. 
+	 * After selection, the .csv document is then read and item quantities are added to the store.
+	 */
 	public void loadManifest() {
 		FileDialog dialog = new FileDialog((Frame)null, "Select File to Open...");
 	    dialog.setMode(FileDialog.LOAD);
@@ -420,6 +440,10 @@ public class GUI extends JFrame implements ActionListener, Runnable {
 	    else {}
 	}
 	
+	/**
+	 * This method prompts the user to select a sales log to represent items taken from the store. 
+	 * After selection, the .csv document is then read and item quantities are taken from the store.
+	 */
 	public void loadSalesLog() {
 		FileDialog dialog = new FileDialog((Frame)null, "Select File to Open...");
 	    dialog.setMode(FileDialog.LOAD);
