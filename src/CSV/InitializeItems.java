@@ -9,9 +9,24 @@ import java.io.IOException;
 import Stock.*;
 import Stock.StockException;
 
+/**
+ * Class that contains static methods used for initializing the stores inventory
+ * 
+ * @author Brendan Doncaster
+ *
+ */
 public class InitializeItems {
 	
-	public static void InitializeItems(String file) throws CSVFormatException, StockException, IOException {
+    /**
+     * Sets the stock gained from the file directory as the new Store inventory
+     * 
+     * @param file String format of the file directory of all items to be initialized
+     * @throws CSVFormatException when any of the item properties are incorrectly formatted or the file doesn't exist
+     * @throws StockException when the item created isn't valid to add to a stock
+     * @throws IOException default exception throws
+     * @see IOException
+     */
+	public static void InitializeItemsFromCSV(String file) throws CSVFormatException, StockException, IOException {
 		Stock inventory = new Stock();
 
 		try {
@@ -24,7 +39,16 @@ public class InitializeItems {
 	}
 	
 	
-	
+	/**
+	 * Reads the supplied file directory and returns a stock with all items contained within the file with 0 quantity
+	 * 
+	 * @param file String format of the file directory of all items to be initialized
+	 * @return Stock representation of all the items ready to be added to the Store
+	 * @throws CSVFormatException when any of the item properties are incorrectly formatted or the file doesn't exist
+	 * @throws StockException when the item created isn't valid to add to a stock
+	 * @throws IOException default exception throws
+	 * @see IOException
+	 */
 	public static Stock ReadItemCSV(String file) throws CSVFormatException, StockException, IOException {
 		String csvFile = file;
 		Stock inventory = new Stock();
@@ -103,7 +127,7 @@ public class InitializeItems {
 	                		try {
 								inventory.addItem(new Item(name, cost, price, rePoint, reAmount, temp), 0);
 							} catch (StockException e) {
-								throw e;
+								throw new StockException("Error on line " + currentLine + ": " + e.getMessage());
 							}
 	                	}
 	                	
@@ -111,7 +135,7 @@ public class InitializeItems {
 	                		 try {
 								inventory.addItem(new Item(name, cost, price, rePoint, reAmount), 0);
 							} catch (StockException e) {
-								throw e;
+								throw new StockException("Error on line " + currentLine + ": " + e.getMessage());
 							}
 	                	}
 	                	

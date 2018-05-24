@@ -7,6 +7,7 @@ import Stock.*;
 
 /**
  *A manifest class used for storing trucks that contain stocks of items that need to be delivered
+ *
  *@author Brendan Doncaster
  *@see Truck
  *@see Stock
@@ -16,23 +17,30 @@ public class Manifest {
 	private ArrayList<Truck> manifest;
 
 	/**
+	 * Manifest constructor class, creates a new array list of trucks
 	 * 
+	 * @see Truck
+	 * @author Brendan Doncaster
 	 */
 	public Manifest() {
 		manifest = new ArrayList<Truck>();
 	}
 	
 	/**
+	 * Add a truck to the manifest's list
 	 * 
 	 * @param truck
+	 * @author Brendan Doncaster
 	 */
 	public void addTruck(Truck truck) {
 		manifest.add(truck);
 	}
 	
 	/**
+	 * Getter method for returning the manifest's list as an array
 	 * 
-	 *@return
+	 *@return An array of trucks from the manifest
+	 *@author Brendan Doncaster
 	 */
 	public Truck[] returnManifest(){
 		Truck[] manifestArray = new Truck[manifest.size()];
@@ -41,8 +49,11 @@ public class Manifest {
 	}
 	
 	/**
+	 * Getter method for the printable version of the manifest, follows the style of a '>' before each truck
+	 * and a new line after each truck/item
 	 * 
-	 * @return
+	 * @return String version of the Trucks and their contents
+	 * @author Brendan Doncaster
 	 */
 	public String printManifest() {
 		String print = "";
@@ -60,10 +71,12 @@ public class Manifest {
 	}
 	
 	/**
+	 * Create a new truck and add it to the manifest based on a string representation of the truck type
 	 * 
-	 * @param string
-	 * @return
-	 * @throws DeliveryException
+	 * @param string String representation of a truck type
+	 * @return Truck that was just added to the manifest
+	 * @throws DeliveryException when the input truck type is not recognized
+	 * @author Brendan Doncaster
 	 */
 	public Truck importTruck(String string) throws DeliveryException {
 		Truck importTruck;
@@ -80,7 +93,7 @@ public class Manifest {
 			importTruck = new Refrigerated_Truck();
 		}
 		else {
-			throw new DeliveryException();
+			throw new DeliveryException("Unrecognised truck type '" + string + "'");
 		}
 		manifest.add(importTruck);
 		return importTruck;
@@ -89,10 +102,13 @@ public class Manifest {
 	
 
 	/**
+	 * Creates an optimal manifest based on the store's inventory and which items need to be reordered.
 	 * 
-	 * @return
-	 * @throws DeliveryException
-	 * @throws StockException
+	 * @return Manifest to be exported for reordering that has been optimally sorted
+	 * @throws DeliveryException when adding an item to a truck throws a DeliveryException
+	 * @throws StockException when subtracting the already added items from the stock 
+	 * that needs to be reordered throws a StockException
+	 * @author Brendan Doncaster
 	 */
 	public static Manifest manifestToExport() throws DeliveryException, StockException {
 		Item[] exportItems = Store.getInstance().getInventory().needsReorder();
@@ -272,6 +288,7 @@ public class Manifest {
 	 * Sum the cost of all trucks and items within the manifest
 	 * @return double value for the cost of the manifest
 	 * @throws DeliveryException Manifest contains a refrigerated truck with no refrigerated items and therefore has no cost
+	 * @author Brendan Doncaster
 	 */
 	public double sumManifestCost() throws DeliveryException {
 		double sumAmount = 0;

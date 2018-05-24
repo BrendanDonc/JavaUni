@@ -9,8 +9,6 @@ import Stock.*;
  * 
  * @see Truck
  * @see Refrigerate_Truck
- * @see Item
- * @see Stock
  * @author Brendan Doncaster
  */
 public class Ordinary_Truck extends Truck {
@@ -46,6 +44,32 @@ public class Ordinary_Truck extends Truck {
 		}
 		
 	}
+	
+	/**
+     * {@inheritDoc}
+     */
+    @Override
+    public void addItemName(String string, int amount) throws DeliveryException, StockException {
+        Item stringItem;
+        try {
+            stringItem = Stock.getItemFromName(string);
+        } catch (StockException e) {
+            throw e;
+        }
+        
+        if(stringItem.tempRequired()) {
+            throw new DeliveryException("Attempted to add refrigerated item to an ordinary truck");
+        }
+        else {
+            if(this.getTruckSize() + amount > this.truckCapacity()) {
+                throw new DeliveryException("Added amount exceeds truck capacity");
+            }
+            else {
+                cargo.addItem(stringItem, amount);
+            }
+        }
+        
+    }
 
 	/**
      * {@inheritDoc}
@@ -63,4 +87,5 @@ public class Ordinary_Truck extends Truck {
 	public Double getTemp() {
 		return null;
 	}
+
 }

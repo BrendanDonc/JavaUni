@@ -284,6 +284,26 @@ public class Stock {
 		}
 		
 	}
+	
+	/**
+     * This method returns an item specified by its name.
+     * 
+     * @param string The name of the item.
+     * 
+     * @throws StockException The exception thrown if the item is not found in the store.
+     */
+	public static Item getItemFromName(String string) throws StockException {
+	    Item stringInput = null;
+        for (Item item:Store.getInstance().getInventory().getItems()) {
+            if (item.getName().equals(string)) {
+                stringInput = item;
+            }
+        }
+        if (stringInput == null) {
+            throw new StockException("Item name not found in store");
+        }
+        return stringInput;
+	}
 
 	/**
 	 * This method adds the quantity of an item (specified by its name) into the store.
@@ -294,15 +314,12 @@ public class Stock {
 	 * @throws StockException The exception thrown if the item is not found in the store.
 	 */
 	public void addItemName(String string, int quantity) throws StockException {
-		Item stringInput = null;
-		for (Item item:Store.getInstance().getInventory().getItems()) {
-			if (item.getName().equals(string)) {
-				stringInput = item;
-			}
-		}
-		if (stringInput == null) {
-			throw new StockException("Item name not found in store");
-		}
+		Item stringInput;
+        try {
+            stringInput = getItemFromName(string);
+        } catch (StockException e) {
+            throw e;
+        }
 		this.addItem(stringInput, quantity);
 	}
 
