@@ -100,7 +100,7 @@ public class ItemTest {
 	 */
 	@Test
 	public void testTemp() throws StockException {
-		double temp = 18;
+		double temp = 9;
 		item = new Item("mushroom", 2, 4, 200, 325, temp);
 		assertEquals(temp, item.getTemp(), 0.1);
 	}

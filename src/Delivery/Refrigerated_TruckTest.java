@@ -26,19 +26,13 @@ public class Refrigerated_TruckTest {
 	/* Test 1: Constructing an rTruck object*/
 	@Before
 	@Test
-	public void setUpRTruck() {
-		try {
-			pork = new Item("Pork", 10, 15, 200, 300, (double) -3);
-			iceCream = new Item("Ice Cream", 10, 15, 200, 300, (double) -5);
-			milk = new Item("Milk", 10, 15, 200, 300, (double) 2);
-			banana = new Item("Banana", 10, 15, 200, 300, (double) 4);
-			yoghurt = new Item("Yoghurt", 10, 15, 200, 300, (double) 2);
-			chicken = new Item("Chicken", 10, 15, 200, 300, (double) -2);
-			peas = new Item("Peas", 10, 15, 200, 300, (double) -21);
-		}
-		catch (StockException badParam) {
-			fail("Refrigerated Truck items failed to initialise.");
-		}
+	public void setUpRTruck() throws StockException {
+		pork = new Item("Pork", 10, 15, 200, 300, (double) -3);
+		iceCream = new Item("Ice Cream", 10, 15, 200, 300, (double) -5);
+		milk = new Item("Milk", 10, 15, 200, 300, (double) 2);
+		banana = new Item("Banana", 10, 15, 200, 300, (double) 4);
+		yoghurt = new Item("Yoghurt", 10, 15, 200, 300, (double) 2);
+		chicken = new Item("Chicken", 10, 15, 200, 300, (double) -2);
 		
 		rTruck = new Refrigerated_Truck();
 		rTruck_02 = new Refrigerated_Truck();
@@ -134,8 +128,9 @@ public class Refrigerated_TruckTest {
 	}
 	
 	/* Test 11: Checking the temperature of the truck is safe (ie. has not exceeded either limit) */
-	@Test(expected = DeliveryException.class)
+	@Test(expected = StockException.class)
 	public void checkTemp() throws DeliveryException, StockException {
+	    peas = new Item("Peas", 10, 15, 200, 300, (double) -21);
 		rTruck.addItem(peas, 5);
 	}
 	
