@@ -4,6 +4,8 @@ import org.junit.Test;
 import org.junit.Before;
 import static org.junit.Assert.*;
 
+import java.util.Objects;
+
 //All tests within ItemTest were created by Brendan Doncaster
 
 public class ItemTest {
@@ -278,6 +280,104 @@ public class ItemTest {
 		Item itemSame = new Item("mushroom", 2, 3, 225, 300);
 		assertFalse(item.equals(itemSame));
 	}
+	
+	   /*
+     * Test 26 Check manufacturing cost is positive for refrigerated item
+     * 
+     */
+    @Test(expected = StockException.class)
+    public void testRefrigPosistiveManufacturing() throws StockException {
+        item = new Item("rice", -2, 3, 225, 300, (double) 0);
+    }
+    
+    /*
+     * Test 27 Check manufacturing cost is above 0 for refrigerated item
+     * 
+     */
+    
+    @Test(expected = StockException.class)
+    public void testRefrigManufacturingNotZero() throws StockException {
+        item = new Item("rice", 0, 3, 225, 300, (double) 0);
+    }
+    
+    /*
+     * Test 28 Check sale price is positive for refrigerated item
+     * 
+     */
+    @Test(expected = StockException.class)
+    public void testRefrigPosistiveSale() throws StockException {
+        item = new Item("rice", 2, -3, 225, 300, (double) 0);
+    }
+    
+    /*
+     * Test 29 Check sale price is above 0 for refrigerated item
+     * 
+     */
+    
+    @Test(expected = StockException.class)
+    public void testRefrigSaleNotZero() throws StockException {
+        item = new Item("rice", 2, 0, 225, 300, (double) 0);
+    }
+    
+    /*
+     * Test 30 Check reorder point is positive for refrigerated item
+     * 
+     */
+    @Test(expected = StockException.class)
+    public void testRefrigPosistiveRePoint() throws StockException {
+        item = new Item("rice", 2, 3, -225, 300, (double) 0);
+    }
+    
+    /*
+     * Test 31 Check reorder amount is positive for refrigerated item
+     * 
+     */
+    @Test(expected = StockException.class)
+    public void testRefrigPosistiveReAmount() throws StockException {
+        item = new Item("rice", 2, 3, 225, -300, (double) 0);
+    }
+    
+    /*
+     * Test 32 Check reorder amount is above 0 for refrigerated item
+     * 
+     */
+    
+    @Test(expected = StockException.class)
+    public void testRefrigReAmountNotZero() throws StockException {
+        item = new Item("rice", 2, 3, 225, 0, (double) 0);
+    }
+    
+    /*
+     * Test 33 Check temperature is -20 or above for refrigerated item
+     * 
+     */
+    
+    @Test(expected = StockException.class)
+    public void testTempLow() throws StockException {
+        item = new Item("rice", 2, 3, 225, 300, (double) -21);
+    }
+    
+    /*
+     * Test 34 Check temperature is 10 or below for refrigerated item
+     * 
+     */
+    
+    @Test(expected = StockException.class)
+    public void testTempHigh() throws StockException {
+        item = new Item("rice", 2, 3, 225, 300, (double) 11);
+    }
+    
+    /*
+     * Test 35
+     * 
+     */
+    
+    @Test
+    public void testHashCode() throws StockException {
+        int hash = Objects.hash("rice");
+        item = new Item("rice", 2, 3, 225, 300, (double) 0);
+        assertEquals(hash, item.hashCode());
+    }
 	
 	
 	

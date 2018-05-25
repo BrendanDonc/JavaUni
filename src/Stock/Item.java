@@ -8,7 +8,7 @@ import java.util.Objects;
  * @author Mary Millar
  *
  */
-public class Item implements Comparable<Item>{
+public class Item {
 	
 	//Initialise variables
 	String name;
@@ -186,20 +186,6 @@ public class Item implements Comparable<Item>{
 			equal = false;
 		}
 		return equal;
-	}
-
-	/* (non-Javadoc)
-	 * @see java.lang.Comparable#compareTo(java.lang.Object)
-	 */
-	@Override
-	public int compareTo(Item otherItem) {
-		if(this.getTemp() > otherItem.getTemp()) {
-            return 1;
-		}
-        else if (this.getTemp() == otherItem.getTemp()) {
-            return 0;
-        }
-        return -1;
 	}
 
 }
