@@ -130,7 +130,14 @@ public class ManifestTest {
 		assertEquals(stringResult, manifestTest.printManifest());
 	}
 	
-	/*Test 6: Import manifest from a .csv file (we're converting .csv to strings so just use string inputs - see if test 3 matches to "manual" input/test)*/
+	/* Test 6: Convert Manifest into 'printable' format (formatted) */
+    @Test
+    public void printEmptyManifestTest() {
+        String stringResult = "";                        
+        assertEquals(stringResult, manifestTest.printManifest());
+    }
+	
+	/*Test 7: Import manifest from a .csv file (we're converting .csv to strings so just use string inputs - see if test 3 matches to "manual" input/test)*/
 	@Test
 	public void importManifest() throws DeliveryException, NumberFormatException, StockException {
 		inventory = new Stock();
@@ -145,17 +152,18 @@ public class ManifestTest {
 		String inputValue1 = "50";
 		String inputItem2 = "biscuits";
 		String inputValue2 = "30";
+
 		
 		Truck truck = manifestTest.importTruck(inputTruck);
-		truck.getCargo().addItemName(inputItem1, Integer.parseInt(inputValue1));
-		truck.getCargo().addItemName(inputItem2, Integer.parseInt(inputValue2));
+		truck.addItemName(inputItem1, Integer.parseInt(inputValue1));
+		truck.addItemName(inputItem2, Integer.parseInt(inputValue2));
 		
 		manifestTest2.addTruck(truckOrdinary);
 		
 		assertEquals(manifestTest.printManifest(), manifestTest2.printManifest());	
 	}
 	
-	/*Test 7: Generate a manifest of items that need reordering*/
+	/*Test 8: Generate a manifest of items that need reordering*/
 	@Test
 	public void generateManifest() throws StockException, DeliveryException {
 	    Store.getInstance().raiseCapital(100000.00-Store.getInstance().getCapital());
@@ -190,6 +198,19 @@ public class ManifestTest {
 		exportManifest = Manifest.manifestToExport();
 		Store.getInstance().lowerCapital(exportManifest.sumManifestCost());
 		assertEquals(42717.88, Store.getInstance().getCapital(), 0.01);
+	}
+	
+	@Test
+    public void importRefrigeratedTruck() throws DeliveryException {
+	    String truckType = "Refrigerated";
+        Truck truck = manifestTest.importTruck(truckType);
+        assertEquals(truck.getTruckType(), truckType);       
+        
+    }
+	
+	@Test (expected = DeliveryException.class)
+	public void importTruckBadName() throws DeliveryException {
+	    Truck truck = manifestTest.importTruck("a");
 	}
 	
 }

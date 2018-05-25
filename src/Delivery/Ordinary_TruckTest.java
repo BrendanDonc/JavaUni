@@ -18,6 +18,8 @@ public class Ordinary_TruckTest {
 	
 	Item iceCream;
 	
+	Stock inventory;
+	
 
 	/* Test 0: Declaring O-Truck objects */
 	Truck oTruck;
@@ -43,6 +45,12 @@ public class Ordinary_TruckTest {
 			chips = new Item("Chips", 10, 15, 200, 300);
 			
 			iceCream = new Item("Ice Cream", 10, 15, 200, 300, (double) -5);
+			
+			
+			inventory = new Stock();
+			inventory.addItem(rice, 0);
+			inventory.addItem(iceCream, 0);
+			Store.getInstance().setInventory(inventory);
 		}
 		catch (StockException badParam) {
 			fail("Ordinary Truck items failed to initialise.");
@@ -140,4 +148,43 @@ public class Ordinary_TruckTest {
 		
 		assertEquals(actualTruckType, oTruck.getTruckType());
 	}
+	
+	/* Test 12 : Gets the truck temp */
+	@Test
+	public void checkTruckTemp() throws DeliveryException {
+	    Double temp = null;
+	    
+	    assertEquals(temp, oTruck.getTemp());
+	}
+	
+	/* Test 13: Checking you are not adding negative of an item */
+	@Test (expected = StockException.class)
+	public void checkBadAddItem() throws DeliveryException, StockException {
+	    oTruck.addItem(rice, -1);
+	}
+	
+	/* Test 14: Adds an item to the truck by its name*/
+    @Test
+    public void checkAddItemName() throws DeliveryException, StockException {
+        oTruck.addItemName("Rice", 10);
+    }
+    
+    /* Test 15: Checking the items name is valid */
+    @Test (expected = StockException.class)
+    public void checkAddItemBadName() throws DeliveryException, StockException {
+        oTruck.addItemName("rice", 10);
+    }
+    
+    /* Test 16: Checking there are no temperature-controlled items in the truck */
+    @Test (expected = DeliveryException.class)
+    public void checkAddItemNameTemp() throws DeliveryException, StockException {
+        oTruck.addItemName("Ice Cream", 10);
+    }
+    
+    /* Test 17: Checking the truck cargo has not exceeded capacity */
+    @Test (expected = DeliveryException.class)
+    public void checkAddItemNameAmount() throws DeliveryException, StockException {
+        oTruck.addItemName("Rice", 1100);
+    }
+	
 }
