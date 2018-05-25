@@ -332,6 +332,8 @@ public class Stock {
      * 
      * @throws StockException
      *             The exception thrown if the item is not found in the store.
+     *             
+     * @return the Item with the input name
      */
     public static Item getItemFromName(String string) throws StockException {
         Item stringInput = null;

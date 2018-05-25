@@ -27,10 +27,10 @@ public class LoadManifest {
      * 
      * @param file
      *            String format of the file directory of a CSV formatted manifest
-     * @throws DeliveryException
-     * @throws CSVFormatException
-     * @throws IOException
-     * @throws StockException
+     * @throws DeliveryException when called methods throw a DeliveryException
+     * @throws CSVFormatException when CSV has incorrect amount of fields, tries to load items before a truck or does not exist
+     * @throws IOException when called methods throw an IOException
+     * @throws StockException when called methods throw a StockException
      */
     public static void LoadManifestCSV(String file)
             throws DeliveryException, CSVFormatException, IOException, StockException {

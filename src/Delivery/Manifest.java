@@ -36,7 +36,7 @@ public class Manifest {
     /**
      * Add a truck to the manifest's list
      * 
-     * @param truck
+     * @param truck Truck to ba added to the manifest
      * @author Brendan Doncaster
      */
     public void addTruck(Truck truck) {

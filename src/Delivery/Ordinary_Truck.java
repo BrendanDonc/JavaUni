@@ -16,7 +16,7 @@ import Stock.*;
  * cargo(Stock)
  * 
  * @see Truck
- * @see Refrigerate_Truck
+ * @see Refrigerated_Truck
  * @author Brendan Doncaster
  */
 public class Ordinary_Truck extends Truck {
@@ -25,7 +25,7 @@ public class Ordinary_Truck extends Truck {
      * Constructor method for an ordinary truck
      * 
      * @see Truck
-     * @see Refrigerate_Truck
+     * @see Refrigerated_Truck
      * @author Brendan Doncaster
      */
     public Ordinary_Truck() {
