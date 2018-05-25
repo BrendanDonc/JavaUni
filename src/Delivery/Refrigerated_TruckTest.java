@@ -16,6 +16,9 @@ public class Refrigerated_TruckTest {
 	Item yoghurt;
 	Item chicken;
 	Item peas;
+	Item rice;
+	
+	Stock inventory;
 
 	/* Test 0: Declaring R-Truck objects */
 	Truck rTruck;
@@ -34,9 +37,16 @@ public class Refrigerated_TruckTest {
 		yoghurt = new Item("Yoghurt", 10, 15, 200, 300, (double) 2);
 		chicken = new Item("Chicken", 10, 15, 200, 300, (double) -2);
 		
+		rice = new Item("Rice", 10, 15, 200, 300);
+		
 		rTruck = new Refrigerated_Truck();
 		rTruck_02 = new Refrigerated_Truck();
 		rTruck_03 = new Refrigerated_Truck();
+		
+		inventory = new Stock();
+        inventory.addItem(rice, 0);
+        inventory.addItem(iceCream, 0);
+        Store.getInstance().setInventory(inventory);
 	}
 	
 	/* Test 2: Add one kind of item to truck cargo */
@@ -150,5 +160,45 @@ public class Refrigerated_TruckTest {
 		
 		assertEquals(actualTruckType, rTruck.getTruckType());
 	}
+	
+	/* Test 14: Adds an item to the truck by its name*/
+    @Test
+    public void checkAddItemName() throws DeliveryException, StockException {
+        rTruck.addItemName("Rice", 10);
+    }
+    
+    /* Test 15: Checking the items name is valid */
+    @Test (expected = StockException.class)
+    public void checkAddItemBadName() throws DeliveryException, StockException {
+        rTruck.addItemName("rice", 10);
+    }
+
+    /* Test 16: Checking the truck cargo has not exceeded capacity */
+    @Test (expected = DeliveryException.class)
+    public void checkAddItemNameAmount() throws DeliveryException, StockException {
+        rTruck.addItemName("Rice", 1100);
+    }
+    
+    /* Test 17: Checking the truck has a refrigerated item before returning temperature */
+    @Test (expected = DeliveryException.class)
+    public void checkTempWithoutTemp() throws DeliveryException, StockException {
+        Truck oTruck = new Refrigerated_Truck();
+        oTruck.addItem(rice, 0);
+        oTruck.getTemp();
+    }
+    
+    /* Test 18: Checking the truck has a refrigerated item before calculating the cost */
+    @Test (expected = DeliveryException.class)
+    public void checkCostWithoutTemp() throws DeliveryException, StockException {
+        Truck oTruck = new Refrigerated_Truck();
+        oTruck.addItem(rice, 0);
+        oTruck.truckCost();
+    }
+    
+    /* Test 19: Checking the truck cargo has not exceeded capacity */
+    @Test (expected = DeliveryException.class)
+    public void checkAddItemAmount() throws DeliveryException, StockException {
+        rTruck.addItem(pork, 810);
+    }
 	
 }
