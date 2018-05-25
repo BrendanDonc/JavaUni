@@ -1,0 +1,1530 @@
+Brendan Doncaster (94):
+      Java project setup
+      Initial class setip
+      README.md created online with Bitbucket with google drive link
+      Created basic method implementation tests for the Item class
+      fixing .gitignore
+      Remove /bin/ from repos (not needed in online repos, only local)
+      Created basic method implementation tests for the Stock class
+      Project package organisation
+      Additional class and package setup
+      Created basic method implementation tests for the Store class
+      Added exception tests to ItemTest
+      Fixed minor errors and added exception tests plus extra method tests to StockTest
+      Changing from Junit 5 to Junit 4 (Assignment FAQ said use 4)
+      Fixed assertEquals error
+      woops
+      Fixed testRefrigerated
+      Starter method stubs for truck
+      imported stock
+      imported all of stock
+      fixed double wrapping in tests
+      Fixed minor errors and changed Double.valueof() to (double) in Item, Store and Stock test
+      Added extra stock test
+      Implementation of truck abstract class
+      Implementation of ordinary truck class
+      Implementation of refrigerated truck class
+      Corrected wrong exception throwing
+      Added throws StockException to all tests that contain making an item (since item constructor will throw an exception when invalid item is attempted)
+      Added throws StockException to relevant test classes
+      Rename getColdestTemp to getTemp and getCapacity to truckCapacity
+      fixed Item setup in stock test
+      Merge branch 'master' of https://bitbucket.org/ojones21/cab302_g04
+      Added three more tests to StockTest
+      Added tests for equals in ItemTest (plus comment fix for stocktest)
+      Fixed errors in StockTest
+      Fixed another error in StockTest
+      Updated getTemp for truck and refrig truck
+      Added new exception throws to tests to keep them working
+      Added manifest methods
+      Added import truck from a string method to truck
+      Fixed tests testGetCapitalString and testLowerCapital in StoreTest
+      Fixed testGetInventory() and inventory setup in StoreTest
+      fixed testGetInventory (thought the instance wouldnt reset throughout tests, may just be run in incorrect order)
+      Swapped importTruck from Truck class to Manifest
+      Fixed returnManifest and importTruck in manifest
+      Added exception strings to thrown exceptions for both truck classes
+      Uncommented part of stockTest that needs store
+      Merge branch 'master' of https://bitbucket.org/ojones21/cab302_g04
+      Fixed minor errors in truck tests
+      Fixed calculation error for refrigeration truck
+      added throws to stocktest
+      StockTest fix
+      Merge branch 'master' of https://bitbucket.org/ojones21/cab302_g04
+      fixed false and true errors from stocktest
+      Fixed manifest nullpointer error
+      Fixed store test
+      Fixed capital formatting and added clearStock to help with testing
+      Fixed minor test errors and added getRemainingCapacity to truck
+      Fixed math & capacity error for ordinary truck, fixed null pointer error for when adding an ordinary item to a refregerated truck
+      fixed < needing to be > for checking if reordering is needed, altered getListCold to be more friendly
+      Started export manifest csv and added extra methods for its use into manifest plus added tests for the method in manifestTest
+      Completed ExportManifest and added a small verfication test to ManifestTest
+      ExportManifest made ready for when directory has to be chosen
+      Completed initializeItems and made CSVTest for manual testing success of csv reading and parsing
+      Fixed exception handling for delivery classes
+      Made csv methods allow for file input for file selection from gui
+      Fixed exception handling in CSV classes
+      Completed LoadSales
+      Removed debug code from store
+      Fixed stockTest break from extra exceptions
+      Completed LoadManifest and CSVTest with test being successful
+      Removed CSV debugging from ManifestTest
+      Removed unused imports
+      Added javadoc commenting to all truck classes
+      Fixed missed javadoc
+      Started javadoc for manifest
+      Added outputting current line in first CSV exception of InitializeItems (already modified it to demonstrate so may aswell push it)
+      Added current exception line to csv reading
+      Made all tests that use getCapital() to work when all tests are run at once
+      Finalised outputting line in csv exception calling
+      Split addItemName in stock to allow returning the item, used this to implement addItemName to Trucks and subsequently fix LoadManifest not throwing exceptions for bad items added to trucks
+      Moved test data to a folder and added extra test data
+      Finished all delivery Javadocs
+      Authorship comments for tests within Stock
+      Added javadoc to all CSV files and changed a DeliveryException to a CSVFormatException
+      Added missing stock exception throws to tests
+      Changes to tests since item temp is now checked in Item
+      Completed Item 100% coverage
+      Stock test as close to 100% coverage as possible
+      Ordinary Truck to 100% coverage and Manifest as close to 100% as should be needed
+      Refrigerated Truck Test as close to 100% coverage as possible and removed coding test classes
+      Changed all tab indentation to be space indentation (as of CAB302 Code Quality Guide)
+      File context comment and wildcard imports/remove unused imports for project
+      Fixed javadoc comments
+      Generated JavaDoc for project
+
+Mary Millar (57):
+      this is a test file
+      removed test files
+      added test java file
+      added test java file 2:39pm
+      removed test java file
+      added a few refrigerated truck tests
+      Updated test class for Refrigerated_Truck, added test class for Ordinary_Truck
+      Updated Ordinary_Truck and Refrigerated_Truck Test classes, began Manifest Test class
+      Finished Item main class, updated Manifest tests
+      Updated Item Test class
+      Merge branch 'master' of https://ojones21@bitbucket.org/ojones21/cab302_g04.git
+      Updated Manifest Test class
+      Fixed Truck abstract class reference, edited main Item class
+      Edited Manifest test class, edited Refrigerated and Ordinary Truck test classes
+      Updated Manifest test class
+      Added exceptions to both Truck test classes, along with other edits
+      Made edits to the Manifest and both Truck test classes, began Stock 'main' class
+      Made edits to Manifest test class and both Truck test classes
+      Continued work on the Stock 'main' class
+      Added some @Override methods for equals() and hashCode() to Item, edited the Stock 'main' class
+      Edited the Item and Stock 'main' classes
+      Cleaned up debugging part of code for the Stock 'main' class
+      Continued work on 'main' Stock class, made edits to the Item 'main' class
+      Edited Stock 'main' class + cleaned up debugging code
+      Adjusted some assertEquals method paramenters to allow for Doubles, began work on the store 'main' class
+      Cleaned up debugging in the Store 'main' class
+      Updated Stock 'main' class, updated Manifest test class
+      Fixed method errors in Stock and Store main classes
+      Added exception to Store 'main' class
+      Edited several getColdestTemp() and addItemName() in Stock main class
+      Added more methods to Stock 'main' class [validSubtractItem()]
+      Added new methods to Stock 'main' class
+      Handled Exceptions in Stock, Store, and both Truck test classes, also fixed exception handling in Item and Stock 'main' classes
+      Began basic implementation of GUI - design & basic table structure
+      Created a working 'Load Item Properties Doc' button - assumed successful, ability to display stock TBD
+      Created working populated store inventory; working empty inventory TBD
+      Created working 'export manifest' button
+      Implemented the 'load manifest' functionality in GUI (incl. updated capital + updated store inventory)
+      Added 'Load Sales Log' button functionality to GUI, edited validSubtractItem() error message in Stock.java to add clarification when debugging
+      Removed unnecessary print-line's from GUI code
+      Fixed file directory bug in GUI that caused an error to be produced if chosen files (like sales log & manifest) were not located in the project directory
+      For GUI: Added error pop-up when trying to view empty inventory, got rid of error pop-up when cancelling a file save/selection
+      Added relevant javadoc information to the Item class
+      Made semantic update to Item javadoc comments, added javadoc comments to Stock
+      Updated the name of the GUI application from "SuperMart's Stock Manager" to "SuperMart's Inventory Management Application". Added javadoc documentation to Store
+      Fixed null pointer exception in GUI when loading a manifest/sales log before viewing table inventory
+      Edited Jtable bug in GUI
+      Removed uneccessary bug-causing line of code
+      Edited error messages for subtractItem() in Stock
+      Added failsafe for file extension for exporting the manifest in GUI
+      Merge branch 'master' of https://ojones21@bitbucket.org/ojones21/cab302_g04.git
+      Finished off javadoc documentation in GUI
+      Handled the lack of error when attempting to load/export manifest or load sales log before items in store had been initialised
+      Got rid of 'no items in inventory' pop-up that would appear after adding a bad item prop doc in GUI
+      Made slight edits to error messages in InitalizeItems.java
+      Made slight edits to error messages in InitalizeItems.java. Added new exceptions to Stock and Store to handle a negative quantity value. Added some new .csv files for GUI testing
+      Added exception handling for invalid item quantity in Stock to Truck + Ordinary_Truck + Refrigerated_Truck
+
+Orion Jones (1):
+      README.md created online with Bitbucket [TEST]
+
+* 7188be1 Generated JavaDoc for project
+* 8e08355 Fixed javadoc comments
+* cf38bff File context comment and wildcard imports/remove unused imports for project
+* 6696d2e Changed all tab indentation to be space indentation (as of CAB302 Code Quality Guide)
+* 191d9c1 Refrigerated Truck Test as close to 100% coverage as possible and removed coding test classes
+* e67a501 Ordinary Truck to 100% coverage and Manifest as close to 100% as should be needed
+* b5355df Stock test as close to 100% coverage as possible
+* 9d6819c Completed Item 100% coverage
+* afd83e9 Changes to tests since item temp is now checked in Item
+* c2e4b80 Added missing stock exception throws to tests
+* 9696cdd Added exception handling for invalid item quantity in Stock to Truck + Ordinary_Truck + Refrigerated_Truck
+* 86d5a0e Made slight edits to error messages in InitalizeItems.java. Added new exceptions to Stock and Store to handle a negative quantity value. Added some new .csv files for GUI testing
+* 3f8bd86 Made slight edits to error messages in InitalizeItems.java
+* 2decec8 Got rid of 'no items in inventory' pop-up that would appear after adding a bad item prop doc in GUI
+* fa0b822 Handled the lack of error when attempting to load/export manifest or load sales log before items in store had been initialised
+* a6808f5 Finished off javadoc documentation in GUI
+*   577d76f Merge branch 'master' of https://ojones21@bitbucket.org/ojones21/cab302_g04.git
+|\  
+| * 376e040 Added javadoc to all CSV files and changed a DeliveryException to a CSVFormatException
+| * e04853e Authorship comments for tests within Stock
+| * b3754dc Finished all delivery Javadocs
+| * 5628860 Moved test data to a folder and added extra test data
+| * d48bb4b Split addItemName in stock to allow returning the item, used this to implement addItemName to Trucks and subsequently fix LoadManifest not throwing exceptions for bad items added to trucks
+| * c4671a3 Finalised outputting line in csv exception calling
+| * f3fc21a Made all tests that use getCapital() to work when all tests are run at once
+| * a2fb81a Added current exception line to csv reading
+* | ce8560f Added failsafe for file extension for exporting the manifest in GUI
+|/  
+* 8234392 Edited error messages for subtractItem() in Stock
+* 3912e90 Removed uneccessary bug-causing line of code
+* c8c86c6 Edited Jtable bug in GUI
+* 08234f3 Fixed null pointer exception in GUI when loading a manifest/sales log before viewing table inventory
+* e34bb64 Updated the name of the GUI application from "SuperMart's Stock Manager" to "SuperMart's Inventory Management Application". Added javadoc documentation to Store
+* 125f139 Made semantic update to Item javadoc comments, added javadoc comments to Stock
+* 4c65896 Added relevant javadoc information to the Item class
+* eccdab8 For GUI: Added error pop-up when trying to view empty inventory, got rid of error pop-up when cancelling a file save/selection
+* bb98552 Fixed file directory bug in GUI that caused an error to be produced if chosen files (like sales log & manifest) were not located in the project directory
+* e9033ca Removed unnecessary print-line's from GUI code
+* c13663a Added 'Load Sales Log' button functionality to GUI, edited validSubtractItem() error message in Stock.java to add clarification when debugging
+* d723e93 Added outputting current line in first CSV exception of InitializeItems (already modified it to demonstrate so may aswell push it)
+* 6ac6187 Implemented the 'load manifest' functionality in GUI (incl. updated capital + updated store inventory)
+* 9f3dead Created working 'export manifest' button
+* c5801f3 Created working populated store inventory; working empty inventory TBD
+* f4ae4be Started javadoc for manifest
+* 5f3e911 Fixed missed javadoc
+* 125963a Added javadoc commenting to all truck classes
+* 4a06e4b Removed unused imports
+* 63b0404 Removed CSV debugging from ManifestTest
+* 7d124f8 Created a working 'Load Item Properties Doc' button - assumed successful, ability to display stock TBD
+* d871231 Began basic implementation of GUI - design & basic table structure
+* d53e5a2 Completed LoadManifest and CSVTest with test being successful
+* 19a7f3e Fixed stockTest break from extra exceptions
+* e23db7d Removed debug code from store
+* 3c7458e Completed LoadSales
+* 364d9c4 Fixed exception handling in CSV classes
+* a37aca1 Made csv methods allow for file input for file selection from gui
+* a6c16c0 Fixed exception handling for delivery classes
+* 38111e8 Completed initializeItems and made CSVTest for manual testing success of csv reading and parsing
+* 0e16b20 ExportManifest made ready for when directory has to be chosen
+* c23e9f1 Completed ExportManifest and added a small verfication test to ManifestTest
+* 5db746a Handled Exceptions in Stock, Store, and both Truck test classes, also fixed exception handling in Item and Stock 'main' classes
+* a95324e Started export manifest csv and added extra methods for its use into manifest plus added tests for the method in manifestTest
+* caf856f fixed < needing to be > for checking if reordering is needed, altered getListCold to be more friendly
+* ff48011 Fixed math & capacity error for ordinary truck, fixed null pointer error for when adding an ordinary item to a refregerated truck
+* 065dbb0 Fixed minor test errors and added getRemainingCapacity to truck
+* 9468446 Fixed capital formatting and added clearStock to help with testing
+* e322364 Fixed store test
+* 9fefbbf Added new methods to Stock 'main' class
+* 4e79d47 Fixed manifest nullpointer error
+* f1ed301 fixed false and true errors from stocktest
+* 7561a14 Added more methods to Stock 'main' class [validSubtractItem()]
+* bf46039 Edited several getColdestTemp() and addItemName() in Stock main class
+*   eb6abde Merge branch 'master' of https://bitbucket.org/ojones21/cab302_g04
+|\  
+| * a41ff56 Added exception to Store 'main' class
+* | 7bf7ddf StockTest fix
+|/  
+* 825a2d6 added throws to stocktest
+* 2deba46 Fixed method errors in Stock and Store main classes
+* efc62dc Fixed calculation error for refrigeration truck
+* 8488cb9 Fixed minor errors in truck tests
+* ae397ea Updated Stock 'main' class, updated Manifest test class
+*   55745d9 Merge branch 'master' of https://bitbucket.org/ojones21/cab302_g04
+|\  
+| * e772769 Cleaned up debugging in the Store 'main' class
+* | cebcfc4 Uncommented part of stockTest that needs store
+|/  
+* 54633e3 Added exception strings to thrown exceptions for both truck classes
+* d22e293 Fixed returnManifest and importTruck in manifest
+* 8541482 Swapped importTruck from Truck class to Manifest
+* c79e08b fixed testGetInventory (thought the instance wouldnt reset throughout tests, may just be run in incorrect order)
+* d9bad8f Fixed testGetInventory() and inventory setup in StoreTest
+* 15ae3c8 Fixed tests testGetCapitalString and testLowerCapital in StoreTest
+* 6ffff57 Adjusted some assertEquals method paramenters to allow for Doubles, began work on the store 'main' class
+* 3239341 Edited Stock 'main' class + cleaned up debugging code
+* e31764e Added import truck from a string method to truck
+* 6e98b26 Added manifest methods
+* 7b5c864 Added new exception throws to tests to keep them working
+* 58cac80 Updated getTemp for truck and refrig truck
+* e59ac33 Fixed another error in StockTest
+* c8f1af1 Fixed errors in StockTest
+* b4be0ce Continued work on 'main' Stock class, made edits to the Item 'main' class
+* d47b022 Added tests for equals in ItemTest (plus comment fix for stocktest)
+* 77f36bb Added three more tests to StockTest
+* 21e1ab4 Cleaned up debugging part of code for the Stock 'main' class
+*   754f622 Merge branch 'master' of https://bitbucket.org/ojones21/cab302_g04
+|\  
+| * 1619e1f Edited the Item and Stock 'main' classes
+* | 66771be fixed Item setup in stock test
+|/  
+* e08e1db Added some @Override methods for equals() and hashCode() to Item, edited the Stock 'main' class
+* 0b7baa5 Continued work on the Stock 'main' class
+* 256029a Rename getColdestTemp to getTemp and getCapacity to truckCapacity
+* 46abeb6 Made edits to Manifest test class and both Truck test classes
+* 144f791 Made edits to the Manifest and both Truck test classes, began Stock 'main' class
+* ad2abcd Added exceptions to both Truck test classes, along with other edits
+* 880400c Added throws StockException to relevant test classes
+* acb0a33 Added throws StockException to all tests that contain making an item (since item constructor will throw an exception when invalid item is attempted)
+* b901ab0 Corrected wrong exception throwing
+* fb883d6 Updated Manifest test class
+* 9eecd3f Implementation of refrigerated truck class
+* ce79fea Implementation of ordinary truck class
+* 1a02439 Implementation of truck abstract class
+* 3587983 Added extra stock test
+* 4b8a117 Fixed minor errors and changed Double.valueof() to (double) in Item, Store and Stock test
+* f8b133b Edited Manifest test class, edited Refrigerated and Ordinary Truck test classes
+* 4e4b453 fixed double wrapping in tests
+* 6986f8f imported all of stock
+* c111a5d imported stock
+* 6a1b0db Starter method stubs for truck
+* 5df1d87 Fixed testRefrigerated
+* ba349cd Fixed Truck abstract class reference, edited main Item class
+* e2fa46a woops
+* 1a4a10a Fixed assertEquals error
+* 8f9fb98 Updated Manifest Test class
+*   96d4619 Merge branch 'master' of https://ojones21@bitbucket.org/ojones21/cab302_g04.git
+|\  
+| * b3c143d Changing from Junit 5 to Junit 4 (Assignment FAQ said use 4)
+| * facc11d Fixed minor errors and added exception tests plus extra method tests to StockTest
+| * 6f33c16 Added exception tests to ItemTest
+| * 7de4b96 Created basic method implementation tests for the Store class
+* | 4afd5a3 Updated Item Test class
+* | 217fbad Finished Item main class, updated Manifest tests
+|/  
+* ea7c6f6 Updated Ordinary_Truck and Refrigerated_Truck Test classes, began Manifest Test class
+* ac5873d Additional class and package setup
+* c1da069 Project package organisation
+* 3d0cd4a Updated test class for Refrigerated_Truck, added test class for Ordinary_Truck
+* 92bf98d Created basic method implementation tests for the Stock class
+* 8e977d6 Remove /bin/ from repos (not needed in online repos, only local)
+* b822311 fixing .gitignore
+* 24d26f2 Created basic method implementation tests for the Item class
+* b7af85a added a few refrigerated truck tests
+* b0c744c README.md created online with Bitbucket with google drive link
+* 96922f2 Initial class setip
+* bcf195f removed test java file
+* 2fc9ba3 added test java file 2:39pm
+* 5c36d32 added test java file
+* 1f81a00 Java project setup
+* 35a4bc0 removed test files
+* f73db59 this is a test file
+* 2cb7a27 README.md created online with Bitbucket [TEST]
+commit 7188be1551c68dd40d04ba5bd9f10008cc2a5db5
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Fri May 25 20:33:41 2018 +1000
+
+    Generated JavaDoc for project
+
+ 90 files changed, 21402 insertions(+)
+
+commit 8e083559280725572c65b6c6905a4f15c44a1d2a
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Fri May 25 20:33:16 2018 +1000
+
+    Fixed javadoc comments
+
+ 5 files changed, 9 insertions(+), 9 deletions(-)
+
+commit cf38bff6fae586d380066f5f6367d226a1043236
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Fri May 25 20:06:51 2018 +1000
+
+    File context comment and wildcard imports/remove unused imports for project
+
+ 22 files changed, 187 insertions(+), 52 deletions(-)
+
+commit 6696d2eafdcf588bd3407a8aa0cf2380240f91d8
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Fri May 25 19:48:07 2018 +1000
+
+    Changed all tab indentation to be space indentation (as of CAB302 Code Quality Guide)
+
+ 22 files changed, 3675 insertions(+), 3540 deletions(-)
+
+commit 191d9c1996f93293c2a3ad64a5fc17db04bd7b67
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Fri May 25 19:45:13 2018 +1000
+
+    Refrigerated Truck Test as close to 100% coverage as possible and removed coding test classes
+
+ 3 files changed, 50 insertions(+), 19 deletions(-)
+
+commit e67a501e9482b153f2003c25f83f5455bc3752a0
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Fri May 25 16:51:55 2018 +1000
+
+    Ordinary Truck to 100% coverage and Manifest as close to 100% as should be needed
+
+ 2 files changed, 72 insertions(+), 4 deletions(-)
+
+commit b5355dfd64c660632de78edb9ec3bbaea86bc85f
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Fri May 25 16:23:19 2018 +1000
+
+    Stock test as close to 100% coverage as possible
+
+ 2 files changed, 14 insertions(+), 6 deletions(-)
+
+commit 9d6819c8c87137ce894bcfd412f57edc6e357ef3
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Fri May 25 15:42:56 2018 +1000
+
+    Completed Item 100% coverage
+
+ 2 files changed, 101 insertions(+), 15 deletions(-)
+
+commit afd83e925a00934ca50f957f25b8e7a25c126742
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Fri May 25 15:28:08 2018 +1000
+
+    Changes to tests since item temp is now checked in Item
+
+ 2 files changed, 10 insertions(+), 15 deletions(-)
+
+commit c2e4b806f6408025e8d803b4eab7b2265f404317
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Fri May 25 15:20:06 2018 +1000
+
+    Added missing stock exception throws to tests
+
+ 4 files changed, 21 insertions(+), 21 deletions(-)
+
+commit 9696cdd22e4413439f0b0b53fcc4ef98ca892950
+Author: Mary Millar <mary.millar@connect.qut.edu.au>
+Date:   Thu May 24 23:37:21 2018 +1000
+
+    Added exception handling for invalid item quantity in Stock to Truck + Ordinary_Truck + Refrigerated_Truck
+
+ 3 files changed, 16 insertions(+), 5 deletions(-)
+
+commit 86d5a0e843f6675d3c34e80fca284970315dea32
+Author: Mary Millar <mary.millar@connect.qut.edu.au>
+Date:   Thu May 24 23:11:18 2018 +1000
+
+    Made slight edits to error messages in InitalizeItems.java. Added new exceptions to Stock and Store to handle a negative quantity value. Added some new .csv files for GUI testing
+
+ 7 files changed, 122 insertions(+), 72 deletions(-)
+
+commit 3f8bd86d012b66f7cc21f590aace7b4a92f84709
+Author: Mary Millar <mary.millar@connect.qut.edu.au>
+Date:   Thu May 24 23:08:38 2018 +1000
+
+    Made slight edits to error messages in InitalizeItems.java
+
+ 4 files changed, 34 insertions(+), 19 deletions(-)
+
+commit 2decec8ddc76f73535cfa8ebed0ab5605bd1428b
+Author: Mary Millar <mary.millar@connect.qut.edu.au>
+Date:   Thu May 24 13:19:49 2018 +1000
+
+    Got rid of 'no items in inventory' pop-up that would appear after adding a bad item prop doc in GUI
+
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit fa0b822de3d7680ff81fe2cbe4442aa058bca6dc
+Author: Mary Millar <mary.millar@connect.qut.edu.au>
+Date:   Thu May 24 11:43:09 2018 +1000
+
+    Handled the lack of error when attempting to load/export manifest or load sales log before items in store had been initialised
+
+ 1 file changed, 66 insertions(+), 51 deletions(-)
+
+commit a6808f53f9284a4a3795f00a76159eceaaa32b59
+Author: Mary Millar <mary.millar@connect.qut.edu.au>
+Date:   Thu May 24 11:11:31 2018 +1000
+
+    Finished off javadoc documentation in GUI
+
+ 1 file changed, 30 insertions(+), 6 deletions(-)
+
+commit 577d76f8fa8f845a684df05f511d5a4fbb4f01f9
+Merge: ce8560f 376e040
+Author: Mary Millar <mary.millar@connect.qut.edu.au>
+Date:   Thu May 24 10:02:04 2018 +1000
+
+    Merge branch 'master' of https://ojones21@bitbucket.org/ojones21/cab302_g04.git
+
+commit ce8560fcaf13384fe74c8984987800a0f8b1d8f8
+Author: Mary Millar <mary.millar@connect.qut.edu.au>
+Date:   Thu May 24 10:01:30 2018 +1000
+
+    Added failsafe for file extension for exporting the manifest in GUI
+
+ 1 file changed, 9 insertions(+), 10 deletions(-)
+
+commit 376e04029c43f1d949e94cbf26935767c8605884
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Thu May 24 02:10:17 2018 +1000
+
+    Added javadoc to all CSV files and changed a DeliveryException to a CSVFormatException
+
+ 8 files changed, 136 insertions(+), 32 deletions(-)
+
+commit e04853e6551aed8cc6d2d970119ce25382d4c65a
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Thu May 24 00:56:41 2018 +1000
+
+    Authorship comments for tests within Stock
+
+ 3 files changed, 6 insertions(+)
+
+commit b3754dc2bd006fa59e4b71fa3703b044bcd0fe89
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Thu May 24 00:53:24 2018 +1000
+
+    Finished all delivery Javadocs
+
+ 6 files changed, 73 insertions(+), 8 deletions(-)
+
+commit 5628860fcafbf31e281d7499fd403092b071ab41
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Thu May 24 00:31:18 2018 +1000
+
+    Moved test data to a folder and added extra test data
+
+ 17 files changed, 219 insertions(+), 18 deletions(-)
+
+commit d48bb4bbc0d5310166a60240270ad0184d3520e5
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Thu May 24 00:30:55 2018 +1000
+
+    Split addItemName in stock to allow returning the item, used this to implement addItemName to Trucks and subsequently fix LoadManifest not throwing exceptions for bad items added to trucks
+
+ 5 files changed, 79 insertions(+), 12 deletions(-)
+
+commit c4671a370c8df50584518afec5fa933cc6e8a3a2
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Wed May 23 19:02:40 2018 +1000
+
+    Finalised outputting line in csv exception calling
+
+ 3 files changed, 5 insertions(+), 5 deletions(-)
+
+commit f3fc21a72c9f3a081c399ba39c687d6c17bb9acc
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Wed May 23 18:39:11 2018 +1000
+
+    Made all tests that use getCapital() to work when all tests are run at once
+
+ 3 files changed, 34 insertions(+), 18 deletions(-)
+
+commit a2fb81a26d8dcc9cb4aa175d169064a69f0dbe25
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Wed May 23 17:47:32 2018 +1000
+
+    Added current exception line to csv reading
+
+ 2 files changed, 8 insertions(+), 4 deletions(-)
+
+commit 823439262e2b1862717058f1fac85345be82e470
+Author: Mary Millar <mary.millar@connect.qut.edu.au>
+Date:   Wed May 23 17:29:29 2018 +1000
+
+    Edited error messages for subtractItem() in Stock
+
+ 1 file changed, 3 insertions(+), 7 deletions(-)
+
+commit 3912e900ece3716666d7bb05ccb5e3b68d40f1ce
+Author: Mary Millar <mary.millar@connect.qut.edu.au>
+Date:   Wed May 23 17:11:43 2018 +1000
+
+    Removed uneccessary bug-causing line of code
+
+ 1 file changed, 1 deletion(-)
+
+commit c8c86c6b2184d8d27088f1bb3ef471c526c83e43
+Author: Mary Millar <mary.millar@connect.qut.edu.au>
+Date:   Wed May 23 16:57:59 2018 +1000
+
+    Edited Jtable bug in GUI
+
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 08234f3399250d38a81cdf141f09fbe22c0f84ae
+Author: Mary Millar <mary.millar@connect.qut.edu.au>
+Date:   Wed May 23 16:41:40 2018 +1000
+
+    Fixed null pointer exception in GUI when loading a manifest/sales log before viewing table inventory
+
+ 1 file changed, 74 insertions(+), 22 deletions(-)
+
+commit e34bb647c4b1e18e54738f23396812288f8bc7da
+Author: Mary Millar <mary.millar@connect.qut.edu.au>
+Date:   Wed May 23 15:36:09 2018 +1000
+
+    Updated the name of the GUI application from "SuperMart's Stock Manager" to "SuperMart's Inventory Management Application". Added javadoc documentation to Store
+
+ 2 files changed, 57 insertions(+), 15 deletions(-)
+
+commit 125f1396bac72a935518fcf5ba83f95ada6179a7
+Author: Mary Millar <mary.millar@connect.qut.edu.au>
+Date:   Mon May 21 22:06:45 2018 +1000
+
+    Made semantic update to Item javadoc comments, added javadoc comments to Stock
+
+ 2 files changed, 133 insertions(+), 17 deletions(-)
+
+commit 4c65896afbc7730e25d702cff95ff32cfe72cf9f
+Author: Mary Millar <mary.millar@connect.qut.edu.au>
+Date:   Mon May 21 21:20:05 2018 +1000
+
+    Added relevant javadoc information to the Item class
+
+ 1 file changed, 85 insertions(+)
+
+commit eccdab83392e6ea885c2ad036a211519bc885c36
+Author: Mary Millar <mary.millar@connect.qut.edu.au>
+Date:   Mon May 21 20:42:03 2018 +1000
+
+    For GUI: Added error pop-up when trying to view empty inventory, got rid of error pop-up when cancelling a file save/selection
+
+ 1 file changed, 40 insertions(+), 30 deletions(-)
+
+commit bb985527ebb0725a66d48405c4a9480d02086fca
+Author: Mary Millar <mary.millar@connect.qut.edu.au>
+Date:   Sun May 20 21:39:57 2018 +1000
+
+    Fixed file directory bug in GUI that caused an error to be produced if chosen files (like sales log & manifest) were not located in the project directory
+
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit e9033ca8736387d9184c201f2b2720df26333385
+Author: Mary Millar <mary.millar@connect.qut.edu.au>
+Date:   Sun May 20 21:22:37 2018 +1000
+
+    Removed unnecessary print-line's from GUI code
+
+ 1 file changed, 1 insertion(+), 10 deletions(-)
+
+commit c13663a3df2b607861321d7752eb67daabf03302
+Author: Mary Millar <mary.millar@connect.qut.edu.au>
+Date:   Sun May 20 21:08:17 2018 +1000
+
+    Added 'Load Sales Log' button functionality to GUI, edited validSubtractItem() error message in Stock.java to add clarification when debugging
+
+ 2 files changed, 32 insertions(+), 32 deletions(-)
+
+commit d723e936c926a95ed95ebd090fd035cf0a7d5d30
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Sun May 20 19:22:32 2018 +1000
+
+    Added outputting current line in first CSV exception of InitializeItems (already modified it to demonstrate so may aswell push it)
+
+ 2 files changed, 27 insertions(+), 4 deletions(-)
+
+commit 6ac61871cbcc0bb03026428c8151fff6a0c151ba
+Author: Mary Millar <mary.millar@connect.qut.edu.au>
+Date:   Sun May 20 14:15:53 2018 +1000
+
+    Implemented the 'load manifest' functionality in GUI (incl. updated capital + updated store inventory)
+
+ 1 file changed, 36 insertions(+), 5 deletions(-)
+
+commit 9f3dead32887ff4938bbdafc616f964b79984455
+Author: Mary Millar <mary.millar@connect.qut.edu.au>
+Date:   Sun May 20 13:30:18 2018 +1000
+
+    Created working 'export manifest' button
+
+ 1 file changed, 48 insertions(+), 35 deletions(-)
+
+commit c5801f3b9022d276c030629669d79e7ff9bc10b7
+Author: Mary Millar <mary.millar@connect.qut.edu.au>
+Date:   Sun May 20 11:53:22 2018 +1000
+
+    Created working populated store inventory; working empty inventory TBD
+
+ 1 file changed, 44 insertions(+), 23 deletions(-)
+
+commit f4ae4be7030e6ae52600c329d0221a152d98a63f
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Sat May 19 14:15:43 2018 +1000
+
+    Started javadoc for manifest
+
+ 1 file changed, 41 insertions(+), 6 deletions(-)
+
+commit 5f3e91196ba421d0d4d83d7b06fdaa07848a6c99
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Sat May 19 14:08:53 2018 +1000
+
+    Fixed missed javadoc
+
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit 125963a9ffeff40804e877d4b1e995ea546324d4
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Sat May 19 14:03:32 2018 +1000
+
+    Added javadoc commenting to all truck classes
+
+ 4 files changed, 134 insertions(+), 2 deletions(-)
+
+commit 4a06e4b2628046d09ec679f8e3f6e59d96a4f897
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Sat May 19 13:37:03 2018 +1000
+
+    Removed unused imports
+
+ 5 files changed, 9 insertions(+), 42 deletions(-)
+
+commit 63b0404801a5c69508e21cfe2f60c00489376aaa
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Sat May 19 12:44:38 2018 +1000
+
+    Removed CSV debugging from ManifestTest
+
+ 1 file changed, 4 deletions(-)
+
+commit 7d124f8119f5c8ca12153999002841d5bc632cc3
+Author: Mary Millar <mary.millar@connect.qut.edu.au>
+Date:   Thu May 17 22:23:37 2018 +1000
+
+    Created a working 'Load Item Properties Doc' button - assumed successful, ability to display stock TBD
+
+ 1 file changed, 67 insertions(+), 12 deletions(-)
+
+commit d87123108297a2a97cb9d9586865c1fa6d388122
+Author: Mary Millar <mary.millar@connect.qut.edu.au>
+Date:   Thu May 17 20:29:56 2018 +1000
+
+    Began basic implementation of GUI - design & basic table structure
+
+ 1 file changed, 270 insertions(+)
+
+commit d53e5a288e2041f2488e1ba59d4774cc651258a9
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Thu May 17 19:17:04 2018 +1000
+
+    Completed LoadManifest and CSVTest with test being successful
+
+ 7 files changed, 264 insertions(+), 35 deletions(-)
+
+commit 19a7f3e771a462eeeff740eeb89cc3e1371c9da2
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Thu May 17 19:11:44 2018 +1000
+
+    Fixed stockTest break from extra exceptions
+
+ 1 file changed, 9 insertions(+), 9 deletions(-)
+
+commit e23db7d9c4aba17ff1a4ba2fc1f621864352176a
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Thu May 17 19:11:08 2018 +1000
+
+    Removed debug code from store
+
+ 1 file changed, 4 deletions(-)
+
+commit 3c7458e1c4951f1e05819f7cf2df4e7ed8e46f82
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Thu May 17 17:58:47 2018 +1000
+
+    Completed LoadSales
+
+ 2 files changed, 112 insertions(+)
+
+commit 364d9c415ed6adf21bc9d3315f19b054a57fcc7e
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Thu May 17 17:58:33 2018 +1000
+
+    Fixed exception handling in CSV classes
+
+ 6 files changed, 100 insertions(+), 23 deletions(-)
+
+commit a37aca140d1856746eff44eef55f811b325c306f
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Thu May 17 17:19:01 2018 +1000
+
+    Made csv methods allow for file input for file selection from gui
+
+ 4 files changed, 12 insertions(+), 52 deletions(-)
+
+commit a6c16c058488c43cc2e5964963b2e1ec2d70bfef
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Thu May 17 17:07:14 2018 +1000
+
+    Fixed exception handling for delivery classes
+
+ 9 files changed, 106 insertions(+), 57 deletions(-)
+
+commit 38111e882a033c0b603da91653a606aa5d1bffcb
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Thu May 17 15:49:48 2018 +1000
+
+    Completed initializeItems and made CSVTest for manual testing success of csv reading and parsing
+
+ 4 files changed, 164 insertions(+), 43 deletions(-)
+
+commit 0e16b20c46226114f2b29f8cf60818533f88e658
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Thu May 17 15:48:48 2018 +1000
+
+    ExportManifest made ready for when directory has to be chosen
+
+ 1 file changed, 5 insertions(+), 4 deletions(-)
+
+commit c23e9f130c4d9ba1c374a7383d0b62531e0fd1ab
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Thu May 17 14:37:05 2018 +1000
+
+    Completed ExportManifest and added a small verfication test to ManifestTest
+
+ 3 files changed, 60 insertions(+), 7 deletions(-)
+
+commit 5db746abef1ac509ab02a4b6d1f8c56a9eb5ce0d
+Author: Mary Millar <mary.millar@connect.qut.edu.au>
+Date:   Thu May 17 14:18:39 2018 +1000
+
+    Handled Exceptions in Stock, Store, and both Truck test classes, also fixed exception handling in Item and Stock 'main' classes
+
+ 6 files changed, 130 insertions(+), 69 deletions(-)
+
+commit a95324e779ef7dcadc333f0328b229ab405b1c0c
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Thu May 17 03:24:46 2018 +1000
+
+    Started export manifest csv and added extra methods for its use into manifest plus added tests for the method in manifestTest
+
+ 3 files changed, 321 insertions(+), 15 deletions(-)
+
+commit caf856ffa26400e01828ad4973f34c7292a0f786
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Thu May 17 03:23:07 2018 +1000
+
+    fixed < needing to be > for checking if reordering is needed, altered getListCold to be more friendly
+
+ 1 file changed, 37 insertions(+), 22 deletions(-)
+
+commit ff48011472f99fb58ec2a251fe6da7d4c78b86b2
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Thu May 17 03:21:41 2018 +1000
+
+    Fixed math & capacity error for ordinary truck, fixed null pointer error for when adding an ordinary item to a refregerated truck
+
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+
+commit 065dbb078e9d3c1e8e28ba436231c1def3b4c7a2
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Thu May 17 03:20:36 2018 +1000
+
+    Fixed minor test errors and added getRemainingCapacity to truck
+
+ 3 files changed, 6 insertions(+), 2 deletions(-)
+
+commit 946844627980b15fede5a4f02cfc8aa66653cfa4
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Thu May 17 03:18:10 2018 +1000
+
+    Fixed capital formatting and added clearStock to help with testing
+
+ 2 files changed, 13 insertions(+), 7 deletions(-)
+
+commit e322364cab4faed261a660222d2103b934d2bf6a
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Wed May 16 17:31:48 2018 +1000
+
+    Fixed store test
+
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit 9fefbbfe0b6b02842621917365d6a379ae95c11f
+Author: Mary Millar <mary.millar@connect.qut.edu.au>
+Date:   Wed May 16 17:24:20 2018 +1000
+
+    Added new methods to Stock 'main' class
+
+ 1 file changed, 34 insertions(+), 5 deletions(-)
+
+commit 4e79d47f5db9dc7fdd64b4909469382ea16d5173
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Wed May 16 17:06:08 2018 +1000
+
+    Fixed manifest nullpointer error
+
+ 1 file changed, 12 insertions(+), 1 deletion(-)
+
+commit f1ed301107e968cfc9be998872d4e5f5ce1a49d6
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Wed May 16 17:05:50 2018 +1000
+
+    fixed false and true errors from stocktest
+
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 7561a14a11c727ab93f75074a4ee2a1593ff9112
+Author: Mary Millar <mary.millar@connect.qut.edu.au>
+Date:   Wed May 16 17:03:09 2018 +1000
+
+    Added more methods to Stock 'main' class [validSubtractItem()]
+
+ 1 file changed, 13 insertions(+)
+
+commit bf460399b5241a7bef2755e268d8ed32f78d5584
+Author: Mary Millar <mary.millar@connect.qut.edu.au>
+Date:   Wed May 16 16:50:02 2018 +1000
+
+    Edited several getColdestTemp() and addItemName() in Stock main class
+
+ 1 file changed, 4 insertions(+), 27 deletions(-)
+
+commit eb6abde86945891729a989e62477644078f8f052
+Merge: 7bf7ddf a41ff56
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Wed May 16 16:44:53 2018 +1000
+
+    Merge branch 'master' of https://bitbucket.org/ojones21/cab302_g04
+
+commit 7bf7ddf590cc7cbf133a396c7d6f244885f852d3
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Wed May 16 16:44:07 2018 +1000
+
+    StockTest fix
+
+ 2 files changed, 3 insertions(+), 2 deletions(-)
+
+commit a41ff5647aa4ca225f639ab9fa120299f6299617
+Author: Mary Millar <mary.millar@connect.qut.edu.au>
+Date:   Wed May 16 16:43:07 2018 +1000
+
+    Added exception to Store 'main' class
+
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 825a2d6b9d86920b183e77de14b7a9fe690664c4
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Wed May 16 16:17:20 2018 +1000
+
+    added throws to stocktest
+
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 2deba46fecf4dac9d208735d81598e25a9abe0c8
+Author: Mary Millar <mary.millar@connect.qut.edu.au>
+Date:   Wed May 16 16:13:36 2018 +1000
+
+    Fixed method errors in Stock and Store main classes
+
+ 2 files changed, 14 insertions(+), 5 deletions(-)
+
+commit efc62dc03e41aad57a09bcf1c42f2900b28a18ca
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Wed May 16 15:57:15 2018 +1000
+
+    Fixed calculation error for refrigeration truck
+
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+commit 8488cb92937ab058dc842ee40e44fad4774f21dd
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Wed May 16 15:56:47 2018 +1000
+
+    Fixed minor errors in truck tests
+
+ 2 files changed, 24 insertions(+), 21 deletions(-)
+
+commit ae397ea91049cf4e1165c8145f85c6499dd84c34
+Author: Mary Millar <mary.millar@connect.qut.edu.au>
+Date:   Wed May 16 15:27:44 2018 +1000
+
+    Updated Stock 'main' class, updated Manifest test class
+
+ 2 files changed, 75 insertions(+), 61 deletions(-)
+
+commit 55745d97b1742c7b9bde427cb4aee58b23edd42b
+Merge: cebcfc4 e772769
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Wed May 16 15:15:55 2018 +1000
+
+    Merge branch 'master' of https://bitbucket.org/ojones21/cab302_g04
+
+commit cebcfc4573706851c1a30a0b98ef7f08ac1e4938
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Wed May 16 15:15:10 2018 +1000
+
+    Uncommented part of stockTest that needs store
+
+ 1 file changed, 14 insertions(+), 14 deletions(-)
+
+commit e7727694bfc23905a3dc4836317289ec0de6d80a
+Author: Mary Millar <mary.millar@connect.qut.edu.au>
+Date:   Wed May 16 15:04:43 2018 +1000
+
+    Cleaned up debugging in the Store 'main' class
+
+ 1 file changed, 29 insertions(+), 4 deletions(-)
+
+commit 54633e32e904fc720fd84d5a54afa7586a966125
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Wed May 16 13:54:17 2018 +1000
+
+    Added exception strings to thrown exceptions for both truck classes
+
+ 2 files changed, 4 insertions(+), 4 deletions(-)
+
+commit d22e29358a45b1735e8c65210036d0b04ecaa524
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Wed May 16 13:08:20 2018 +1000
+
+    Fixed returnManifest and importTruck in manifest
+
+ 1 file changed, 9 insertions(+), 7 deletions(-)
+
+commit 85414826581fc987114357643f6460bf6ea6c7fe
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Wed May 16 11:47:46 2018 +1000
+
+    Swapped importTruck from Truck class to Manifest
+
+ 2 files changed, 21 insertions(+), 20 deletions(-)
+
+commit c79e08bccb4f1d7f3722a5fe69c881c55e3ce24f
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Mon May 14 19:25:53 2018 +1000
+
+    fixed testGetInventory (thought the instance wouldnt reset throughout tests, may just be run in incorrect order)
+
+ 1 file changed, 1 insertion(+)
+
+commit d9bad8f96d5a6c21960b723c94331136fa4e90fa
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Mon May 14 14:10:30 2018 +1000
+
+    Fixed testGetInventory() and inventory setup in StoreTest
+
+ 1 file changed, 7 insertions(+), 6 deletions(-)
+
+commit 15ae3c8df084b1f1f0f279d855e2143fa2edfb78
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Mon May 14 13:11:16 2018 +1000
+
+    Fixed tests testGetCapitalString and testLowerCapital in StoreTest
+
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit 6ffff57d83f84c88a3c91ceec421ff83dfd4e6e2
+Author: Mary Millar <mary.millar@connect.qut.edu.au>
+Date:   Mon May 14 12:49:52 2018 +1000
+
+    Adjusted some assertEquals method paramenters to allow for Doubles, began work on the store 'main' class
+
+ 2 files changed, 36 insertions(+), 5 deletions(-)
+
+commit 32393415e4fc183d2f1ce49e8d3f69f1ca8ea488
+Author: Mary Millar <mary.millar@connect.qut.edu.au>
+Date:   Mon May 14 09:57:49 2018 +1000
+
+    Edited Stock 'main' class + cleaned up debugging code
+
+ 2 files changed, 44 insertions(+), 59 deletions(-)
+
+commit e31764ede70f52de580ee9828cfcd6f3ce6e0668
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Sun May 13 11:45:13 2018 +1000
+
+    Added import truck from a string method to truck
+
+ 1 file changed, 24 insertions(+), 4 deletions(-)
+
+commit 6e98b26017297e1b889ca0e8090931e4819aaeee
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Sun May 13 11:44:14 2018 +1000
+
+    Added manifest methods
+
+ 1 file changed, 27 insertions(+), 1 deletion(-)
+
+commit 7b5c864db1bd5ed06416dae4b34972b1f38839cf
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Sat May 12 15:30:58 2018 +1000
+
+    Added new exception throws to tests to keep them working
+
+ 2 files changed, 17 insertions(+), 15 deletions(-)
+
+commit 58cac801b7ae4b3817dbf6b9a10c140fbfe27db4
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Sat May 12 15:30:13 2018 +1000
+
+    Updated getTemp for truck and refrig truck
+
+ 2 files changed, 11 insertions(+), 6 deletions(-)
+
+commit e59ac3330580a2acfb2e8af8f94bf5940eecb0be
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Sat May 12 15:29:12 2018 +1000
+
+    Fixed another error in StockTest
+
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit c8f1af1cfc696abda7764d6c55bad0e28ad1758b
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Sat May 12 14:57:16 2018 +1000
+
+    Fixed errors in StockTest
+
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit b4be0ce309f35dbaeb089e8cb0808b9a0645b6df
+Author: Mary Millar <mary.millar@connect.qut.edu.au>
+Date:   Sat May 12 13:21:36 2018 +1000
+
+    Continued work on 'main' Stock class, made edits to the Item 'main' class
+
+ 3 files changed, 283 insertions(+), 8 deletions(-)
+
+commit d47b02243d939dea5ff66a763d7270ae326be7bd
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Sat May 12 00:17:52 2018 +1000
+
+    Added tests for equals in ItemTest (plus comment fix for stocktest)
+
+ 2 files changed, 90 insertions(+), 1 deletion(-)
+
+commit 77f36bb0f20bdcf4825f19ce3ca47ba2ffb63dec
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Sat May 12 00:04:15 2018 +1000
+
+    Added three more tests to StockTest
+
+ 1 file changed, 50 insertions(+)
+
+commit 21e1ab4c6b9a0af91f7e5d398c6dd2891d1a3ab6
+Author: Mary Millar <mary.millar@connect.qut.edu.au>
+Date:   Fri May 11 23:52:38 2018 +1000
+
+    Cleaned up debugging part of code for the Stock 'main' class
+
+ 1 file changed, 9 deletions(-)
+
+commit 754f6223397e2a0ce8914cebd1d6a7e56f0f1739
+Merge: 66771be 1619e1f
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Fri May 11 23:44:38 2018 +1000
+
+    Merge branch 'master' of https://bitbucket.org/ojones21/cab302_g04
+
+commit 66771be5da2a75066539ac99117f24c1edb5ce9d
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Fri May 11 23:41:58 2018 +1000
+
+    fixed Item setup in stock test
+
+ 1 file changed, 13 insertions(+), 16 deletions(-)
+
+commit 1619e1f331b847079a2c2c53dd0a6d3f1fe3a5a8
+Author: Mary Millar <mary.millar@connect.qut.edu.au>
+Date:   Fri May 11 23:38:18 2018 +1000
+
+    Edited the Item and Stock 'main' classes
+
+ 2 files changed, 4 insertions(+), 3 deletions(-)
+
+commit e08e1dbf92f764347425d141e1257be24f622322
+Author: Mary Millar <mary.millar@connect.qut.edu.au>
+Date:   Fri May 11 23:19:47 2018 +1000
+
+    Added some @Override methods for equals() and hashCode() to Item, edited the Stock 'main' class
+
+ 2 files changed, 36 insertions(+), 5 deletions(-)
+
+commit 0b7baa58256ba7e7cc1af17db68cb5e4115d8092
+Author: Mary Millar <mary.millar@connect.qut.edu.au>
+Date:   Fri May 11 22:36:02 2018 +1000
+
+    Continued work on the Stock 'main' class
+
+ 1 file changed, 27 insertions(+), 8 deletions(-)
+
+commit 256029a62aea3322285a4d674bf66b86e4a9b9a4
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Fri May 11 18:34:20 2018 +1000
+
+    Rename getColdestTemp to getTemp and getCapacity to truckCapacity
+
+ 3 files changed, 7 insertions(+), 7 deletions(-)
+
+commit 46abeb68648300aece516703c42b65c9df114813
+Author: Mary Millar <mary.millar@connect.qut.edu.au>
+Date:   Fri May 11 17:19:09 2018 +1000
+
+    Made edits to Manifest test class and both Truck test classes
+
+ 3 files changed, 17 insertions(+), 15 deletions(-)
+
+commit 144f791309be5f0124f0418fcc078244f85356c6
+Author: Mary Millar <mary.millar@connect.qut.edu.au>
+Date:   Fri May 11 16:58:59 2018 +1000
+
+    Made edits to the Manifest and both Truck test classes, began Stock 'main' class
+
+ 4 files changed, 42 insertions(+), 21 deletions(-)
+
+commit ad2abcd45ed04e9220920f43ef69da9c51ad8631
+Author: Mary Millar <mary.millar@connect.qut.edu.au>
+Date:   Fri May 11 14:51:28 2018 +1000
+
+    Added exceptions to both Truck test classes, along with other edits
+
+ 2 files changed, 17 insertions(+), 14 deletions(-)
+
+commit 880400c20616719ca00ec7727a04bf7c420f1be0
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Fri May 11 11:21:37 2018 +1000
+
+    Added throws StockException to relevant test classes
+
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+commit acb0a332c713fab68b6f7f549379d2fbd9316c35
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Fri May 11 10:51:10 2018 +1000
+
+    Added throws StockException to all tests that contain making an item (since item constructor will throw an exception when invalid item is attempted)
+
+ 1 file changed, 17 insertions(+), 17 deletions(-)
+
+commit b901ab0926a4f944f0b8a2c3c36673c9a64396f9
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Fri May 11 10:50:18 2018 +1000
+
+    Corrected wrong exception throwing
+
+ 3 files changed, 3 insertions(+), 3 deletions(-)
+
+commit fb883d613a3699d402b53c8992f2d420df515980
+Author: Mary Millar <mary.millar@connect.qut.edu.au>
+Date:   Fri May 11 07:20:53 2018 +1000
+
+    Updated Manifest test class
+
+ 1 file changed, 51 insertions(+), 25 deletions(-)
+
+commit 9eecd3f27bbbf9e5f72a40a9fe30ca2071275de1
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Thu May 10 23:02:11 2018 +1000
+
+    Implementation of refrigerated truck class
+
+ 1 file changed, 21 insertions(+), 10 deletions(-)
+
+commit ce79feae86d50af8dbfac178f968fd3a2d8d064a
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Thu May 10 23:01:56 2018 +1000
+
+    Implementation of ordinary truck class
+
+ 1 file changed, 22 insertions(+), 11 deletions(-)
+
+commit 1a02439d533776d44f6d9a205dc434af0967df97
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Thu May 10 23:01:37 2018 +1000
+
+    Implementation of truck abstract class
+
+ 1 file changed, 19 insertions(+), 7 deletions(-)
+
+commit 35879835aa067152dc9eea65c73dcfc9ad339d91
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Thu May 10 23:00:27 2018 +1000
+
+    Added extra stock test
+
+ 1 file changed, 13 insertions(+)
+
+commit 4b8a1175b260cb3b7b2712f86944913ee95adc5d
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Thu May 10 21:36:29 2018 +1000
+
+    Fixed minor errors and changed Double.valueof() to (double) in Item, Store and Stock test
+
+ 3 files changed, 20 insertions(+), 8 deletions(-)
+
+commit f8b133be1c64aa37c225ba7b3b9a9b023f5799d3
+Author: Mary Millar <mary.millar@connect.qut.edu.au>
+Date:   Wed May 9 17:02:52 2018 +1000
+
+    Edited Manifest test class, edited Refrigerated and Ordinary Truck test classes
+
+ 3 files changed, 53 insertions(+), 22 deletions(-)
+
+commit 4e4b4539ca28eb2758befb7524bad41c738526c5
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Wed May 9 17:00:48 2018 +1000
+
+    fixed double wrapping in tests
+
+ 3 files changed, 30 insertions(+), 26 deletions(-)
+
+commit 6986f8fd1dcd7fdbc511e2a4a179e380d8ca20ae
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Wed May 9 17:00:32 2018 +1000
+
+    imported all of stock
+
+ 3 files changed, 3 insertions(+), 3 deletions(-)
+
+commit c111a5d22eca1135e39a50e482436ed6a4ad7019
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Wed May 9 16:49:35 2018 +1000
+
+    imported stock
+
+ 3 files changed, 6 insertions(+)
+
+commit 6a1b0db8d78a078369c2a28774485af1954fee2f
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Wed May 9 16:45:54 2018 +1000
+
+    Starter method stubs for truck
+
+ 3 files changed, 61 insertions(+), 1 deletion(-)
+
+commit 5df1d870774981794466086bb1c2632fae4df102
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Wed May 9 16:24:36 2018 +1000
+
+    Fixed testRefrigerated
+
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit ba349cd55771b3ba674e945e49c7bc1c273bb43f
+Author: Mary Millar <mary.millar@connect.qut.edu.au>
+Date:   Wed May 9 16:20:18 2018 +1000
+
+    Fixed Truck abstract class reference, edited main Item class
+
+ 6 files changed, 29 insertions(+), 21 deletions(-)
+
+commit e2fa46a1b967838da15108ddf8ac220abd8811c8
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Wed May 9 16:09:44 2018 +1000
+
+    woops
+
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 1a4a10ab0973f2c0da4bf52947df7e047567c4cf
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Wed May 9 16:05:32 2018 +1000
+
+    Fixed assertEquals error
+
+ 2 files changed, 13 insertions(+), 13 deletions(-)
+
+commit 8f9fb98d6512766395d74fc185a46a4603648fc9
+Author: Mary Millar <mary.millar@connect.qut.edu.au>
+Date:   Wed May 9 15:46:53 2018 +1000
+
+    Updated Manifest Test class
+
+ 1 file changed, 2 insertions(+)
+
+commit 96d4619fe2ac44aa53b56da8d4ae47fdd02441b0
+Merge: 4afd5a3 b3c143d
+Author: Mary Millar <mary.millar@connect.qut.edu.au>
+Date:   Wed May 9 15:45:53 2018 +1000
+
+    Merge branch 'master' of https://ojones21@bitbucket.org/ojones21/cab302_g04.git
+
+commit 4afd5a3f3a2ee505b833951eec90af2a64820635
+Author: Mary Millar <mary.millar@connect.qut.edu.au>
+Date:   Wed May 9 15:44:56 2018 +1000
+
+    Updated Item Test class
+
+ 1 file changed, 8 insertions(+), 10 deletions(-)
+
+commit 217fbade0e89ea4115afb5a34fa4096a0095a0f2
+Author: Mary Millar <mary.millar@connect.qut.edu.au>
+Date:   Wed May 9 15:43:28 2018 +1000
+
+    Finished Item main class, updated Manifest tests
+
+ 5 files changed, 93 insertions(+), 14 deletions(-)
+
+commit b3c143deff10891b8f3e65f3cd3f9979b64ab591
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Wed May 9 13:21:23 2018 +1000
+
+    Changing from Junit 5 to Junit 4 (Assignment FAQ said use 4)
+
+ 3 files changed, 3 insertions(+), 3 deletions(-)
+
+commit facc11d2d6d8b6d16eef3868e22f934586777fd9
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Wed May 9 13:03:38 2018 +1000
+
+    Fixed minor errors and added exception tests plus extra method tests to StockTest
+
+ 1 file changed, 173 insertions(+), 3 deletions(-)
+
+commit 6f33c16eca14191788b17b0e74f1a1fcbdc7e6c8
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Wed May 9 13:03:02 2018 +1000
+
+    Added exception tests to ItemTest
+
+ 1 file changed, 69 insertions(+), 1 deletion(-)
+
+commit 7de4b9641f81e3e0ab51172eab9cc386c9a1472f
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Tue May 8 03:13:55 2018 +1000
+
+    Created basic method implementation tests for the Store class
+
+ 2 files changed, 105 insertions(+), 1 deletion(-)
+
+commit ea7c6f6296f44c103fa91f1d4ef3236a024f6337
+Author: Mary Millar <mary.millar@connect.qut.edu.au>
+Date:   Thu May 3 12:45:23 2018 +1000
+
+    Updated Ordinary_Truck and Refrigerated_Truck Test classes, began Manifest Test class
+
+ 3 files changed, 117 insertions(+), 48 deletions(-)
+
+commit ac5873de8ead22be6a8ab978df729cb893f7d428
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Wed May 2 20:21:25 2018 +1000
+
+    Additional class and package setup
+
+ 8 files changed, 95 insertions(+)
+
+commit c1da069bebbc186ec04db8adec62394e85d768d4
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Wed May 2 20:20:45 2018 +1000
+
+    Project package organisation
+
+ 11 files changed, 11 insertions(+), 11 deletions(-)
+
+commit 3d0cd4ab6e32c937eb1383981cbb6d93d43957d4
+Author: Mary Millar <mary.millar@connect.qut.edu.au>
+Date:   Mon Apr 30 21:32:18 2018 +1000
+
+    Updated test class for Refrigerated_Truck, added test class for Ordinary_Truck
+
+ 2 files changed, 174 insertions(+), 25 deletions(-)
+
+commit 92bf98d6f5c79df163f8db088ada1c451cd55f89
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Mon Apr 30 02:52:11 2018 +1000
+
+    Created basic method implementation tests for the Stock class
+
+ 1 file changed, 195 insertions(+)
+
+commit 8e977d6eaf5efde4a8c28ffc2fc4dfcd61d1c0ee
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Sun Apr 29 14:18:11 2018 +1000
+
+    Remove /bin/ from repos (not needed in online repos, only local)
+
+ 9 files changed, 0 insertions(+), 0 deletions(-)
+
+commit b82231101c6051a0b8360d81dee680169cc19be7
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Sun Apr 29 14:14:56 2018 +1000
+
+    fixing .gitignore
+
+ 2 files changed, 1 insertion(+), 1 deletion(-)
+
+commit 24d26f2c4cc12f792686b2fe877c3b9e85bd35f3
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Sun Apr 29 13:59:25 2018 +1000
+
+    Created basic method implementation tests for the Item class
+
+ 3 files changed, 118 insertions(+), 6 deletions(-)
+
+commit b7af85af58db483a449b35decd02d6d2508da2bc
+Author: Mary Millar <mary.millar@connect.qut.edu.au>
+Date:   Fri Apr 27 14:09:53 2018 +1000
+
+    added a few refrigerated truck tests
+
+ 1 file changed, 67 insertions(+)
+
+commit b0c744c6c8d64903bbb282c8d67edcdfb243b335
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Mon Apr 23 05:38:58 2018 +0000
+
+    README.md created online with Bitbucket with google drive link
+
+ 1 file changed, 31 insertions(+)
+
+commit 96922f289f5369e360ab1cddbfccadd4356a5fd2
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Fri Apr 20 14:59:33 2018 +1000
+
+    Initial class setip
+
+ 20 files changed, 78 insertions(+), 2 deletions(-)
+
+commit bcf195fc4017d6f1f6e8970e24b0f3798eac574d
+Author: Mary Millar <mary.millar@connect.qut.edu.au>
+Date:   Fri Apr 20 14:41:32 2018 +1000
+
+    removed test java file
+
+ 1 file changed, 5 deletions(-)
+
+commit 2fc9ba37771c593a9fab240fdf05bac6a93124a9
+Author: Mary Millar <mary.millar@connect.qut.edu.au>
+Date:   Fri Apr 20 14:39:50 2018 +1000
+
+    added test java file 2:39pm
+
+ 2 files changed, 6 insertions(+)
+
+commit 5c36d3207f10379498fa35412a5531f4b15cba8b
+Author: Mary Millar <mary.millar@connect.qut.edu.au>
+Date:   Fri Apr 20 14:22:05 2018 +1000
+
+    added test java file
+
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 1f81a0013a9128bdfe24e8315853d63bf82fcc33
+Author: Brendan Doncaster <brendan.doncaster@connect.qut.edu.au>
+Date:   Fri Apr 20 14:11:42 2018 +1000
+
+    Java project setup
+
+ 4 files changed, 33 insertions(+)
+
+commit 35a4bc04ed60d7c2712640a3d58725f6f19c4d78
+Author: Mary Millar <mary.millar@connect.qut.edu.au>
+Date:   Fri Apr 20 13:49:12 2018 +1000
+
+    removed test files
+
+ 3 files changed, 30 deletions(-)
+
+commit f73db5986fee262b027d7e0b28f4e64c176e81d8
+Author: Mary Millar <mary.millar@connect.qut.edu.au>
+Date:   Wed Apr 18 22:27:26 2018 +1000
+
+    this is a test file
+
+ 1 file changed, 1 insertion(+)
+
+commit 2cb7a27a2a69ad910c5179863a97d6c9d5e8e209
+Author: Orion Jones <comenatemez@gmail.com>
+Date:   Wed Apr 18 12:12:56 2018 +0000
+
+    README.md created online with Bitbucket [TEST]
+
+ 1 file changed, 29 insertions(+)
