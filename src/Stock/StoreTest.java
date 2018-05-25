@@ -15,7 +15,7 @@ public class StoreTest {
 	Stock inventory;
 	
 	@Before
-	public void setup() {
+	public void setup() throws StockException {
 		//Setup items to be used in store tests
 		
 		try {	

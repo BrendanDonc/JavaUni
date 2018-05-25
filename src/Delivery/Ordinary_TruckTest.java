@@ -52,14 +52,14 @@ public class Ordinary_TruckTest {
 	
 	/* Test 2: Add one kind of item to truck cargo */
 	@Test
-	public void addAnItem() throws DeliveryException {
+	public void addAnItem() throws DeliveryException, StockException {
 		oTruck.addItem(rice, 52);
 		assertEquals(52, oTruck.getCargoItem(rice));
 	}
 	
 	/* Test 3: Add multiple kinds of item to truck cargo */
 	@Test
-	public void addMultipleItems() throws DeliveryException {
+	public void addMultipleItems() throws DeliveryException, StockException {
 		oTruck.addItem(biscuits, 128);
 		oTruck.addItem(almonds, 67);
 		oTruck.addItem(cannedSpag, 52);
@@ -105,7 +105,7 @@ public class Ordinary_TruckTest {
 	
 	/* Test 7: Checking the truck cargo has the correct number of items */
 	@Test
-	public void checkTruckSize() throws DeliveryException {
+	public void checkTruckSize() throws DeliveryException, StockException {
 		oTruck.addItem(rice, 50);
 		oTruck.addItem(muffins, 80);
 		int actualSize = 50 + 80;
@@ -120,7 +120,7 @@ public class Ordinary_TruckTest {
 	
 	/* Test 9: Checking the truck cargo has not exceeded capacity */
 	@Test(expected = DeliveryException.class)
-	public void maxCapacity() throws DeliveryException {
+	public void maxCapacity() throws DeliveryException, StockException {
 		oTruck.addItem(rice, 1100);
 		
 		oTruck.getTruckSize();
@@ -128,7 +128,7 @@ public class Ordinary_TruckTest {
 	
 	/* Test 10: Checking there are no temperature-controlled items in the truck */
 	@Test(expected = DeliveryException.class)
-	public void checkForColdItems() throws DeliveryException {
+	public void checkForColdItems() throws DeliveryException, StockException {
 		oTruck.addItem(iceCream, 50);
 	}
 	

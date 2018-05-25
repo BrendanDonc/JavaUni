@@ -47,7 +47,7 @@ public class Refrigerated_TruckTest {
 	
 	/* Test 2: Add one kind of item to truck cargo */
 	@Test
-	public void addAnItem() throws DeliveryException {
+	public void addAnItem() throws DeliveryException, StockException {
 		int testQuantity = 52;
 		
 		rTruck.addItem(pork, 52);
@@ -56,7 +56,7 @@ public class Refrigerated_TruckTest {
 	
 	/* Test 3: Add multiple kinds of item to truck cargo */
 	@Test
-	public void addMultipleItems() throws DeliveryException {
+	public void addMultipleItems() throws DeliveryException, StockException {
 		int iceCreamQuantity = 128;
 		int milkQuantity = 67;
 		int bananaQuantity = 52;
@@ -69,7 +69,7 @@ public class Refrigerated_TruckTest {
 	}
 
 	/*Test 4: Get the temperature of the truck */
-	@Test public void calcTruckTemp() throws DeliveryException {
+	@Test public void calcTruckTemp() throws DeliveryException, StockException {
 		rTruck.addItem(iceCream, 50);
 		double actualTemp = -5;
 		assertEquals(actualTemp, rTruck.getTemp(), 0.1); //getTemp will need to get the lowest temperature from the items added
@@ -78,7 +78,7 @@ public class Refrigerated_TruckTest {
 	
 	/* Test 5: Calculating the refrigerated truck cost */
 	@Test
-	public void calcRTruckCost() throws DeliveryException {
+	public void calcRTruckCost() throws DeliveryException, StockException {
 		rTruck.addItem(iceCream, 50);
 		int actualTemp = -5;
 		double actualCost = 900.0 + 200.0 *Math.pow(0.7, actualTemp/5.0);
@@ -117,7 +117,7 @@ public class Refrigerated_TruckTest {
 	
 	/* Test 9: Checking the truck cargo has not exceeded capacity */
 	@Test
-	public void maxCapacity() throws DeliveryException {
+	public void maxCapacity() throws DeliveryException, StockException {
 		rTruck.addItem(iceCream, 776);
 		
 		rTruck.truckCapacity();
@@ -135,13 +135,13 @@ public class Refrigerated_TruckTest {
 	
 	/* Test 11: Checking the temperature of the truck is safe (ie. has not exceeded either limit) */
 	@Test(expected = DeliveryException.class)
-	public void checkTemp() throws DeliveryException {
+	public void checkTemp() throws DeliveryException, StockException {
 		rTruck.addItem(peas, 5);
 	}
 	
 	/* Test 12: Checking that at there is least 1 temperature-controlled item in cargo */
 	@Test
-	public void getMinTemp() throws DeliveryException {
+	public void getMinTemp() throws DeliveryException, StockException {
 		Double actualMinTemp = (double) -5;
 		rTruck.addItem(iceCream, 50);
 		assertEquals(actualMinTemp, rTruck.getTemp());

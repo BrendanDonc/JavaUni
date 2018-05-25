@@ -182,7 +182,7 @@ public class StockTest {
 	 * 
 	 */
 	@Test
-	public void testGetColdestTemp() {
+	public void testGetColdestTemp() throws StockException {
 		stock = new Stock();
 		stock.addItem(rice, 100);
 		stock.addItem(mushroom, 300);
@@ -197,7 +197,7 @@ public class StockTest {
 	 * 
 	 */
 	@Test
-	public void testGetManifestPrintStyle() {
+	public void testGetManifestPrintStyle() throws StockException {
 		stock = new Stock();
 		stock.addItem(rice, 100);
 		stock.addItem(mushroom, 300);
@@ -212,7 +212,7 @@ public class StockTest {
 	 * 
 	 */
 	@Test
-	public void testGetAmount() {
+	public void testGetAmount() throws StockException {
 		stock = new Stock();
 		int amount = 200;
 		stock.addItem(rice, amount);
@@ -317,7 +317,7 @@ public class StockTest {
 	 * 
 	 */
 	@Test//(expected = StockException.class)
-	public void testSubtractStockAmount() {
+	public void testSubtractStockAmount() throws StockException {
 		stock = new Stock();
 		tempStock = new Stock();
 		stock.addItem(rice, 200);
@@ -335,7 +335,7 @@ public class StockTest {
 	 * 
 	 */
 	@Test//(expected = StockException.class)
-	public void testSubtractStockExist() {
+	public void testSubtractStockExist() throws StockException {
 		stock = new Stock();
 		tempStock = new Stock();
 		tempStock.addItem(rice, 200);
@@ -403,7 +403,7 @@ public class StockTest {
 	 * 
 	 */
 	@Test
-	public void testAddStockValue() {
+	public void testAddStockValue() throws StockException {
 		int mushResult = 50;
 		int riceResult = 2;
 		Stock tempStock = new Stock();
@@ -420,7 +420,7 @@ public class StockTest {
 	 * 
 	 */
 	@Test
-	public void testAddExistingItem() {
+	public void testAddExistingItem() throws StockException {
 		int result = 100;
 		stock = new Stock();
 		stock.addItem(rice, 40);
@@ -433,7 +433,7 @@ public class StockTest {
 	 * 
 	 */
 	@Test
-	public void testAddStockValueAlreadyExist() {
+	public void testAddStockValueAlreadyExist() throws StockException {
 		int mushResult = 100;
 		int riceResult = 22;
 		Stock tempStock = new Stock();
