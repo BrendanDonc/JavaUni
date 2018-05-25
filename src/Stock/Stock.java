@@ -459,16 +459,14 @@ public class Stock {
 			    Integer quantity = entry.getValue();
 			    	
 			    try {
-					if (this.validSubtractItem(item, quantity) == false) {
-							success = false;
-					}
+			        this.validSubtractItem(item, quantity);
 				} catch (StockException e) {
 					throw e;
 				}
 			}
 		}
 		else {
-			success = false;
+			throw new StockException("Attempted to subtract items from an empty stock");
 		}
 		return success;
 	}

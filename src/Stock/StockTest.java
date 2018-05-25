@@ -370,7 +370,7 @@ public class StockTest {
 		tempStock = new Stock();
 		stock.addItem(rice, 200);
 		tempStock.addItem(rice, 300);
-		assertEquals(false, stock.validSubtractStock(tempStock));
+		stock.validSubtractStock(tempStock);
 	}
 	
 	/*
@@ -382,7 +382,7 @@ public class StockTest {
 		stock = new Stock();
 		tempStock = new Stock();
 		tempStock.addItem(rice, 200);
-		assertEquals(false, stock.validSubtractStock(tempStock));
+		stock.validSubtractStock(tempStock);
 	}
 	
 	/*
@@ -446,6 +446,16 @@ public class StockTest {
 		assertEquals(mushResult, stock.getAmount(mushroom));
 		assertEquals(riceResult, stock.getAmount(rice));
 	}
+	
+	 /*
+     * Test 31 addItem when quantity is negative
+     * 
+     */
+    @Test (expected = StockException.class)
+    public void testAddNegativeItem() throws StockException {
+        stock = new Stock();
+        stock.addItem(rice, -1);
+    }   
 	
 	
 }
