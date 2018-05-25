@@ -1,39 +1,20 @@
 /**
+ * This file forms part of the Inventory Management Application Project
+ * Assignment Two - CAB302 2018
+ * 
+ * Developed by Brendan Doncaster and Mary Millar
  * 
  */
+
 package GUI;
 
-import java.awt.GraphicsConfiguration;
-
-import java.awt.HeadlessException;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.io.IOException;
-import java.util.LinkedList;
-
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.JTextArea;
-import javax.swing.SwingUtilities;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-
-import CSV.CSVFormatException;
-import CSV.ExportManifest;
-import CSV.InitializeItems;
-import CSV.LoadManifest;
-import CSV.LoadSales;
+import CSV.*;
 import Delivery.DeliveryException;
-import Stock.Item;
-import Stock.Stock;
-import Stock.StockException;
-import Stock.Store;
-
+import Stock.*;
 import java.awt.*;
 
 /**

@@ -1,11 +1,14 @@
+/**
+ * This file forms part of the Inventory Management Application Project
+ * Assignment Two - CAB302 2018
+ * 
+ * Developed by Brendan Doncaster and Mary Millar
+ * 
+ */
+
 package CSV;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-
+import java.io.*;
 import Delivery.*;
 import Stock.*;
 

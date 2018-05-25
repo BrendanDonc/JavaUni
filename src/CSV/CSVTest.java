@@ -1,7 +1,14 @@
+/**
+ * This file forms part of the Inventory Management Application Project
+ * Assignment Two - CAB302 2018
+ * 
+ * Developed by Brendan Doncaster and Mary Millar
+ * 
+ */
+
 package CSV;
 
 import static org.junit.Assert.assertEquals;
-
 import java.io.IOException;
 import org.junit.Test;
 import Delivery.DeliveryException;

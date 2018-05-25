@@ -1,3 +1,11 @@
+/**
+ * This file forms part of the Inventory Management Application Project
+ * Assignment Two - CAB302 2018
+ * 
+ * Developed by Brendan Doncaster and Mary Millar
+ * 
+ */
+
 package Stock;
 
 import java.text.DecimalFormat;
